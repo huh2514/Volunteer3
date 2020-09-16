@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="인천">
+        <item>남동구</item>
+        <item>동구</item>
+        <item>부평</item>
+        <item>미추홀</item>
+        <item>남구</item>
+        <item>서구</item>
+        <item>중구</item>
+        <item>연수구</item>
+        <item>계양구</item>
+    </string-array>
+    <string-array name="서울">
+        <item>강남</item>
+        <item>동구</item>
+        <item>부평</item>
+        <item>미추홀</item>
+        <item>남구</item>
+        <item>서구</item>
+        <item>중구</item>
+        <item>연수구</item>
+        <item>계양구</item>
+    </string-array>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+        android:id="@+id/text1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="프로그램명" />
+
+        <TextView
+            android:id="@+id/seldTItle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/texttime"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="봉사기간" />
+
+    <TextView
+        android:id="@+id/seldTime"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textplace"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="봉사장소" />
+    <TextView
+        android:id="@+id/seldPlace"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="TextView" />
+    </LinearLayout>
+
+</LinearLayout>

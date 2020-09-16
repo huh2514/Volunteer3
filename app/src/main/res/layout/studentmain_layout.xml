@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/SearchVolunteerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="봉사참여" />
+    <Button
+        android:id="@+id/mypageBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내정보" />
+    <Button
+        android:id="@+id/openCalendarBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="봉사일정확인" />
+
+</LinearLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:hint="Date"
+        android:textSize="30dp" />
+    <TextView
+        android:id="@+id/date1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:hint="Date"
+        android:textSize="40dp"
+        />
+        <!--        android:layout_marginTop="10dp"-->
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:gravity="left"
+            android:text="제목 : "
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/vTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:text="제목"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:gravity="left"
+            android:text="종류 : "
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/vCategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:text="종류"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/sd"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:gravity="left"
+            android:text="시작일 : "
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/sDay"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:text="시작일"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/ed"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:gravity="left"
+            android:text="종료일 : "
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/eDay"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:text="종료일"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:gravity="left"
+            android:text="장소 : "
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/vPlace"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:text="장소"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

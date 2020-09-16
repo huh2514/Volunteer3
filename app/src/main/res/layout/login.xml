@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/StdLoginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="학생 로그인" />
+
+    <Button
+        android:id="@+id/FacilityLoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="시설 로그인" />
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그인" />
+    <Button
+        android:id="@+id/SignupBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입" />
+</LinearLayout>
