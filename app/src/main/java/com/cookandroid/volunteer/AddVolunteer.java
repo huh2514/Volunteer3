@@ -19,6 +19,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 public class AddVolunteer extends AppCompatActivity {
+    //여기 추가ㅏㅎㅁ
     public static Context context_main;
     DBHelper myHelper;
     SQLiteDatabase sqlDB;
