@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class AddVolunteer extends AppCompatActivity {
     //여기 추가ㅏㅎㅁ
     //test
+    //tested
     public static Context context_main;
     DBHelper myHelper;
     SQLiteDatabase sqlDB;
