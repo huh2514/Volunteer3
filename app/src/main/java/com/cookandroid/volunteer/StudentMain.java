@@ -22,7 +22,7 @@ public class StudentMain extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
-                        "com.cookandroid.volunteer.Search");
+                        "com.cookandroid.volunteer.SearchInfo");
                 intent.setComponent(cmpName);
                 startActivity(intent);
             }

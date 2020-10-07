@@ -33,6 +33,8 @@
         <activity android:name=".DaySchedule"></activity>
         <activity android:name=".CalendarActivity"></activity>
         <activity android:name=".SelectedVolunteer"></activity>
+        <activity android:name=".SearchInfo"></activity>
+        <activity android:name=".ResultView"></activity>
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
