@@ -2,113 +2,168 @@ package com.cookandroid.volunteer;
 
 public class SearchData {
 
-    String Title = null;
+    String progrmRegistNo; //프로그램등록번호
+    String progrmSj; //봉사제목
+    String progrmBgnde; //봉사시작일
+    String progrmEndde; //봉사종료일
+    String actBeginTm; //봉사시작시간
+    String actEndTm; //봉사종료시간
+    String actPlace; //봉사장소
 
-    String addr1 = null;
+    String noticeBgnde; //모집시작일
+    String noticeEndde; //모집종료일
+    String rcritNmpr; //모집인원
+    String appTotal; //신청인원
+    String actWkdy; //활동요일
+    String srvcClCode; //봉사분야
+    String mnnstNm; //모집기관
+    String nanmmbyNm; //등록기관
+    String telno; //전화번호
+    String email; //이메일
+    String progrmCn; //내용
 
-    String addr2 = null;
 
-    String category1 = null;
-
-    String category2 = null;
-
-    String sDate = null;
-
-    String eDate = null;
-
-    String target = null;
-
-    boolean isEnd = false;
-
-    boolean adultPossib = false;
-
-    boolean youngPossib = false;
-
-    public String getTitle() {
-        return Title;
+    public String getProgrmRegistNo() {
+        return progrmRegistNo;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public String getProgrmSj() {
+        return progrmSj;
     }
 
-    public String getAddr1() {
-        return addr1;
+    public String getProgrmBgnde() {
+        return progrmBgnde;
     }
 
-    public void setAddr1(String addr1) {
-        this.addr1 = addr1;
+    public String getProgrmEndde() {
+        return progrmEndde;
     }
 
-    public String getAddr2() {
-        return addr2;
+    public String getActBeginTm() {
+        return actBeginTm;
     }
 
-    public void setAddr2(String addr2) {
-        this.addr2 = addr2;
+    public String getActEndTm() {
+        return actEndTm;
     }
 
-    public String getCategory1() {
-        return category1;
+    public String getActPlace() {
+        return actPlace;
     }
 
-    public void setCategory1(String category1) {
-        this.category1 = category1;
+    public String getNoticeBgnde() {
+        return noticeBgnde;
     }
 
-    public String getCategory2() {
-        return category2;
+    public String getNoticeEndde() {
+        return noticeEndde;
     }
 
-    public void setCategory2(String category2) {
-        this.category2 = category2;
+    public String getRcritNmpr() {
+        return rcritNmpr;
     }
 
-    public String getsDate() {
-        return sDate;
+    public String geTappTotal() {
+        return appTotal;
     }
 
-    public void setsDate(String sDate) {
-        this.sDate = sDate;
+    public String getActWkdy() {
+        return actWkdy;
     }
 
-    public String geteDate() {
-        return eDate;
+    public String getSrvcClCode() {
+        return srvcClCode;
     }
 
-    public void seteDate(String eDate) {
-        this.eDate = eDate;
+    public String getMnnstNm() {
+        return mnnstNm;
     }
 
-    public String getTarget() {
-        return target;
+    public String getNanmmbyNm() {
+        return nanmmbyNm;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
+    public String getTelno() {
+        return telno;
     }
 
-    public boolean isEnd() {
-        return isEnd;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEnd(boolean end) {
-        isEnd = end;
+    public String getProgrmCn() {
+        return progrmCn;
     }
 
-    public boolean isAdultPossib() {
-        return adultPossib;
+    public void setProgrmRegistNo(String noticeBgnde) {
+        this.progrmRegistNo = progrmRegistNo;
     }
 
-    public void setAdultPossib(boolean adultPossib) {
-        this.adultPossib = adultPossib;
+    public void setProgrmSj(String progrmSj) {
+        this.progrmSj = progrmSj;
     }
 
-    public boolean isYoungPossib() {
-        return youngPossib;
+    public void setProgrmBgnde(String progrmBgnde) {
+        this.progrmBgnde = progrmBgnde;
     }
 
-    public void setYoungPossib(boolean youngPossib) {
-        this.youngPossib = youngPossib;
+    public void setProgrmEndde(String progrmEndde) {
+        this.progrmEndde = progrmEndde;
+    }
+
+    public void setActBeginTm(String actBeginTm) {
+        this.actBeginTm = actBeginTm;
+    }
+
+    public void setActEndTm(String actEndTm) {
+        this.actEndTm = actEndTm;
+    }
+
+    public void setActPlace(String actPlace) {
+        this.actPlace = actPlace;
+    }
+
+    public void setNoticeBgnde(String noticeBgnde) {
+        this.noticeBgnde = noticeBgnde;
+    }
+
+    public void setNoticeEndde(String noticeEndde) {
+        this.noticeEndde = noticeEndde;
+    }
+
+    public void setRcritNmpr(String rcritNmpr) {
+        this.rcritNmpr = rcritNmpr;
+    }
+
+    public void setAppTotal(String appTotal) {
+        this.appTotal = appTotal;
+    }
+
+    public void setActWkdy(String actWkdy) {
+        this.actWkdy = actWkdy;
+    }
+
+    public void setSrvcClCode(String srvcClCode) {
+        this.srvcClCode = srvcClCode;
+    }
+
+    public void setMnnstNm(String mnnstNm) {
+        this.mnnstNm = mnnstNm;
+    }
+
+    public void setNanmmbyNm(String nanmmbyNm) {
+        this.nanmmbyNm = nanmmbyNm;
+    }
+
+    public void setTelno(String telno) {
+        this.telno = telno;
+    }
+
+    public void seTemail(String email) {
+        this.email = email;
+    }
+
+    public void setProgrmCn(String progrmCn) {
+        this.progrmCn = progrmCn;
     }
 }
