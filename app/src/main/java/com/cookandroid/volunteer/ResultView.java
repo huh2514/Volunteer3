@@ -30,13 +30,18 @@ public class ResultView extends AppCompatActivity {
     String sDate = ((SearchInfo)SearchInfo.context_main).sDate;
     String eDate = ((SearchInfo)SearchInfo.context_main).eDate;
     String searchText = ((SearchInfo)SearchInfo.context_main).editText.getText().toString();
-
+    String sido = ((SearchInfo)SearchInfo.context_main).sidoCode;
+    String gugun = ((SearchInfo)SearchInfo.context_main).gugunCode;
+    String sel2Save = ((SearchInfo)SearchInfo.context_main).sel2Save;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_view);
+
+        if(sDate=="시작일선택") sDate=null;
+        if(eDate=="종료일선택") eDate=null;
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -56,12 +61,13 @@ public class ResultView extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            requestUrl = "http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList?serviceKey=" + dataKey + "&keyword="+searchText+"&schCateGu="+"progrmSj"+"&progrmBgnde="+sDate+"&progrmEndde="+eDate;
+            requestUrl = "http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList?serviceKey=" + dataKey + "&keyword="+searchText+"&schCateGu="+"progrmSj"+"&progrmBgnde="+sDate+"&progrmEndde="+eDate+"&numOfRows=100"+"&schSido="+sido+"&schSign1="+gugun;
             try {
                 boolean b_progrmSj = false;
                 boolean b_actPlace =false;
                 boolean b_progrmBgnde = false;
                 boolean b_progrmEndde = false;
+
 
                 URL url = new URL(requestUrl);
                 InputStream is = url.openStream();
@@ -92,8 +98,10 @@ public class ResultView extends AppCompatActivity {
                             if (parser.getName().equals("actPlace")) b_actPlace = true;
                             if (parser.getName().equals("progrmBgnde")) b_progrmBgnde = true;
                             if (parser.getName().equals("progrmEndde")) b_progrmEndde = true;
+
                             break;
                         case XmlPullParser.TEXT:
+
                             if(b_progrmSj){
                                 bus.setProgrmSj(parser.getText());
                                 b_progrmSj = false;
