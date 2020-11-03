@@ -16,6 +16,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        Intent intent = new Intent(this, LoadingActivity.class);
+        startActivity(intent);
 
         StdLoginBtn = (Button) findViewById(R.id.StdLoginBtn);
         FacilityLoginButton = (Button) findViewById(R.id.FacilityLoginButton);
@@ -62,6 +64,8 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
 
