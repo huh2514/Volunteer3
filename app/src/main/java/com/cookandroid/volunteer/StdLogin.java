@@ -18,7 +18,7 @@ public class StdLogin extends AppCompatActivity {
     StdLogin.DBHelper myHelper;
     SQLiteDatabase sqlDB;
     EditText inputEmail, inputPW;
-    Button loginBtn;
+    Button loginBtn, SignUp;
     String sendEmail;
 
     public static Context context_main;
@@ -27,9 +27,12 @@ public class StdLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stdlogin_layout);
         setTitle("학생 로그인");
+        Intent intent = new Intent(this, LoadingActivity.class);
+        startActivity(intent);
         inputEmail = (EditText)findViewById(R.id.inputEmail);
         inputPW = (EditText)findViewById(R.id.inputPW);
         loginBtn = (Button)findViewById(R.id.loginBtn);
+        SignUp = (Button) findViewById(R.id.SignupBtn);
 
                 context_main = this;
 
@@ -59,6 +62,17 @@ public class StdLogin extends AppCompatActivity {
                 }
                 if(!isLogin)
                     Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 맞지않습니다!",0).show();
+            }
+        });
+
+        SignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
+                        "com.cookandroid.volunteer.SignUp");
+                intent.setComponent(cmpName);
+                startActivity(intent);
             }
         });
     }

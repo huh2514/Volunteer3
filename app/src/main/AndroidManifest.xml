@@ -20,7 +20,13 @@
         <activity android:name=".FindVolunteer"></activity>
         <activity android:name=".AddVolunteer"></activity>
         <activity android:name=".MyInformation"></activity>
-        <activity android:name=".StdLogin"></activity>
+        <activity android:name=".StdLogin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ShowStdAccount"></activity>
         <activity android:name=".Management"></activity>
         <activity android:name=".FacilityMain"></activity>
@@ -35,13 +41,15 @@
         <activity android:name=".SelectedVolunteer"></activity>
         <activity android:name=".SearchInfo"></activity>
         <activity android:name=".ResultView"></activity>
+        <activity android:name=".LoadingActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
