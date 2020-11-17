@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,7 +34,8 @@ public class SearchInfo extends AppCompatActivity {
     private String requestUrl1;
     addrCodeItem bus = null;
     addrCodeItem bus1 = null;
-    int today_year,today_month,today_day;
+    int today_year,today_month,today_day,today_year1,today_month1,today_day1;
+    String today;
     String sel1Save, sel2Save, sidoCode, gugunCode;
     Spinner Sido,Gugun;
     EditText editText;
@@ -45,17 +47,24 @@ public class SearchInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_info);
         context_main = this;
+
         editText = (EditText)findViewById(R.id.searchText);
         Sido = (Spinner) findViewById(R.id.Sido);
         Gugun = (Spinner) findViewById(R.id.Gugun);
 
         GregorianCalendar toDayMan = new GregorianCalendar();
+        today_year1 = toDayMan.get(toDayMan.YEAR);  //년
+        today_month1 = toDayMan.get(toDayMan.MONTH);//월
+        today_day1 = toDayMan.get(toDayMan.DAY_OF_MONTH); // 일 int 값으로 불러오기
         today_year = toDayMan.get(toDayMan.YEAR);  //년
-        today_month = toDayMan.get(toDayMan.MONTH);//월
+        today_month = toDayMan.get(toDayMan.MONTH)+1;//월
         today_day = toDayMan.get(toDayMan.DAY_OF_MONTH); // 일 int 값으로 불러오기
+        sDate = Integer.toString(today_year) + Integer.toString(today_month) + Integer.toString(today_day);
+        eDate = Integer.toString(today_year) + Integer.toString(today_month) + Integer.toString(today_day);
 
 
         Button sButton = findViewById(R.id.sBtn);
+        sButton.setText(sDate);
         sButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +75,7 @@ public class SearchInfo extends AppCompatActivity {
         });
 
         Button eButton = findViewById(R.id.eBtn);
+        eButton.setText(eDate);
         eButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +138,7 @@ public class SearchInfo extends AppCompatActivity {
                 switch (sel1Save){
                     case "전체" :
                         Gugun.setAdapter(adapter0);
+                        sidoCode = "";
                         break;
                     case "서울특별시" :
                         Gugun.setAdapter(adapter1);
@@ -182,8 +193,11 @@ public class SearchInfo extends AppCompatActivity {
                         break;
 
                 }
-                MyAsyncTask1 myAsyncTask = new MyAsyncTask1();
-                myAsyncTask.execute();
+                if(sel1Save=="전체") sidoCode="";
+                else {
+                    MyAsyncTask1 myAsyncTask = new MyAsyncTask1();
+                    myAsyncTask.execute();
+                }
             }
 
             @Override
@@ -196,8 +210,11 @@ public class SearchInfo extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 sel2Save = adapterView.getItemAtPosition(i).toString();
-                MyAsyncTask2 myAsyncTask2 = new MyAsyncTask2();
-                myAsyncTask2.execute();
+                if(sel2Save=="전체") gugunCode="";
+                else {
+                    MyAsyncTask2 myAsyncTask2 = new MyAsyncTask2();
+                    myAsyncTask2.execute();
+                }
             }
 
             @Override
@@ -235,7 +252,7 @@ public class SearchInfo extends AppCompatActivity {
                 sDate = sy1+sm1+sd1;
                 sButton.setText(sDate);
             }
-        },today_year, today_month, today_day);
+        },today_year1, today_month1, today_day1);
 
         datePickerDialog.setMessage("메시지");
         datePickerDialog.show();
@@ -269,7 +286,7 @@ public class SearchInfo extends AppCompatActivity {
                 eDate = ey1+em1+ed1;
                 eButton.setText(eDate);
             }
-        },today_year, today_month, today_day);
+        },today_year1, today_month1, today_day1);
 
         datePickerDialog.setMessage("메시지");
         datePickerDialog.show();
@@ -282,53 +299,55 @@ public class SearchInfo extends AppCompatActivity {
         protected String doInBackground(String... strings) {
 
             requestUrl = "http://openapi.1365.go.kr/openapi/service/rest/CodeInquiryService/getAreaCodeInquiryList?" +
-                    "serviceKey=" + dataKey + "&schSido="+sel1Save;
-            try {
-                boolean b_sidoCd = false;
+                    "serviceKey=" + dataKey + "&schSido=" + sel1Save;
+                try {
+                    boolean b_sidoCd = false;
 
 
-                URL url = new URL(requestUrl);
-                InputStream is = url.openStream();
-                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-                XmlPullParser parser = factory.newPullParser();
-                parser.setInput(new InputStreamReader(is, "UTF-8"));
 
-                String tag;
-                int eventType = parser.getEventType();
+                    URL url = new URL(requestUrl);
+                    InputStream is = url.openStream();
+                    XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                    XmlPullParser parser = factory.newPullParser();
+                    parser.setInput(new InputStreamReader(is, "UTF-8"));
 
-                while(eventType != XmlPullParser.END_DOCUMENT){
-                    switch (eventType){
-                        case XmlPullParser.START_DOCUMENT:
-                            break;
-                        case XmlPullParser.END_DOCUMENT:
-                            break;
-                        case XmlPullParser.END_TAG:
-                            if(parser.getName().equals("item") && bus != null) {
-                                sidoCode = bus.sidoCd;
-                            }
-                            break;
-                        case XmlPullParser.START_TAG:
-                            if(parser.getName().equals("item")){
-                                bus = new addrCodeItem();
-                            }
-                            if (parser.getName().equals("sidoCd")) b_sidoCd = true;
+                    String tag;
+                    int eventType = parser.getEventType();
 
-                            break;
-                        case XmlPullParser.TEXT:
+                    while (eventType != XmlPullParser.END_DOCUMENT) {
+                        switch (eventType) {
+                            case XmlPullParser.START_DOCUMENT:
+                                break;
+                            case XmlPullParser.END_DOCUMENT:
+                                break;
+                            case XmlPullParser.END_TAG:
+                                if (parser.getName().equals("item") && bus != null) {
+                                    sidoCode = bus.sidoCd;
+                                }
+                                break;
+                            case XmlPullParser.START_TAG:
+                                if (parser.getName().equals("item")) {
+                                    bus = new addrCodeItem();
+                                }
+                                if (parser.getName().equals("sidoCd")) b_sidoCd = true;
 
-                            if(b_sidoCd){
-                                bus.setSidoCd(parser.getText());
-                                b_sidoCd = false;
-                            }
-                            break;
+                                break;
+                            case XmlPullParser.TEXT:
+
+                                if (b_sidoCd) {
+                                    bus.setSidoCd(parser.getText());
+                                    b_sidoCd = false;
+                                }
+                                break;
+                        }
+                        eventType = parser.next();
                     }
-                    eventType = parser.next();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+                return null;
             }
-            return null;
-        }
+
 
     }
 
@@ -354,7 +373,6 @@ public class SearchInfo extends AppCompatActivity {
                 int eventType = parser.getEventType();
 
                 while(eventType != XmlPullParser.END_DOCUMENT){
-
                     switch (eventType){
                         case XmlPullParser.START_DOCUMENT:
                             break;
