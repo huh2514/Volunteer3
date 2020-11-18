@@ -12,8 +12,12 @@
         <TextView
             android:id="@+id/seldTItle"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -26,13 +30,19 @@
             android:id="@+id/texttime"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="봉사기간" />
+            android:layout_marginLeft="16dp"
+            android:text="봉사기간"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldTime"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,13 +54,19 @@
             android:id="@+id/textplace"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="봉사장소" />
+            android:layout_marginLeft="16dp"
+            android:text="봉사장소"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldPlace"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,13 +78,19 @@
             android:id="@+id/texthour"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="봉사시간" />
+            android:layout_marginLeft="16dp"
+            android:text="봉사시간"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldHour"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -80,13 +102,19 @@
             android:id="@+id/textntime"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="모집기간" />
+            android:layout_marginLeft="16dp"
+            android:text="모집기간"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldNTime"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -98,13 +126,19 @@
             android:id="@+id/texthoumany"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="모집인원" />
+            android:layout_marginLeft="16dp"
+            android:text="모집인원"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldhoumany"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -116,13 +150,19 @@
             android:id="@+id/textapplyd"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="신청인원" />
+            android:layout_marginLeft="16dp"
+            android:text="신청인원"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldApplyd"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -134,13 +174,19 @@
             android:id="@+id/textboon"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="봉사분야" />
+            android:layout_marginLeft="16dp"
+            android:text="봉사분야"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldBoon"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -152,13 +198,19 @@
             android:id="@+id/textRecPeriod"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="모집기관" />
+            android:layout_marginLeft="16dp"
+            android:text="모집기관"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldRecPeriod"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -170,31 +222,51 @@
             android:id="@+id/textRegist"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="등록기관" />
+            android:layout_marginLeft="16dp"
+            android:text="등록기관"
+            android:textColor="#333333"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/seldRegist"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="TextView" />
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_height="wrap_content"
+    <ScrollView
         android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/seldContents"
+        android:layout_height="140dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="TextView" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/seldContents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="24dp"
+                android:text="TextView"
+                android:textColor="#333333" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/applyBtn"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/login_btn"
         android:onClick="onBtnClicked"
-        android:text="봉사활동 신청하러가기" />
+        android:text="신청하기"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
