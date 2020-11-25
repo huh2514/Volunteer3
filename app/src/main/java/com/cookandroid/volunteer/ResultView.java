@@ -42,7 +42,6 @@ public class ResultView extends AppCompatActivity {
     String searchText = ((SearchInfo)SearchInfo.context_main).editText.getText().toString();
     String sido = ((SearchInfo)SearchInfo.context_main).sidoCode;
     String gugun = ((SearchInfo)SearchInfo.context_main).gugunCode;
-    String sel1Save = ((SearchInfo)SearchInfo.context_main).sel1Save;
     String sel2Save = ((SearchInfo)SearchInfo.context_main).sel2Save;
 
 
@@ -52,13 +51,10 @@ public class ResultView extends AppCompatActivity {
         setContentView(R.layout.result_view);
 
         context_main = this;
-        //if(sido==null)sido="";
-        //if(gugun==null)gugun ="";
-        Log.v("1",sel1Save);
-        //Log.v("1",sido);
-        Log.v("1",gugun);
 
 
+        if(sDate=="시작일선택") sDate=null;
+        if(eDate=="종료일선택") eDate=null;
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -77,11 +73,8 @@ public class ResultView extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-
-
-
             requestUrl = "http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList?serviceKey=" + dataKey + "&keyword="+searchText+"&schCateGu="+"progrmSj"+"&progrmBgnde="+sDate+"&progrmEndde="+eDate+"&numOfRows=100"+"&schSido="+sido+"&schSign1="+gugun;
-                        try {
+            try {
                 boolean b_progrmSj = false;
                 boolean b_actPlace =false;
                 boolean b_progrmBgnde = false;
@@ -93,6 +86,7 @@ public class ResultView extends AppCompatActivity {
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 XmlPullParser parser = factory.newPullParser();
                 parser.setInput(new InputStreamReader(is, "UTF-8"));
+                Log.d("URL확인",requestUrl);
 
                 String tag;
                 int eventType = parser.getEventType();

@@ -254,7 +254,7 @@ public class SearchInfo extends AppCompatActivity {
             }
         },today_year1, today_month1, today_day1);
 
-        datePickerDialog.setMessage("메시지");
+        datePickerDialog.setMessage("시작날짜 선택");
         datePickerDialog.show();
 
     }
@@ -288,7 +288,7 @@ public class SearchInfo extends AppCompatActivity {
             }
         },today_year1, today_month1, today_day1);
 
-        datePickerDialog.setMessage("메시지");
+        datePickerDialog.setMessage("종료날짜 선택");
         datePickerDialog.show();
     }
 

@@ -1,5 +1,6 @@
 package com.cookandroid.volunteer;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.TextView;
@@ -12,6 +13,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.net.URL;
 
 public class FindVolunteer extends AppCompatActivity {
+    //지울거
+    public static Context context_main;
+    SearchData s = new SearchData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,16 @@ public class FindVolunteer extends AppCompatActivity {
 
         String title = null,beginTm = null,endTm = null,place = null,jy = null,wurl = null;
 
+     /*   //지울거
+        context_main = this;
+        s.Title = "텍1";
+        s.addr1 = "텍2";
+        s.addr2 = "텍3";
+        s.category1 = "텍4";
+        s.category2 = "텍5";
+        s.sDate = "텍6";
+        s.eDate = "텍7";
+        s.target = "텍8";*/
 
         try{
             URL url = new URL("http://openapi.1365.go.kr/openapi/service/rest/Volunteer" +

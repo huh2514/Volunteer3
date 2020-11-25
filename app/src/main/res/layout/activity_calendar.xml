@@ -16,14 +16,12 @@
         android:textSize="20sp" />
 
     <GridView
-        android:layout_marginTop="10dp"
         android:id="@+id/gridview"
-        android:layout_weight="1"
-        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:numColumns="7"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:listSelector="@color/transparent"
-        >
-    </GridView>
+        android:numColumns="7"></GridView>
 
 </LinearLayout>

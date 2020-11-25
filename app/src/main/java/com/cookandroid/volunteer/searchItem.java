@@ -9,11 +9,10 @@ public class searchItem {
     String actBeginTm; //봉사시작시간
     String actEndTm; //봉사종료시간
     String actPlace; //봉사장소
+    String progrmLink; //봉사장소
 
 
-    public String getProgrmRegistNo() {
-        return progrmRegistNo;
-    }
+    public String getProgrmRegistNo() { return progrmRegistNo; }
 
     public String getProgrmSj() {
         return progrmSj;
@@ -65,5 +64,13 @@ public class searchItem {
 
     public void setActPlace(String actPlace) {
         this.actPlace = actPlace;
+    }
+
+    public String getProgrmLink() {
+        return progrmLink;
+    }
+
+    public void setProgrmLink(String url) {
+        this.progrmLink = url;
     }
 }

@@ -41,7 +41,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/yourTarget"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

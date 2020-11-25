@@ -21,7 +21,15 @@ public class SearchData {
     String telno; //전화번호
     String email; //이메일
     String progrmCn; //내용
+    String progrmLink; //주소
 
+    public String getProgrmLink() {
+        return progrmLink;
+    }
+
+    public void setProgrmLink(String progrmLink) {
+        this.progrmLink = progrmLink;
+    }
 
     public String getProgrmRegistNo() {
         return progrmRegistNo;
@@ -95,7 +103,7 @@ public class SearchData {
         return progrmCn;
     }
 
-    public void setProgrmRegistNo(String noticeBgnde) {
+    public void setProgrmRegistNo(String progrmRegistNo) {
         this.progrmRegistNo = progrmRegistNo;
     }
 

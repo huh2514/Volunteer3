@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,10 +33,6 @@ import java.util.Timer;
 
 public class SelectedVolunteer extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.142.97";
-    private static String TAG = "phptest";
-
-    //스케쥴 데이터
 
 
     //스케쥴 데이터 가져올떄
@@ -81,12 +80,12 @@ public class SelectedVolunteer extends AppCompatActivity {
         seldProgrmCn= (TextView) findViewById(R.id.seldContents);
 
         seldTItle.setText(searchVo.progrmSj);
-        seldTime.setText(searchVo.progrmBgnde + " ~ " + searchVo.progrmEndde+"");
+        seldTime.setText(searchVo.progrmBgnde + "~" + searchVo.progrmEndde);
         seldPlace.setText(searchVo.actPlace);
-        seldHour.setText(searchVo.actBeginTm + "시 ~ " + searchVo.actEndTm+"시");
-        seldNTime.setText(searchVo.noticeBgnde + " ~ " + searchVo.noticeEndde);
-        seldhoumany.setText(searchVo.rcritNmpr+" 명 / 일");
-        seldApplyd.setText(searchVo.appTotal+" 명 / 일");
+        seldHour.setText(searchVo.actBeginTm + "~" + searchVo.actEndTm);
+        seldNTime.setText(searchVo.noticeBgnde + "~" + searchVo.noticeEndde);
+        seldhoumany.setText(searchVo.rcritNmpr);
+        seldApplyd.setText(searchVo.appTotal);
         seldBoon.setText(searchVo.srvcClCode);
         seldRecPeriod.setText(searchVo.mnnstNm);
         seldRegist.setText(searchVo.nanmmbyNm);
@@ -108,11 +107,14 @@ public class SelectedVolunteer extends AppCompatActivity {
                 String vDate = searchVo.progrmBgnde + searchVo.progrmEndde;
                 String vTitle = searchVo.progrmSj;
                 String vCode = searchVo.progrmRegistNo;
+                String vPlace = searchVo.actPlace;
+                String vTime = searchVo.actBeginTm + searchVo.actEndTm;
                 String Email = getEmailFromDevice(key01);
 
-
-                InsertData task = new InsertData();
-                task.execute("http://" + IP_ADDRESS + "/insertVolunteer.php", vDate, vTitle, vCode, Email);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference myRef = database.getReference("schedule").child("student");
+                String inputString = Email + "," + vDate + "," + vTitle + "," + vCode + "," + vTime + "," + vPlace;
+                myRef.push().setValue(inputString);
 
                 Toast.makeText(getApplicationContext(),"봉사활동이 추가되었습니다",Toast.LENGTH_LONG);
 
@@ -130,97 +132,6 @@ public class SelectedVolunteer extends AppCompatActivity {
     }
 
 
-    class InsertData extends AsyncTask<String, Void, String> {
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = ProgressDialog.show(SelectedVolunteer.this,
-                    "Please Wait", null, true, true);
-        }
-
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            progressDialog.dismiss();
-            /*mTextViewResult.setText(result);*/
-            Log.d(TAG, "POST response  - " + result);
-        }
-
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String vDate = (String)params[1];
-            String vTitle = (String)params[2];
-            String vCode = (String)params[3];
-            String Email = (String)params[4];
-
-            String serverURL = (String)params[0];
-            String postParameters = "vDate=" + vDate + "&vTitle=" + vTitle + "&vCode=" + vCode + "&Email=" + Email;
-
-
-            try {
-
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.connect();
-
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG, "POST response code - " + responseStatusCode);
-
-                InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                }
-                else{
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                while((line = bufferedReader.readLine()) != null){
-                    sb.append(line);
-                }
-
-
-                bufferedReader.close();
-
-
-                return sb.toString();
-
-
-            } catch (Exception e) {
-
-                Log.d(TAG, "InsertData: Error ", e);
-
-                return new String("Error: " + e.getMessage());
-            }
-
-        }
-    }
-
     public String getEmailFromDevice(String emailkey){
         Log.d("이메일 가져오기","메서드 실행됨");
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
@@ -235,7 +146,7 @@ public class SelectedVolunteer extends AppCompatActivity {
         schedulegetEmail = pref.getString(emailkey,"");
         Log.d("스케쥴 체크아웃",schedulegetEmail);
 
-        getData("http://192.168.142.97/PHP_connection_schedules.php");
+        /*getData("http://192.168.142.97/PHP_connection_schedules.php");*/
     }
 
     protected void showList() {
@@ -269,44 +180,17 @@ public class SelectedVolunteer extends AppCompatActivity {
 
     }
 
+/*
     public void getData(String url) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
 
-            @Override
-            protected String doInBackground(String... params) {
-
-                String uri = params[0];
-
-                BufferedReader bufferedReader = null;
-                try {
-                    URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                    StringBuilder sb = new StringBuilder();
-
-                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                    String json;
-                    while ((json = bufferedReader.readLine()) != null) {
-                        sb.append(json + "\n");
-                    }
-
-                    return sb.toString().trim();
-
-                } catch (Exception e) {
-                    return null;
-                }
-
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                myJSON = result;
-                showList();
-            }
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {
+            db.execSQL("DROP TABLE IF EXISTS volunteerTBL");
+            onCreate(db);
         }
-        GetDataJSON g = new GetDataJSON();
-        g.execute(url);
-    }
 
+    }
+*/
 
 }

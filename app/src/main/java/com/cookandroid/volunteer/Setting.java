@@ -4,11 +4,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ShowStdAccount extends AppCompatActivity {
+public class Setting extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.showstdaccount_layout);
-
+        setContentView(R.layout.setting_layout);
     }
 }
