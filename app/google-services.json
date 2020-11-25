@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "292340554498",
+    "firebase_url": "https://volunteer-df066.firebaseio.com",
+    "project_id": "volunteer-df066",
+    "storage_bucket": "volunteer-df066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292340554498:android:2b66aa5b5687fc36cec01b",
+        "android_client_info": {
+          "package_name": "com.cookandroid.volunteer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292340554498-d604ut4acdpgq5k4topfi48critsvsv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6AxOKTzpi-dKRwLlyuMjOSFZ-onW9hxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292340554498-d604ut4acdpgq5k4topfi48critsvsv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

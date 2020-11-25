@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedTItle"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtexttime"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="봉사기간" />
+
+            <TextView
+                android:id="@+id/appliedTime"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtextplace"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="봉사장소" />
+
+            <TextView
+                android:id="@+id/appliedPlace"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtexthour"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="봉사시간" />
+
+            <TextView
+                android:id="@+id/appliedHour"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtextntime"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="모집기간" />
+
+            <TextView
+                android:id="@+id/appliedNTime"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtexthoumany"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="모집인원" />
+
+            <TextView
+                android:id="@+id/appliedhoumany"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtextapplyd"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="신청인원" />
+
+            <TextView
+                android:id="@+id/appliedApplyd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtextboon"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="봉사분야" />
+
+            <TextView
+                android:id="@+id/appliedBoon"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtextRecPeriod"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="모집기관" />
+
+            <TextView
+                android:id="@+id/appliedRecPeriod"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedtextRegist"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="등록기관" />
+
+            <TextView
+                android:id="@+id/appliedRegist"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appliedContents"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/DeleteAppliedVolunteerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onBtnClicked"
+            android:text="봉사활동 삭제" />
+
+    </LinearLayout>

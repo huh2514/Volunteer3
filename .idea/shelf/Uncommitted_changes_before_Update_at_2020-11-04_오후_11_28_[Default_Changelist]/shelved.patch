@@ -1,0 +1,2511 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.cookandroid.volunteer\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n    <!-- 인터넷에 관련된 권한들 -->\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n    <!-- 저장공간에 관련된 여러 권한들 -->\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:networkSecurityConfig=\"@xml/network_security_config\"\r\n        android:theme=\"@style/AppTheme\">\r\n        <activity android:name=\".FindVolunteer\"></activity>\r\n        <activity android:name=\".AddVolunteer\"></activity>\r\n        <activity android:name=\".MyInformation\"></activity>\r\n        <activity android:name=\".StdLogin\"></activity>\r\n        <activity android:name=\".ShowStdAccount\"></activity>\r\n        <activity android:name=\".Management\"></activity>\r\n        <activity android:name=\".FacilityMain\"></activity>\r\n        <activity android:name=\".SignUp\"></activity>\r\n        <activity android:name=\".StudentSignUp\"></activity>\r\n        <activity android:name=\".SearchResult\"></activity>\r\n        <activity android:name=\".StudentMain\"></activity>\r\n        <activity android:name=\".Search\"></activity>\r\n        <activity android:name=\".Calendar\"></activity>\r\n        <activity android:name=\".DaySchedule\"></activity>\r\n        <activity android:name=\".CalendarActivity\"></activity>\r\n        <activity android:name=\".SelectedVolunteer\"></activity>\r\n        <activity android:name=\".SearchInfo\"></activity>\r\n        <activity android:name=\".ResultView\"></activity>\r\n        <activity android:name=\".Login\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/AndroidManifest.xml	(date 1603302006014)
+@@ -5,9 +5,9 @@
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     <!-- 인터넷에 관련된 권한들 -->
++    <!-- 저장공간에 관련된 여러 권한들 -->
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+-    <!-- 저장공간에 관련된 여러 권한들 -->
+ 
+     <application
+         android:allowBackup="true"
+@@ -26,16 +26,25 @@
+         <activity android:name=".FacilityMain"></activity>
+         <activity android:name=".SignUp"></activity>
+         <activity android:name=".StudentSignUp"></activity>
+-        <activity android:name=".SearchResult"></activity>
+         <activity android:name=".StudentMain"></activity>
+         <activity android:name=".Search"></activity>
+         <activity android:name=".Calendar"></activity>
+         <activity android:name=".DaySchedule"></activity>
+         <activity android:name=".CalendarActivity"></activity>
+         <activity android:name=".SelectedVolunteer"></activity>
++        <activity android:name=".LoadingActivity"></activity>
+         <activity android:name=".SearchInfo"></activity>
++        <service
++            android:name=".MyService"
++            android:enabled="true"
++            android:exported="true"></service>
++        <service
++            android:name=".MyServicegetSchedule"
++            android:enabled="true"
++            android:exported="true"></service>
+         <activity android:name=".ResultView"></activity>
+-        <activity android:name=".Login">
++        <activity android:name=".Login"
++            android:launchMode="singleTask">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
+Index: app/src/main/java/com/cookandroid/volunteer/SearchResult.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/SearchResult.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/SearchResult.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
+@@ -1,121 +0,0 @@
+-package com.cookandroid.volunteer;
+-
+-import androidx.annotation.NonNull;
+-import androidx.appcompat.app.AppCompatActivity;
+-import androidx.recyclerview.widget.DividerItemDecoration;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-import androidx.recyclerview.widget.RecyclerView;
+-
+-import android.content.Context;
+-import android.content.Intent;
+-import android.database.Cursor;
+-import android.database.sqlite.SQLiteDatabase;
+-import android.database.sqlite.SQLiteOpenHelper;
+-import android.os.Bundle;
+-import android.util.Log;
+-import android.view.View;
+-import android.view.ViewGroup;
+-import android.widget.Button;
+-import android.widget.EditText;
+-import android.widget.Spinner;
+-import android.widget.TextView;
+-
+-import java.util.ArrayList;
+-
+-public class SearchResult extends AppCompatActivity {
+-    public static Context mContext;
+-
+-    DBHelper myHelper;
+-    SQLiteDatabase sqlDB;
+-    EditText edtTitle;
+-    String addr1, addr2;
+-    int smon, sday;
+-
+-    int ID;
+-    String title, addr;
+-
+-    private ArrayList<Dictionary> mArrayList;
+-    private CustomAdapter mAdapter;
+-    private int count = -1;
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.searchresult);
+-        setTitle("조회결과");
+-        myHelper = new DBHelper(this);
+-
+-        edtTitle = ((Search)Search.context_main).title;
+-        addr1 = ((Search)Search.context_main).sel1Save;
+-        addr2 = ((Search)Search.context_main).sel2Save;
+-        smon = ((Search)Search.context_main).smon;
+-        sday = ((Search)Search.context_main).sday;
+-
+-        mContext = this;
+-
+-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main_list);
+-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+-
+-
+-        mArrayList = new ArrayList<>();
+-
+-        mAdapter = new CustomAdapter( mArrayList);
+-        mRecyclerView.setAdapter(mAdapter);
+-
+-
+-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+-                mLinearLayoutManager.getOrientation());
+-        mRecyclerView.addItemDecoration(dividerItemDecoration);
+-
+-        sqlDB = myHelper.getReadableDatabase();
+-        Cursor cursor;
+-        cursor = sqlDB.rawQuery("SELECT * FROM volunteerTBL;",null);
+-
+-        while(cursor.moveToNext()){
+-            count++;
+-            if(cursor.getString(1).contains(edtTitle.getText()) && cursor.getString(2).equals(addr1) && cursor.getString(3).equals(addr2)){
+-                Dictionary data = new Dictionary(new Integer(cursor.getString(0)),count+"", cursor.getString(1), cursor.getString(2) + cursor.getString(3));
+-
+-                Log.d("found","찾았습니다");
+-
+-                //mArrayList.add(0, dict); //RecyclerView의 첫 줄에 삽입
+-                mArrayList.add(data); // RecyclerView의 마지막 줄에 삽입
+-
+-                mAdapter.notifyDataSetChanged();
+-            }
+-            else{
+-
+-                Log.d("found", String.valueOf(sday));
+-                Log.d("found", String.valueOf(new Integer(cursor.getString(5))));
+-                Log.d("found","못찾음");
+-            }
+-        }
+-
+-    }
+-    public void newIntent(Intent intent, CustomAdapter.CustomViewHolder viewHolder){
+-        ID = (int) viewHolder.ID;
+-
+-        Log.d("found", String.valueOf(ID));
+-
+-        startActivity(intent);
+-    }
+-
+-
+-    public static class DBHelper extends SQLiteOpenHelper{
+-        public DBHelper(Context context){
+-            super(context, "volunteerDB", null, 1);
+-        }
+-        @Override
+-        public void onCreate(SQLiteDatabase db){
+-            db.execSQL("CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);");
+-            db.execSQL("CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);");
+-        }
+-
+-        @Override
+-        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {
+-            db.execSQL("DROP TABLE IF EXISTS volunteerTBL");
+-            onCreate(db);
+-        }
+-
+-    }
+-}
+Index: app/src/main/java/com/cookandroid/volunteer/CustomAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/CustomAdapter.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/CustomAdapter.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
+@@ -1,99 +0,0 @@
+-package com.cookandroid.volunteer;
+-
+-import androidx.annotation.NonNull;
+-import androidx.recyclerview.widget.RecyclerView;
+-
+-import android.app.Activity;
+-import android.content.ComponentName;
+-import android.content.DialogInterface;
+-import android.content.Intent;
+-import android.util.TypedValue;
+-import android.view.Gravity;
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.View.OnClickListener;
+-import android.view.ViewGroup;
+-import android.widget.TextView;
+-
+-import java.util.ArrayList;
+-
+-
+-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+-
+-    private ArrayList<Dictionary> mList;
+-
+-    public class CustomViewHolder extends RecyclerView.ViewHolder {
+-        protected  int ID;
+-        protected TextView id;
+-        protected TextView english;
+-        protected TextView korean;
+-
+-
+-        public CustomViewHolder(View view) {
+-            super(view);
+-            this.id = (TextView) view.findViewById(R.id.id_listitem);
+-            this.english = (TextView) view.findViewById(R.id.english_listitem);
+-            this.korean = (TextView) view.findViewById(R.id.korean_listitem);
+-        }
+-
+-    }
+-
+-
+-    public CustomAdapter(ArrayList<Dictionary> list) {
+-        this.mList = list;
+-    }
+-
+-
+-
+-    @Override
+-    public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+-
+-        View view = LayoutInflater.from(viewGroup.getContext())
+-                .inflate(R.layout.item, viewGroup, false);
+-
+-        CustomViewHolder viewHolder = new CustomViewHolder(view);
+-
+-        return viewHolder;
+-    }
+-
+-
+-
+-
+-    @Override
+-    public void onBindViewHolder(@NonNull final CustomViewHolder viewholder, int position) {
+-
+-        viewholder.ID = mList.get(position).getID();
+-
+-        viewholder.id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+-        viewholder.english.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+-        viewholder.korean.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+-
+-        viewholder.id.setGravity(Gravity.CENTER);
+-        viewholder.english.setGravity(Gravity.CENTER);
+-        viewholder.korean.setGravity(Gravity.CENTER);
+-
+-        viewholder.id.setText(mList.get(position).getId());
+-        viewholder.english.setText(mList.get(position).getEnglish());
+-        viewholder.korean.setText(mList.get(position).getKorean());
+-
+-        viewholder.itemView.setOnClickListener(new View.OnClickListener(){
+-            @Override
+-            public void onClick(View view) {
+-
+-                Intent intent = new Intent();
+-                ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
+-                        "com.cookandroid.volunteer.SelectedVolunteer");
+-                intent.setComponent(cmpName);
+-
+-                ((SearchResult)SearchResult.mContext).newIntent(intent, viewholder);
+-
+-            }
+-        });
+-    }
+-
+-    @Override
+-    public int getItemCount() {
+-        return (null != mList ? mList.size() : 0);
+-    }
+-
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/cookandroid/volunteer/ResultView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\n\r\nimport android.os.AsyncTask;\r\nimport android.os.Bundle;\r\nimport android.widget.EditText;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport org.xmlpull.v1.XmlPullParser;\r\nimport org.xmlpull.v1.XmlPullParserFactory;\r\n\r\nimport java.io.InputStream;\r\nimport java.io.InputStreamReader;\r\nimport java.net.URL;\r\nimport java.util.ArrayList;\r\n\r\npublic class ResultView extends AppCompatActivity {\r\n\r\n    static String TAG = \"ResultView\";\r\n    public String dataKey = \"99scXLkolGPdepyUojDC%2BsBNxExtjmJaDwjRHkpJoVZ0yJ49tcKZk6r%2BM3y77\";\r\n    private String requestUrl;\r\n    ArrayList<searchItem> list = null;\r\n    searchItem bus = null;\r\n    RecyclerView recyclerView;\r\n    EditText editText;\r\n\r\n    String sDate = ((SearchInfo)SearchInfo.context_main).sDate;\r\n    String eDate = ((SearchInfo)SearchInfo.context_main).eDate;\r\n    String searchText = ((SearchInfo)SearchInfo.context_main).editText.getText().toString();\r\n    String sido = ((SearchInfo)SearchInfo.context_main).sidoCode;\r\n    String gugun = ((SearchInfo)SearchInfo.context_main).gugunCode;\r\n    String sel2Save = ((SearchInfo)SearchInfo.context_main).sel2Save;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.result_view);\r\n\r\n        if(sDate==\"시작일선택\") sDate=null;\r\n        if(eDate==\"종료일선택\") eDate=null;\r\n\r\n\r\n        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);\r\n        recyclerView.setHasFixedSize(true);\r\n\r\n        LinearLayoutManager layoutManager = new LinearLayoutManager(this);\r\n        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);\r\n        recyclerView.setLayoutManager(layoutManager);\r\n\r\n//        AsyncTask\r\n        MyAsyncTask myAsyncTask = new MyAsyncTask();\r\n        myAsyncTask.execute();\r\n    }\r\n\r\n    public class MyAsyncTask extends AsyncTask<String, Void, String> {\r\n\r\n        @Override\r\n        protected String doInBackground(String... strings) {\r\n\r\n            requestUrl = \"http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList?serviceKey=\" + dataKey + \"&keyword=\"+searchText+\"&schCateGu=\"+\"progrmSj\"+\"&progrmBgnde=\"+sDate+\"&progrmEndde=\"+eDate+\"&numOfRows=100\"+\"&schSido=\"+sido+\"&schSign1=\"+gugun;\r\n            try {\r\n                boolean b_progrmSj = false;\r\n                boolean b_actPlace =false;\r\n                boolean b_progrmBgnde = false;\r\n                boolean b_progrmEndde = false;\r\n\r\n\r\n                URL url = new URL(requestUrl);\r\n                InputStream is = url.openStream();\r\n                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();\r\n                XmlPullParser parser = factory.newPullParser();\r\n                parser.setInput(new InputStreamReader(is, \"UTF-8\"));\r\n\r\n                String tag;\r\n                int eventType = parser.getEventType();\r\n\r\n                while(eventType != XmlPullParser.END_DOCUMENT){\r\n                    switch (eventType){\r\n                        case XmlPullParser.START_DOCUMENT:\r\n                            list = new ArrayList<searchItem>();\r\n                            break;\r\n                        case XmlPullParser.END_DOCUMENT:\r\n                            break;\r\n                        case XmlPullParser.END_TAG:\r\n                            if(parser.getName().equals(\"item\") && bus != null) {\r\n                                list.add(bus);\r\n                            }\r\n                            break;\r\n                        case XmlPullParser.START_TAG:\r\n                            if(parser.getName().equals(\"item\")){\r\n                                bus = new searchItem();\r\n                            }\r\n                            if (parser.getName().equals(\"progrmSj\")) b_progrmSj = true;\r\n                            if (parser.getName().equals(\"actPlace\")) b_actPlace = true;\r\n                            if (parser.getName().equals(\"progrmBgnde\")) b_progrmBgnde = true;\r\n                            if (parser.getName().equals(\"progrmEndde\")) b_progrmEndde = true;\r\n\r\n                            break;\r\n                        case XmlPullParser.TEXT:\r\n\r\n                            if(b_progrmSj){\r\n                                bus.setProgrmSj(parser.getText());\r\n                                b_progrmSj = false;\r\n                            } else if(b_actPlace) {\r\n                                bus.setActPlace(parser.getText());\r\n                                b_actPlace = false;\r\n                            } else if (b_progrmBgnde) {\r\n                                bus.setProgrmBgnde(parser.getText());\r\n                                b_progrmBgnde = false;\r\n                            } else if(b_progrmEndde) {\r\n                                bus.setProgrmEndde(parser.getText());\r\n                                b_progrmEndde = false;\r\n                            }\r\n                            break;\r\n                    }\r\n                    eventType = parser.next();\r\n                }\r\n            } catch (Exception e) {\r\n                e.printStackTrace();\r\n            }\r\n            return null;\r\n        }\r\n\r\n        @Override\r\n        protected void onPostExecute(String s) {\r\n            super.onPostExecute(s);\r\n\r\n            //어답터 연결\r\n            MyAdapter adapter = new MyAdapter(getApplicationContext(), list);\r\n            recyclerView.setAdapter(adapter);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/ResultView.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/ResultView.java	(date 1602696081172)
+@@ -1,9 +1,15 @@
+ package com.cookandroid.volunteer;
+ 
+ 
++import android.content.ComponentName;
++import android.content.Context;
++import android.content.Intent;
+ import android.os.AsyncTask;
+ import android.os.Bundle;
++import android.util.Log;
++import android.view.View;
+ import android.widget.EditText;
++import android.widget.Toast;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+@@ -18,14 +24,18 @@
+ import java.util.ArrayList;
+ 
+ public class ResultView extends AppCompatActivity {
+-
++    SearchData data = new SearchData();
+     static String TAG = "ResultView";
+     public String dataKey = "99scXLkolGPdepyUojDC%2BsBNxExtjmJaDwjRHkpJoVZ0yJ49tcKZk6r%2BM3y77";
++    public String dataKey2 = "99scXLkolGPdepyUojDC%2BsBNxExtjmJaDwjRHkpJoVZ0yJ49tcKZk6r%2BM3y77UcfpaxvdLBlU%2F8nkuR2mm%2BG9Q%3D%3D";
+     private String requestUrl;
++    private String requestUrl1;
++    String strc;
+     ArrayList<searchItem> list = null;
+     searchItem bus = null;
+     RecyclerView recyclerView;
+     EditText editText;
++    public static Context context_main;
+ 
+     String sDate = ((SearchInfo)SearchInfo.context_main).sDate;
+     String eDate = ((SearchInfo)SearchInfo.context_main).eDate;
+@@ -40,10 +50,12 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.result_view);
+ 
++        context_main = this;
++
++
+         if(sDate=="시작일선택") sDate=null;
+         if(eDate=="종료일선택") eDate=null;
+ 
+-
+         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+         recyclerView.setHasFixedSize(true);
+ 
+@@ -67,7 +79,7 @@
+                 boolean b_actPlace =false;
+                 boolean b_progrmBgnde = false;
+                 boolean b_progrmEndde = false;
+-
++                boolean b_progrmRegistNo = false;
+ 
+                 URL url = new URL(requestUrl);
+                 InputStream is = url.openStream();
+@@ -98,7 +110,7 @@
+                             if (parser.getName().equals("actPlace")) b_actPlace = true;
+                             if (parser.getName().equals("progrmBgnde")) b_progrmBgnde = true;
+                             if (parser.getName().equals("progrmEndde")) b_progrmEndde = true;
+-
++                            if (parser.getName().equals("progrmRegistNo")) b_progrmRegistNo = true;
+                             break;
+                         case XmlPullParser.TEXT:
+ 
+@@ -114,6 +126,9 @@
+                             } else if(b_progrmEndde) {
+                                 bus.setProgrmEndde(parser.getText());
+                                 b_progrmEndde = false;
++                            } else if(b_progrmRegistNo) {
++                                bus.setProgrmRegistNo(parser.getText());
++                                b_progrmRegistNo = false;
+                             }
+                             break;
+                     }
+@@ -133,5 +148,212 @@
+             MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
+             recyclerView.setAdapter(adapter);
+         }
++
+     }
++
++    public void select(String strcode){
++
++        MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
++        myAsyncTasks.execute();
++        strc = strcode;
++        data.setProgrmRegistNo(strc);
++
++        Toast.makeText(context_main, data.progrmRegistNo, Toast.LENGTH_SHORT).show();
++        Intent intent = new Intent();
++        ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
++                "com.cookandroid.volunteer.SelectedVolunteer");
++        intent.setComponent(cmpName);
++        startActivity(intent);
++
++    }
++    public class MyAsyncTasks extends AsyncTask<String, Void, String> {
++
++        @Override
++        protected String doInBackground(String... strings) {
++
++            requestUrl1 = "http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrPartcptnItem?serviceKey=" + dataKey2 + "&progrmRegistNo=" + strc;
++            try {
++                boolean c_progrmSj = false;
++                boolean c_actPlace =false;
++                boolean c_progrmBgnde = false;
++                boolean c_progrmEndde = false;
++                boolean c_progrmRegistNo = false;
++                boolean c_actBeginTm = false;
++                boolean c_actEndTm =false;
++                boolean c_noticeBgnde = false;
++                boolean c_noticeEndde = false;
++                boolean c_rcritNmpr = false;
++                boolean c_appTotal = false;
++                boolean c_actWkdy =false;
++                boolean c_srvcClCode = false;
++                boolean c_mnnstNm = false;
++                boolean c_nanmmbyNm = false;
++                boolean c_telno = false;
++                boolean c_email =false;
++                boolean c_progrmCn = false;
++                boolean c_progrmLink = false;
++
++                URL url = new URL(requestUrl1);
++                InputStream is = url.openStream();
++                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
++                XmlPullParser parser = factory.newPullParser();
++                parser.setInput(new InputStreamReader(is, "UTF-8"));
++
++                String tag;
++                int eventType = parser.getEventType();
++
++                while(eventType != XmlPullParser.END_DOCUMENT){
++                    switch (eventType) {
++                        case XmlPullParser.START_DOCUMENT:
++                            list = new ArrayList<searchItem>();
++                            break;
++                        case XmlPullParser.END_TAG:
++                            if (parser.getName().equals("item") && bus != null) {
++                                list.add(bus);
++                            }
++                            break;
++                        case XmlPullParser.START_TAG:
++                            if (parser.getName().equals("item")) {
++                                bus = new searchItem();
++                            }
++                            if (parser.getName().equals("progrmSj")) {
++                                c_progrmSj = true;
++                                Log.d("알람", "제목");
++                            }
++                            if (parser.getName().equals("actPlace")) {
++                                c_actPlace = true;
++                                Log.d("알람", "장소");
++                            }
++                            if (parser.getName().equals("progrmBgnde")) {
++                                c_progrmBgnde = true;
++                                Log.d("알람", "시작날짜");
++                            }
++                            if (parser.getName().equals("progrmEndde")) {
++                                c_progrmEndde = true;
++                                Log.d("알람", "종료날짜");
++                            }
++                            if (parser.getName().equals("progrmRegistNo")) {
++                                c_progrmRegistNo = true;
++                                Log.d("알람", "코드");
++                            }
++                            if (parser.getName().equals("actBeginTm")) {
++                                c_actBeginTm = true;
++                                Log.d("알람", "시작시간");
++                            }
++                            if (parser.getName().equals("actEndTm")) {
++                                c_actEndTm = true;
++                                Log.d("알람", "종료시간");
++                            }
++                            if (parser.getName().equals("noticeBgnde")) {
++                                c_noticeBgnde = true;
++                                Log.d("알람", "모집기간");
++                            }
++                            if (parser.getName().equals("noticeEndde")) {
++                                c_noticeEndde = true;
++                                Log.d("알람", "마감기간");
++                            }
++                            if (parser.getName().equals("rcritNmpr")) {
++                                c_rcritNmpr = true;
++                                Log.d("알람", "모집인원");
++                            }
++                            if (parser.getName().equals("appTotal")) {
++                                c_appTotal = true;
++                                Log.d("알람", "신청자수");
++                            }
++                            if (parser.getName().equals("actWkdy")) {
++                                c_actWkdy = true;
++                            }
++                            if (parser.getName().equals("srvcClCode")) {
++                                c_srvcClCode = true;
++                            }
++                            if (parser.getName().equals("mnnstNm")) c_mnnstNm = true;
++                            if (parser.getName().equals("nanmmbyNm")) c_nanmmbyNm = true;
++                            if (parser.getName().equals("telno")) c_telno = true;
++                            if (parser.getName().equals("email")) c_email = true;
++                            if (parser.getName().equals("progrmCn")) {
++                                c_progrmCn = true;
++                                Log.d("알람", "내용");
++                            }
++                            if (parser.getName().equals("progrmLink")) {c_progrmLink = true;
++                                Log.d("알람", "링크");
++                            }
++                            break;
++                        case XmlPullParser.TEXT:
++                            if(c_progrmSj){
++                                data.setProgrmSj(parser.getText());
++                                c_progrmSj = false;
++                            }if(c_actPlace) {
++                                data.setActPlace(parser.getText());
++                                c_actPlace = false;
++                            }if (c_progrmBgnde) {
++                                data.setProgrmBgnde(parser.getText());
++                                c_progrmBgnde = false;
++                            }if(c_progrmEndde) {
++                                data.setProgrmEndde(parser.getText());
++                                c_progrmEndde = false;
++                            }if(c_progrmRegistNo) {
++                                data.setProgrmRegistNo(parser.getText());
++                                c_progrmRegistNo = false;
++                            }if(c_actBeginTm) {
++                                data.setActBeginTm(parser.getText());
++                                c_actBeginTm = false;
++                            }if (c_actEndTm) {
++                                data.setActEndTm(parser.getText());
++                                c_actEndTm = false;
++                            }if(c_noticeBgnde) {
++                                data.setNoticeBgnde(parser.getText());
++                                c_noticeBgnde = false;
++                            }if(c_noticeEndde) {
++                                data.setNoticeEndde(parser.getText());
++                                c_noticeEndde = false;
++                            }if(c_rcritNmpr) {
++                                data.setRcritNmpr(parser.getText());
++                                c_rcritNmpr = false;
++                            }if (c_appTotal) {
++                                data.setAppTotal(parser.getText());
++                                c_appTotal = false;
++                            }if(c_actWkdy) {
++                                data.setActWkdy(parser.getText());
++                                c_actWkdy = false;
++                            }if(c_srvcClCode) {
++                                data.setSrvcClCode(parser.getText());
++                                c_srvcClCode = false;
++                            }if(c_mnnstNm) {
++                                data.setMnnstNm(parser.getText());
++                                c_mnnstNm = false;
++                            }if (c_nanmmbyNm) {
++                                data.setNanmmbyNm(parser.getText());
++                                c_nanmmbyNm = false;
++                            }if(c_telno) {
++                                data.setTelno(parser.getText());
++                                c_telno = false;
++                            }if(c_email) {
++                                data.seTemail(parser.getText());
++                                c_email = false;
++                            }if(c_progrmCn) {
++                                data.setProgrmCn(parser.getText());
++                                c_progrmCn = false;
++                            }if(c_progrmLink) {
++                                data.setProgrmLink(parser.getText());
++                                c_progrmLink = false;
++                            }
++                            break;
++                    }
++                    eventType = parser.next();
++                }
++            } catch (Exception e) {
++                e.printStackTrace();
++            }
++            return null;
++        }
++
++        @Override
++        protected void onPostExecute(String s) {
++            super.onPostExecute(s);
++
++            //어답터 연결
++        }
++
++    }
++
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/cookandroid/volunteer/Calendar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\nimport android.content.ComponentName;\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.CalendarView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport org.w3c.dom.Text;\r\n\r\npublic class Calendar extends AppCompatActivity {\r\n    //test1\r\n    Button btn;\r\n    LinearLayout calLay;\r\n    Context context;\r\n    String date;\r\n    int count = 0;\r\n    private static final String TAG = \"CalendarActivity\";\r\n\r\n    private CalendarView mCalendarView;\r\n    public static Context context_calendar;\r\n    @Override\r\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.calendar_layout);\r\n        mCalendarView = (CalendarView) findViewById(R.id.calendarView);\r\n        calLay = (LinearLayout)findViewById(R.id.cal_Lay);\r\n        context = this;\r\n        context_calendar = this;\r\n        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {\r\n            @Override\r\n            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {\r\n                date = i + \"/\" + (i1 + 1) + \"/\" + i2 ;\r\n                Intent intent = new Intent();\r\n                ComponentName cmpName = new ComponentName(\"com.cookandroid.volunteer\",\r\n                        \"com.cookandroid.volunteer.DaySchedule\");\r\n                intent.setComponent(cmpName);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n        View.OnClickListener myListener = new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                int eventID = view.getId();\r\n                Toast.makeText(context, String.valueOf(eventID), Toast.LENGTH_SHORT).show();\r\n            }\r\n        };\r\n\r\n//        btn.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View view) {\r\n//\r\n//            }\r\n//        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/Calendar.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/Calendar.java	(date 1603189863539)
+@@ -63,4 +63,7 @@
+ //            }
+ //        });
+     }
++
++
++
+ }
+Index: app/src/main/java/com/cookandroid/volunteer/FindVolunteer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\nimport android.os.Bundle;\r\nimport android.os.StrictMode;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport org.xmlpull.v1.XmlPullParser;\r\nimport org.xmlpull.v1.XmlPullParserFactory;\r\n\r\nimport java.net.URL;\r\n\r\npublic class FindVolunteer extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.findvolunteer);\r\n        setTitle(\"test\");\r\n\r\n        StrictMode.enableDefaults();\r\n\r\n        TextView status1 = (TextView)findViewById(R.id.result); //파싱된 결과확인!\r\n\r\n        boolean inTitle = false, inbeginTm = false, inendTm = false, inPlace = false, inJy = false, inUrl = false;\r\n\r\n        String title = null,beginTm = null,endTm = null,place = null,jy = null,wurl = null;\r\n\r\n\r\n        try{\r\n            URL url = new URL(\"http://openapi.1365.go.kr/openapi/service/rest/Volunteer\" +\r\n                    \"PartcptnService/getVltrSearchWordList?serviceKey=\" +\r\n                    \"99scXLkolGPdepyUojDC%2BsBNxExtjmJaDwjRHkpJoVZ0yJ49tcKZk6r%2BM3y77\" +\r\n                    \"UcfpaxvdLBlU%2F8nkuR2mm%2BG9Q%3D%3D&progrmBgnde=&progrmEndde=&adult\" +\r\n                    \"PosblAt=&yngbgsPosblAt=&numOfRows=10&pageNo=2&keyword=&schCateGu=\" +\r\n                    \"&schSido=&schSign1=&upperClCode=&nanmClCode=&actBeginTm=&actEndTm=\" +\r\n                    \"&noticeBgnde=&noticeEndde=&actPlace=&nanmmbyNm=&\"\r\n            ); //검색 URL부분\r\n            XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();\r\n            XmlPullParser parser = parserCreator.newPullParser();\r\n\r\n            parser.setInput(url.openStream(), null);\r\n\r\n            int parserEvent = parser.getEventType();\r\n            System.out.println(\"파싱시작합니다.\");\r\n\r\n            while (parserEvent != XmlPullParser.END_DOCUMENT){\r\n                switch(parserEvent){\r\n                    case XmlPullParser.START_TAG://parser가 시작 태그를 만나면 실행\r\n                        if(parser.getName().equals(\"progrmSj\")){ //봉사제목\r\n                            inTitle = true;\r\n                        }\r\n                        if(parser.getName().equals(\"actBeginTm\")){ //봉사시작시간\r\n                            inbeginTm = true;\r\n                        }\r\n                        if(parser.getName().equals(\"actEndTm\")){ //봉사종료시간\r\n                            inendTm = true;\r\n                        }\r\n                        if(parser.getName().equals(\"actPlace\")){ //봉사장소\r\n                            inPlace = true;\r\n                        }\r\n                        if(parser.getName().equals(\"nanmmbyNm\")){ //봉사지역\r\n                            inJy = true;\r\n                        }\r\n                        if(parser.getName().equals(\"url\")){ //웹주소\r\n                            inUrl = true;\r\n                        }\r\n                        break;\r\n\r\n                    case XmlPullParser.TEXT://parser가 내용에 접근했을때\r\n                        if(inTitle){ //isTitle이 true일 때 태그의 내용을 저장.\r\n                            title = parser.getText();\r\n                            inTitle = false;\r\n                        }\r\n                        if(inbeginTm){ //isbeginTm이 true일 때 태그의 내용을 저장.\r\n                            beginTm = parser.getText();\r\n                            inbeginTm = false;\r\n                        }\r\n                        if(inendTm){ //isendTm이 true일 때 태그의 내용을 저장.\r\n                            endTm = parser.getText();\r\n                            inendTm = false;\r\n                        }\r\n                        if(inPlace){ //isPlace이 true일 때 태그의 내용을 저장.\r\n                            place = parser.getText();\r\n                            inPlace = false;\r\n                        }\r\n                        if(inJy){ //isJy이 true일 때 태그의 내용을 저장.\r\n                            jy = parser.getText();\r\n                            inJy = false;\r\n                        }\r\n                        if(inUrl){ //isUrl이 true일 때 태그의 내용을 저장.\r\n                            wurl = parser.getText();\r\n                            inUrl = false;\r\n                        }\r\n                        break;\r\n                    case XmlPullParser.END_TAG:\r\n                        if(parser.getName().equals(\"item\")){\r\n                            status1.setText(status1.getText()+\"제목 : \"+ title + \"\\n\"+\"시작시간 : \"+ beginTm + \"\\n\"+\"종료시간 : \"+ endTm + \"\\n\"+\"장소 : \"+ place + \"\\n\"+\"지역 : \"+ jy + \"\\n\"+\"페이지 주소 : \"+ wurl + \"\\n\\n\\n\");\r\n                        }\r\n                        break;\r\n                }\r\n                parserEvent = parser.next();\r\n            }\r\n        } catch(Exception e){\r\n            status1.setText(\"에러가..났습니다...\");\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/FindVolunteer.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/FindVolunteer.java	(date 1602695001441)
+@@ -1,5 +1,6 @@
+ package com.cookandroid.volunteer;
+ 
++import android.content.Context;
+ import android.os.Bundle;
+ import android.os.StrictMode;
+ import android.widget.TextView;
+@@ -12,6 +13,9 @@
+ import java.net.URL;
+ 
+ public class FindVolunteer extends AppCompatActivity {
++    //지울거
++    public static Context context_main;
++    SearchData s = new SearchData();
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -27,6 +31,16 @@
+ 
+         String title = null,beginTm = null,endTm = null,place = null,jy = null,wurl = null;
+ 
++     /*   //지울거
++        context_main = this;
++        s.Title = "텍1";
++        s.addr1 = "텍2";
++        s.addr2 = "텍3";
++        s.category1 = "텍4";
++        s.category2 = "텍5";
++        s.sDate = "텍6";
++        s.eDate = "텍7";
++        s.target = "텍8";*/
+ 
+         try{
+             URL url = new URL("http://openapi.1365.go.kr/openapi/service/rest/Volunteer" +
+Index: app/src/main/java/com/cookandroid/volunteer/searchItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\npublic class searchItem {\r\n\r\n    String progrmRegistNo; //프로그램등록번호\r\n    String progrmSj; //봉사제목\r\n    String progrmBgnde; //봉사시작일\r\n    String progrmEndde; //봉사종료일\r\n    String actBeginTm; //봉사시작시간\r\n    String actEndTm; //봉사종료시간\r\n    String actPlace; //봉사장소\r\n\r\n\r\n    public String getProgrmRegistNo() {\r\n        return progrmRegistNo;\r\n    }\r\n\r\n    public String getProgrmSj() {\r\n        return progrmSj;\r\n    }\r\n\r\n    public String getProgrmBgnde() {\r\n        return progrmBgnde;\r\n    }\r\n\r\n    public String getProgrmEndde() {\r\n        return progrmEndde;\r\n    }\r\n\r\n    public String getActBeginTm() {\r\n        return actBeginTm;\r\n    }\r\n\r\n    public String getActEndTm() {\r\n        return actEndTm;\r\n    }\r\n\r\n    public String getActPlace() {\r\n        return actPlace;\r\n    }\r\n\r\n    public void setProgrmRegistNo(String progrmRegistNo) {\r\n        this.progrmRegistNo = progrmRegistNo;\r\n    }\r\n\r\n    public void setProgrmSj(String progrmSj) {\r\n        this.progrmSj = progrmSj;\r\n    }\r\n\r\n    public void setProgrmBgnde(String progrmBgnde) {\r\n        this.progrmBgnde = progrmBgnde;\r\n    }\r\n\r\n    public void setProgrmEndde(String progrmEndde) {\r\n        this.progrmEndde = progrmEndde;\r\n    }\r\n\r\n    public void setActBeginTm(String actBeginTm) {\r\n        this.actBeginTm = actBeginTm;\r\n    }\r\n\r\n    public void setActEndTm(String actEndTm) {\r\n        this.actEndTm = actEndTm;\r\n    }\r\n\r\n    public void setActPlace(String actPlace) {\r\n        this.actPlace = actPlace;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/searchItem.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/searchItem.java	(date 1602695001453)
+@@ -9,11 +9,10 @@
+     String actBeginTm; //봉사시작시간
+     String actEndTm; //봉사종료시간
+     String actPlace; //봉사장소
++    String progrmLink; //봉사장소
+ 
+ 
+-    public String getProgrmRegistNo() {
+-        return progrmRegistNo;
+-    }
++    public String getProgrmRegistNo() { return progrmRegistNo; }
+ 
+     public String getProgrmSj() {
+         return progrmSj;
+@@ -66,4 +65,12 @@
+     public void setActPlace(String actPlace) {
+         this.actPlace = actPlace;
+     }
++
++    public String getProgrmLink() {
++        return progrmLink;
++    }
++
++    public void setProgrmLink(String url) {
++        this.progrmLink = url;
++    }
+ }
+Index: app/src/main/java/com/cookandroid/volunteer/ScheduleSingleton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/ScheduleSingleton.java	(date 1604386398178)
++++ app/src/main/java/com/cookandroid/volunteer/ScheduleSingleton.java	(date 1604386398178)
+@@ -0,0 +1,13 @@
++package com.cookandroid.volunteer;
++
++public class ScheduleSingleton {
++    private static final ScheduleSingleton ourInstance = new ScheduleSingleton();
++
++    public static ScheduleSingleton getInstance() {
++        return ourInstance;
++    }
++
++    private ScheduleSingleton() {
++
++    }
++}
+Index: app/src/main/java/com/cookandroid/volunteer/ServiceThread1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/ServiceThread1.java	(date 1604397384404)
++++ app/src/main/java/com/cookandroid/volunteer/ServiceThread1.java	(date 1604397384404)
+@@ -0,0 +1,29 @@
++package com.cookandroid.volunteer;
++
++
++import android.os.Handler;
++import android.util.Log;
++
++public class ServiceThread1 extends Thread {
++    Handler handler1;
++    boolean isRun = true;
++
++    public ServiceThread1(Handler handler) {
++        this.handler1 = handler;
++    }
++    public void stopForever() {
++        synchronized (this) {
++            this.isRun = false;
++        }
++    } public void run() {
++        //반복적으로 수행할 작업을 한다.
++        while (isRun) {
++            handler1.sendEmptyMessage( 0 );
++            Log.d("알림","스케쥴 업데이트 자동 실행중");
++            //쓰레드에 있는 핸들러에게 메세지를 보냄
++            try { Thread.sleep( 10000 );
++                //10초씩 쉰다.
++            } catch (Exception e) { }
++        }
++    }
++}
+Index: app/src/main/java/com/cookandroid/volunteer/MyService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/MyService.java	(date 1604397527584)
++++ app/src/main/java/com/cookandroid/volunteer/MyService.java	(date 1604397527584)
+@@ -0,0 +1,118 @@
++package com.cookandroid.volunteer;
++
++import android.annotation.SuppressLint;
++import android.app.Notification;
++import android.app.NotificationChannel;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.app.Service;
++import android.content.Context;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.graphics.BitmapFactory;
++import android.graphics.Color;
++import android.media.RingtoneManager;
++import android.net.Uri;
++import android.os.Build;
++import android.os.Handler;
++import android.os.IBinder;
++import android.util.Log;
++
++import androidx.annotation.RequiresApi;
++import androidx.core.app.NotificationCompat;
++
++import java.util.Calendar;
++import java.util.Date;
++
++public class MyService extends Service {
++    private static final MyService ourInstance = new MyService();
++
++    public static MyService getInstance() {
++        return ourInstance;
++    }
++
++    public MyService() {
++    }
++    NotificationManager Notifi_M;
++    ServiceThread thread;
++    @Override
++    public IBinder onBind(Intent intent) {
++        return null;
++    }
++
++    @Override
++    public int onStartCommand(Intent intent, int flags, int startId) {
++        Log.d("backgroundservice","시작");
++        Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
++        myServiceHandler handler = new myServiceHandler();
++        thread = new ServiceThread(handler);
++        thread.stopForever();
++        return START_STICKY;
++    }
++
++    //서비스가 종료될 때 할 작업
++    public void onDestroy() {
++        myServiceHandler handler = new myServiceHandler();
++        thread = new ServiceThread(handler);
++        thread.start();
++    }
++
++    public void start() {
++        myServiceHandler handler = new myServiceHandler();
++        thread = new ServiceThread(handler);
++        thread.start();
++    }
++
++    public void top() {
++        myServiceHandler handler = new myServiceHandler();
++        thread = new ServiceThread(handler);
++        thread.stopForever();
++    }
++
++    public class myServiceHandler extends Handler {
++        @RequiresApi(api = Build.VERSION_CODES.O)
++        @Override
++        public void handleMessage(android.os.Message msg) {
++/*
++            SharedPreferences.Editor editor = backpref.edit();
++            editor.putString("noti","running");*/
++            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
++
++            Intent intent = new Intent(MyService.this, StudentMain.class);
++
++            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
++            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
++            Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
++            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
++                @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel("my_notification", "n_channel", NotificationManager.IMPORTANCE_MAX);
++                notificationChannel.setDescription("description");
++                notificationChannel.setName("Channel Name");
++                assert notificationManager != null;
++                notificationManager.createNotificationChannel(notificationChannel);
++            }
++            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MyService.this,"default")
++                    .setSmallIcon(R.drawable.pengu)
++                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.pengu))
++                    .setContentTitle("봉사활동앱")
++                    .setContentText("봉사활동할 시간입니다")
++                    .setAutoCancel(true)
++                    .setSound(soundUri)
++                    .setContentIntent(pendingIntent)
++                    .setDefaults(Notification.DEFAULT_ALL)
++                    .setOnlyAlertOnce(true).setChannelId("my_notification")
++                    .setColor(Color.parseColor("#ffffff"));
++            //.setProgress(100,50,false);
++            assert notificationManager != null;
++            int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
++            Calendar cal = Calendar.getInstance();
++            int hour = cal.get(Calendar.HOUR_OF_DAY);
++            int min = cal.get(Calendar.MINUTE);
++            if ((hour == 20 || hour == 10 ) && (min == 57 || min == 23)) {
++                Log.d("시간","됨");
++                notificationManager.createNotificationChannel(new NotificationChannel("default", "기본 채널", NotificationManager.IMPORTANCE_DEFAULT));
++                notificationManager.notify(m, notificationBuilder.build());
++                thread.stopForever();
++            }
++        }
++    }
++}
+Index: app/src/main/java/com/cookandroid/volunteer/StdLogin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\nimport android.content.ComponentName;\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.database.Cursor;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class StdLogin extends AppCompatActivity {\r\n    StdLogin.DBHelper myHelper;\r\n    SQLiteDatabase sqlDB;\r\n    EditText inputEmail, inputPW;\r\n    Button loginBtn;\r\n    String sendEmail;\r\n\r\n    public static Context context_main;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.stdlogin_layout);\r\n        setTitle(\"학생 로그인\");\r\n        inputEmail = (EditText)findViewById(R.id.inputEmail);\r\n        inputPW = (EditText)findViewById(R.id.inputPW);\r\n        loginBtn = (Button)findViewById(R.id.loginBtn);\r\n\r\n                context_main = this;\r\n\r\n        myHelper = new StdLogin.DBHelper(this);\r\n\r\n        loginBtn.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                sqlDB = myHelper.getReadableDatabase();\r\n                Cursor cursor;\r\n                cursor = sqlDB.rawQuery(\"SELECT * FROM StdAccountTBL;\", null);\r\n\r\n                boolean isLogin = false;\r\n\r\n                while(cursor.moveToNext()){\r\n                    if(cursor.getString(2).equals(inputEmail.getText().toString()) && cursor.getString(1).equals(inputPW.getText().toString())) {\r\n                        sendEmail = cursor.getString(2);\r\n                        Intent intent = new Intent();\r\n                        ComponentName cmpName = new ComponentName(\"com.cookandroid.volunteer\",\r\n                                \"com.cookandroid.volunteer.StudentMain\");\r\n                        intent.setComponent(cmpName);\r\n                        startActivity(intent);\r\n                        isLogin = true;\r\n                        break;\r\n                    }\r\n\r\n                }\r\n                if(!isLogin)\r\n                    Toast.makeText(getApplicationContext(), \"아이디 또는 비밀번호가 맞지않습니다!\",0).show();\r\n            }\r\n        });\r\n    }\r\n\r\n    public static class DBHelper extends SQLiteOpenHelper {\r\n        public DBHelper(Context context){\r\n            super(context, \"volunteerDB\", null, 1);\r\n        }\r\n        @Override\r\n        public void onCreate(SQLiteDatabase db){\r\n            db.execSQL(\"CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);\");\r\n            db.execSQL(\"CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);\");\r\n        }\r\n\r\n        @Override\r\n        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {\r\n            db.execSQL(\"DROP TABLE IF EXISTS volunteerTBL\");\r\n            onCreate(db);\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/StdLogin.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/StdLogin.java	(date 1604384092656)
+@@ -3,23 +3,48 @@
+ import android.content.ComponentName;
+ import android.content.Context;
+ import android.content.Intent;
++import android.content.SharedPreferences;
+ import android.database.Cursor;
+ import android.database.sqlite.SQLiteDatabase;
+ import android.database.sqlite.SQLiteOpenHelper;
++import android.os.AsyncTask;
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
++import android.widget.TextView;
+ import android.widget.Toast;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.io.BufferedReader;
++import java.io.InputStreamReader;
++import java.net.HttpURLConnection;
++import java.net.URL;
++
+ public class StdLogin extends AppCompatActivity {
+-    StdLogin.DBHelper myHelper;
+-    SQLiteDatabase sqlDB;
++
++
++    String myJSON;
++
++    public final String PREFERENCE = "com.volunteerLogin.samplesharepreference";
++
++    public final String key01 = "Email";
++    public final String key02 = "pwd";
++
++    private static final String TAG_RESULTS = "result";
++    private static final String TAG_ID = "email";
++    private static final String TAG_PW = "pw";
++    JSONArray peoples = null;
+     EditText inputEmail, inputPW;
+     Button loginBtn;
+     String sendEmail;
++    boolean isLogin = false;
+ 
+     public static Context context_main;
+     @Override
+@@ -33,51 +58,99 @@
+ 
+                 context_main = this;
+ 
+-        myHelper = new StdLogin.DBHelper(this);
+ 
+         loginBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                sqlDB = myHelper.getReadableDatabase();
+-                Cursor cursor;
+-                cursor = sqlDB.rawQuery("SELECT * FROM StdAccountTBL;", null);
++                getData("http://192.168.159.209/PHP_connection.php"); //수정 필요
++
+ 
+-                boolean isLogin = false;
++                if(isLogin == false) {
++                    Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 맞지않습니다!", 0).show();
++                }
+ 
+-                while(cursor.moveToNext()){
+-                    if(cursor.getString(2).equals(inputEmail.getText().toString()) && cursor.getString(1).equals(inputPW.getText().toString())) {
+-                        sendEmail = cursor.getString(2);
++            }
++        });
++    }
++
++    protected void showList() {
++        Log.d("알림","showlist시작");
++        try {
++            JSONObject jsonObj = new JSONObject(myJSON);
++            peoples = jsonObj.getJSONArray(TAG_RESULTS);
++
++            for (int i = 0; i < peoples.length(); i++) {
++                JSONObject c = peoples.getJSONObject(i);
++                String id = c.getString(TAG_ID);
++                String pw = c.getString(TAG_PW);
++                Log.d("알림",id);
++                if(String.valueOf(inputEmail.getText()).equals(id)) {
++                    if(String.valueOf(inputPW.getText()).equals(pw)) {
++
++                        isLogin = true;
++
++                        saveData(key01, key02, inputEmail.getText().toString(),inputPW.getText().toString());
++                        Log.d("알림","로그인");
+                         Intent intent = new Intent();
+                         ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
+                                 "com.cookandroid.volunteer.StudentMain");
+                         intent.setComponent(cmpName);
+                         startActivity(intent);
+-                        isLogin = true;
+                         break;
+                     }
+-
+                 }
+-                if(!isLogin)
+-                    Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 맞지않습니다!",0).show();
+             }
+-        });
+-    }
++
++        } catch (JSONException e) {
++            e.printStackTrace();
++        }
+ 
+-    public static class DBHelper extends SQLiteOpenHelper {
+-        public DBHelper(Context context){
+-            super(context, "volunteerDB", null, 1);
+-        }
+-        @Override
+-        public void onCreate(SQLiteDatabase db){
+-            db.execSQL("CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);");
+-            db.execSQL("CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);");
+-        }
++    }
++
++    public void getData(String url) {
++        class GetDataJSON extends AsyncTask<String, Void, String> {
++
++            @Override
++            protected String doInBackground(String... params) {
++
++                String uri = params[0];
++
++                BufferedReader bufferedReader = null;
++                try {
++                    URL url = new URL(uri);
++                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
++                    StringBuilder sb = new StringBuilder();
++
++                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
++
++                    String json;
++                    while ((json = bufferedReader.readLine()) != null) {
++                        sb.append(json + "\n");
++                    }
++                    return sb.toString().trim();
++
++                } catch (Exception e) {
++                    return null;
++                }
++
++            }
+ 
+-        @Override
+-        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {
+-            db.execSQL("DROP TABLE IF EXISTS volunteerTBL");
+-            onCreate(db);
++            @Override
++            protected void onPostExecute(String result) {
++                myJSON = result;
++                showList();
++            }
+         }
++        GetDataJSON g = new GetDataJSON();
++        g.execute(url);
++    }
+ 
++    public void saveData(String emailkey,String pwdkey, String emailvalue, String pwdvalue){
++        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
++        SharedPreferences.Editor editor = pref.edit();
++        editor.putString(emailkey, emailvalue);
++        editor.commit();
++        editor.putString(pwdkey, pwdvalue);
++        editor.commit();
+     }
+ }
+Index: app/src/main/res/layout/activity_loading.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_loading.xml	(date 1603301684213)
++++ app/src/main/res/layout/activity_loading.xml	(date 1603301684213)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:orientation="vertical"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingLeft="18dp"
++    android:paddingRight="18dp"
++    android:background="@drawable/loading1">
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/cookandroid/volunteer/MyAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {\r\n\r\n    private ArrayList<searchItem> mList;\r\n    private LayoutInflater mInflate;\r\n    private Context mContext;\r\n\r\n    public MyAdapter(Context context, ArrayList<searchItem> items) {\r\n        this.mList = items;\r\n        this.mInflate = LayoutInflater.from(context);\r\n        this.mContext = context;\r\n    }\r\n\r\n\r\n    @NonNull\r\n    @Override\r\n    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = mInflate.inflate(R.layout.recycler_item, parent, false);\r\n        MyViewHolder viewHolder = new MyViewHolder(view);\r\n        return viewHolder;\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {\r\n        //binding\r\n        holder.progrmSj.setText(mList.get(position).progrmSj);\r\n        holder.actPlace.setText(mList.get(position).actPlace);\r\n        holder.progrmBgnde.setText(mList.get(position).progrmBgnde);\r\n        holder.progrmEndde.setText(mList.get(position).progrmEndde);\r\n\r\n        //Click event\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return mList.size();    }\r\n\r\n    //ViewHolder\r\n    public static class MyViewHolder extends RecyclerView.ViewHolder {\r\n        public TextView progrmSj;\r\n        public TextView actPlace;\r\n        public TextView progrmBgnde;\r\n        public TextView progrmEndde;\r\n\r\n        public MyViewHolder(View itemView) {\r\n            super(itemView);\r\n\r\n            progrmSj = itemView.findViewById(R.id.tv_progrmSj);\r\n            actPlace = itemView.findViewById(R.id.tv_actPlace);\r\n            progrmBgnde = itemView.findViewById(R.id.tv_progrmBgnde);\r\n            progrmEndde = itemView.findViewById(R.id.tv_progrmEndde);\r\n\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/MyAdapter.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/MyAdapter.java	(date 1602695001443)
+@@ -1,10 +1,12 @@
+ package com.cookandroid.volunteer;
+ 
+ import android.content.Context;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.recyclerview.widget.RecyclerView;
+@@ -23,7 +25,6 @@
+         this.mContext = context;
+     }
+ 
+-
+     @NonNull
+     @Override
+     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+@@ -39,7 +40,17 @@
+         holder.actPlace.setText(mList.get(position).actPlace);
+         holder.progrmBgnde.setText(mList.get(position).progrmBgnde);
+         holder.progrmEndde.setText(mList.get(position).progrmEndde);
++        holder.progrmRegistNo.setText(mList.get(position).progrmRegistNo);
+ 
++        final String s = holder.progrmRegistNo.getText().toString();
++
++        holder.itemView.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Log.d("마이어뎁터",s);
++                ((ResultView)ResultView.context_main).select(s);
++            }
++        });
+         //Click event
+     }
+ 
+@@ -53,16 +64,19 @@
+         public TextView actPlace;
+         public TextView progrmBgnde;
+         public TextView progrmEndde;
++        public TextView progrmRegistNo;
+ 
+-        public MyViewHolder(View itemView) {
++        public MyViewHolder(final View itemView) {
+             super(itemView);
+ 
+             progrmSj = itemView.findViewById(R.id.tv_progrmSj);
+             actPlace = itemView.findViewById(R.id.tv_actPlace);
+             progrmBgnde = itemView.findViewById(R.id.tv_progrmBgnde);
+             progrmEndde = itemView.findViewById(R.id.tv_progrmEndde);
++            progrmRegistNo = itemView.findViewById(R.id.tv_progrmRegNo);
+ 
+         }
++
+     }
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/selectedvolunteer.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:orientation=\"vertical\" android:layout_width=\"match_parent\"\r\n    android:layout_margin=\"20dp\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <LinearLayout\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_width=\"match_parent\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n        android:id=\"@+id/text1\"\r\n        android:layout_width=\"100dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:text=\"프로그램명\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/seldTItle\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:text=\"TextView\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_width=\"match_parent\"\r\n        android:orientation=\"horizontal\">\r\n    <TextView\r\n        android:id=\"@+id/texttime\"\r\n        android:layout_width=\"100dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:text=\"봉사기간\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/seldTime\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:text=\"TextView\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_width=\"match_parent\"\r\n        android:orientation=\"horizontal\">\r\n    <TextView\r\n        android:id=\"@+id/textplace\"\r\n        android:layout_width=\"100dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:text=\"봉사장소\" />\r\n    <TextView\r\n        android:id=\"@+id/seldPlace\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:text=\"TextView\" />\r\n    </LinearLayout>\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/selectedvolunteer.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/res/layout/selectedvolunteer.xml	(date 1602695001457)
+@@ -9,16 +9,10 @@
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
+ 
+-        <TextView
+-        android:id="@+id/text1"
+-        android:layout_width="100dp"
+-        android:layout_height="50dp"
+-        android:text="프로그램명" />
+-
+         <TextView
+             android:id="@+id/seldTItle"
+             android:layout_width="match_parent"
+-            android:layout_height="50dp"
++            android:layout_height="40dp"
+             android:text="TextView" />
+ 
+     </LinearLayout>
+@@ -27,33 +21,180 @@
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
+-    <TextView
+-        android:id="@+id/texttime"
+-        android:layout_width="100dp"
+-        android:layout_height="50dp"
+-        android:text="봉사기간" />
++
++        <TextView
++            android:id="@+id/texttime"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="봉사기간" />
+ 
+-    <TextView
+-        android:id="@+id/seldTime"
+-        android:layout_width="match_parent"
+-        android:layout_height="50dp"
+-        android:text="TextView" />
++        <TextView
++            android:id="@+id/seldTime"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
+     </LinearLayout>
+ 
+     <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
+-    <TextView
+-        android:id="@+id/textplace"
+-        android:layout_width="100dp"
+-        android:layout_height="50dp"
+-        android:text="봉사장소" />
+-    <TextView
+-        android:id="@+id/seldPlace"
+-        android:layout_width="match_parent"
+-        android:layout_height="50dp"
+-        android:text="TextView" />
++
++        <TextView
++            android:id="@+id/textplace"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="봉사장소" />
++
++        <TextView
++            android:id="@+id/seldPlace"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/texthour"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="봉사시간" />
++
++        <TextView
++            android:id="@+id/seldHour"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/textntime"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="모집기간" />
++
++        <TextView
++            android:id="@+id/seldNTime"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/texthoumany"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="모집인원" />
++
++        <TextView
++            android:id="@+id/seldhoumany"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/textapplyd"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="신청인원" />
++
++        <TextView
++            android:id="@+id/seldApplyd"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/textboon"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="봉사분야" />
++
++        <TextView
++            android:id="@+id/seldBoon"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/textRecPeriod"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="모집기관" />
++
++        <TextView
++            android:id="@+id/seldRecPeriod"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/textRegist"
++            android:layout_width="100dp"
++            android:layout_height="40dp"
++            android:text="등록기관" />
++
++        <TextView
++            android:id="@+id/seldRegist"
++            android:layout_width="match_parent"
++            android:layout_height="40dp"
++            android:text="TextView" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:orientation="horizontal">
++        <TextView
++            android:id="@+id/seldContents"
++            android:layout_width="match_parent"
++            android:layout_height="50dp"
++            android:text="TextView" />
+     </LinearLayout>
+ 
++    <Button
++        android:id="@+id/applyBtn"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:onClick="onBtnClicked"
++        android:text="봉사활동 신청하러가기" />
++
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/cookandroid/volunteer/ServiceThread.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/ServiceThread.java	(date 1603198956306)
++++ app/src/main/java/com/cookandroid/volunteer/ServiceThread.java	(date 1603198956306)
+@@ -0,0 +1,29 @@
++package com.cookandroid.volunteer;
++
++
++import android.os.Handler;
++import android.util.Log;
++
++public class ServiceThread extends Thread {
++    Handler handler;
++    boolean isRun = true;
++
++    public ServiceThread(Handler handler) {
++        this.handler = handler;
++    }
++    public void stopForever() {
++        synchronized (this) {
++            this.isRun = false;
++        }
++    } public void run() {
++        //반복적으로 수행할 작업을 한다.
++        while (isRun) {
++            handler.sendEmptyMessage( 0 );
++            Log.d("알림","알림기능 실행중");
++            //쓰레드에 있는 핸들러에게 메세지를 보냄
++            try { Thread.sleep( 5000 );
++                //10초씩 쉰다.
++            } catch (Exception e) { }
++        }
++    }
++}
+Index: app/src/main/java/com/cookandroid/volunteer/MyServicegetSchedule.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/MyServicegetSchedule.java	(date 1604397527605)
++++ app/src/main/java/com/cookandroid/volunteer/MyServicegetSchedule.java	(date 1604397527605)
+@@ -0,0 +1,188 @@
++package com.cookandroid.volunteer;
++
++import android.annotation.SuppressLint;
++import android.app.Notification;
++import android.app.NotificationChannel;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.app.Service;
++import android.content.Context;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.graphics.BitmapFactory;
++import android.graphics.Color;
++import android.media.RingtoneManager;
++import android.net.Uri;
++import android.os.AsyncTask;
++import android.os.Build;
++import android.os.Handler;
++import android.os.IBinder;
++import android.util.Log;
++
++import androidx.annotation.RequiresApi;
++import androidx.core.app.NotificationCompat;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.io.BufferedReader;
++import java.io.InputStreamReader;
++import java.net.HttpURLConnection;
++import java.net.URL;
++import java.util.Calendar;
++import java.util.Date;
++public class MyServicegetSchedule extends Service {
++    private static final MyServicegetSchedule ourInstance1 = new MyServicegetSchedule();
++
++    public static MyServicegetSchedule getInstance() {
++        return ourInstance1;
++    }
++
++    public MyServicegetSchedule() {
++    }
++    NotificationManager Notifi_M;
++    ServiceThread1 thread1;
++
++    //스케쥴 데이터 가져올떄
++    String myJSON;
++    String email;
++    JSONArray peoples = null;
++    private static final String TAG_RESULTS = "result";
++    private static final String TAG_vDate = "vDate";
++    private static final String TAG_vPlace = "vPlace";
++    private static final String TAG_vCode = "vCode";
++    private static final String TAG_Email = "Email";
++
++    public final String PREFERENCE = "com.volunteerLogin.samplesharepreference";
++    public final String schedulePreference = "com.volunteerLogin.schedulePreference";
++
++    //로그인 정보
++    public final String key01 = "Email";
++    public final String key02 = "pwd";
++
++    //봉사활동 스케쥴 정보
++    public final String scheduleKey01 = "Email";
++    public String schedulegetEmail="em";
++
++
++    @Override
++    public IBinder onBind(Intent intent) {
++        return null;
++    }
++
++    @Override
++    public int onStartCommand(Intent intent, int flags, int startId) {
++        Log.d("backgroundservice2","시작");
++        myServiceHandler1 handler1 = new myServiceHandler1();
++        thread1 = new ServiceThread1(handler1);
++        thread1.stopForever();
++        return START_STICKY;
++    }
++
++    //서비스가 종료될 때 할 작업
++    public void onDestroy() {
++        myServiceHandler1 handler1 = new myServiceHandler1();
++        thread1 = new ServiceThread1(handler1);
++        thread1.start();
++    }
++
++    public void start() {
++        myServiceHandler1 handler1 = new myServiceHandler1();
++        thread1 = new ServiceThread1(handler1);
++        thread1.start();
++    }
++
++    public void top() {
++        myServiceHandler1 handler1 = new myServiceHandler1();
++        thread1 = new ServiceThread1(handler1);
++        thread1.stopForever();
++    }
++
++    public class myServiceHandler1 extends Handler {
++        @RequiresApi(api = Build.VERSION_CODES.O)
++        @Override
++        public void handleMessage(android.os.Message msg) {
++            checkoutSchedule(key01);
++        }
++    }
++
++    public void checkoutSchedule(String emailkey){
++        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
++        schedulegetEmail = pref.getString(emailkey,"");
++        Log.d("스케쥴 체크아웃",schedulegetEmail);
++
++        getData("http://192.168.159.209/PHP_connection_schedules.php");
++    }
++
++    protected void showList() {
++        try {
++            JSONObject jsonObj = new JSONObject(myJSON);
++            peoples = jsonObj.getJSONArray(TAG_RESULTS);
++            SharedPreferences pref = getSharedPreferences(schedulePreference, MODE_PRIVATE);
++            SharedPreferences.Editor editor = pref.edit();
++            int count = 0;
++            for (int i = 0; i < peoples.length(); i++) {
++                JSONObject c = peoples.getJSONObject(i);
++                String date = c.getString(TAG_vDate);
++                /*Log.d("봉사활동정보 가져오기",date);*/
++                String code = c.getString(TAG_vCode);
++                /*Log.d("봉사활동정보 가져오기",code);*/
++                String id = c.getString(TAG_Email);
++                /*Log.d("봉사활동정보 가져오기",id);*/
++
++                if(schedulegetEmail.equals(id)) {
++                    editor.putString("date" + count, date);
++                    editor.putString("code" + count, code);
++                    editor.commit();
++                    count++;
++                }
++            }
++            Log.d("봉사활동정보","실행");
++        } catch (JSONException e) {
++            e.printStackTrace();
++        }
++
++    }
++
++    public void getData(String url) {
++        class GetDataJSON extends AsyncTask<String, Void, String> {
++
++            @Override
++            protected String doInBackground(String... params) {
++
++                String uri = params[0];
++
++                BufferedReader bufferedReader = null;
++                try {
++                    URL url = new URL(uri);
++                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
++                    StringBuilder sb = new StringBuilder();
++
++                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
++
++                    String json;
++                    while ((json = bufferedReader.readLine()) != null) {
++                        sb.append(json + "\n");
++                    }
++
++                    return sb.toString().trim();
++
++                } catch (Exception e) {
++                    return null;
++                }
++
++            }
++
++            @Override
++            protected void onPostExecute(String result) {
++                myJSON = result;
++                showList();
++            }
++        }
++        GetDataJSON g = new GetDataJSON();
++        g.execute(url);
++    }
++
++
++}
+Index: app/src/main/java/com/cookandroid/volunteer/LoadingActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/LoadingActivity.java	(date 1604384092671)
++++ app/src/main/java/com/cookandroid/volunteer/LoadingActivity.java	(date 1604384092671)
+@@ -0,0 +1,137 @@
++package com.cookandroid.volunteer;
++
++import android.app.Activity;
++import android.content.ComponentName;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.os.AsyncTask;
++import android.os.Bundle;
++import android.os.Handler;
++import android.widget.Toast;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.io.BufferedReader;
++import java.io.InputStreamReader;
++import java.net.HttpURLConnection;
++import java.net.URL;
++
++public class LoadingActivity extends Activity {
++
++    //자동로그인 변수
++    String myJSON;
++    String email;
++    String pwd;
++
++    public final String PREFERENCE = "com.volunteerLogin.samplesharepreference";
++    public final String key01 = "Email";
++    public final String key02 = "pwd";
++
++    private static final String TAG_RESULTS = "result";
++    private static final String TAG_ID = "email";
++    private static final String TAG_PW = "pw";
++    JSONArray peoples = null;
++    boolean isLogin = false;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_loading);
++        startLoading();
++    }
++    private void startLoading() {
++        Handler handler = new Handler();
++        handler.postDelayed(new Runnable() {
++            @Override
++            public void run() {
++                loadData(key01, key02);
++                finish();
++
++            }
++        }, 2000);
++    }
++
++    public void loadData(String emailkey, String pwdkey){
++        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
++        email = pref.getString(emailkey,"");
++        pwd = pref.getString(pwdkey,"");
++
++        Toast.makeText(this, email + pwd, Toast.LENGTH_SHORT).show();
++        getData("http://192.168.159.209/PHP_connection.php");
++
++    }
++
++
++
++    protected void showList() {
++        try {
++            JSONObject jsonObj = new JSONObject(myJSON);
++            peoples = jsonObj.getJSONArray(TAG_RESULTS);
++
++            for (int i = 0; i < peoples.length(); i++) {
++                JSONObject c = peoples.getJSONObject(i);
++                String id = c.getString(TAG_ID);
++                String pw = c.getString(TAG_PW);
++                if(email.equals(id)) {
++                    if(pwd.equals(pw)) {
++                        isLogin = true;
++
++                        Intent intent = new Intent();
++                        ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
++                                "com.cookandroid.volunteer.StudentMain");
++                        intent.setComponent(cmpName);
++                        startActivity(intent);
++                        break;
++                    }
++                }
++            }
++
++        } catch (JSONException e) {
++            e.printStackTrace();
++        }
++
++    }
++
++    public void getData(String url) {
++        class GetDataJSON extends AsyncTask<String, Void, String> {
++
++            @Override
++            protected String doInBackground(String... params) {
++
++                String uri = params[0];
++
++                BufferedReader bufferedReader = null;
++                try {
++                    URL url = new URL(uri);
++                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
++                    StringBuilder sb = new StringBuilder();
++
++                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
++
++                    String json;
++                    while ((json = bufferedReader.readLine()) != null) {
++                        sb.append(json + "\n");
++                    }
++
++                    return sb.toString().trim();
++
++                } catch (Exception e) {
++                    return null;
++                }
++
++            }
++
++            @Override
++            protected void onPostExecute(String result) {
++                myJSON = result;
++                showList();
++            }
++        }
++        GetDataJSON g = new GetDataJSON();
++        g.execute(url);
++    }
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/recycler_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"16dp\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\">\r\n\r\n    <LinearLayout\r\n        android:orientation=\"vertical\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_progrmSj\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:textColor=\"#000000\"\r\n            android:textSize=\"25dp\"\r\n            android:textStyle=\"bold\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:orientation=\"horizontal\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"장소 : \" />\r\n        <TextView\r\n            android:id=\"@+id/tv_actPlace\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:orientation=\"horizontal\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"시작일 : \" />\r\n        <TextView\r\n            android:id=\"@+id/tv_progrmBgnde\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:orientation=\"horizontal\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"종료일 : \" />\r\n        <TextView\r\n            android:id=\"@+id/tv_progrmEndde\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\" />\r\n    </LinearLayout>\r\n\r\n    <!--구분선-->\r\n    <View\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"1dp\"\r\n        android:layout_centerInParent=\"true\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:background=\"#e3e3e3\" />\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/recycler_item.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/res/layout/recycler_item.xml	(date 1602695001455)
+@@ -13,6 +13,12 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+ 
++        <TextView
++            android:id="@+id/tv_progrmRegNo"
++            android:layout_width="0dp"
++            android:layout_height="0dp"
++            android:text="TextView" />
++
+         <TextView
+             android:id="@+id/tv_progrmSj"
+             android:layout_width="match_parent"
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(date 1604486578664)
++++ .idea/compiler.xml	(date 1604486578664)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="1.8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/cookandroid/volunteer/SelectedVolunteer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\nimport android.content.Context;\r\nimport android.database.Cursor;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class SelectedVolunteer extends AppCompatActivity {\r\n\r\n    TextView selV, selT, selP;\r\n    SearchResult.DBHelper myHelper;\r\n    SQLiteDatabase sqlDB;\r\n\r\n    int ID = ((SearchResult)SearchResult.mContext).ID;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.selectedvolunteer);\r\n        myHelper = new SearchResult.DBHelper(this);\r\n\r\n        sqlDB = myHelper.getReadableDatabase();\r\n        Cursor cursor;\r\n        cursor = sqlDB.rawQuery(\"SELECT * FROM volunteerTBL;\",null);\r\n\r\n        selV = (TextView) findViewById(R.id.seldTItle);\r\n        selT = (TextView) findViewById(R.id.seldTime);\r\n        selP = (TextView) findViewById(R.id.seldPlace);\r\n\r\n        while(cursor.moveToNext()){\r\n            if(new Integer(cursor.getString(0)) == ID){\r\n                selV.setText(cursor.getString(1));\r\n                selP.setText(cursor.getString(2)+ cursor.getString(3));\r\n                selT.setText(cursor.getString(4)+\"월 \" +cursor.getString(5)+\"일부터 ~ \" + cursor.getString(6)+\"월 \" +cursor.getString(7) + \"일까지\");\r\n                break;\r\n            }\r\n            else{\r\n\r\n                Log.d(\"found\",\"못찾음\");\r\n                Log.d(\"found\", String.valueOf(ID));\r\n                Log.d(\"found\", String.valueOf(new Integer(cursor.getString(0))));\r\n            }\r\n        }\r\n\r\n        Log.d(\"found\",\"실행됨\");\r\n    }\r\n\r\n\r\n    public static class DBHelper extends SQLiteOpenHelper {\r\n        public DBHelper(Context context){\r\n            super(context, \"volunteerDB\", null, 1);\r\n        }\r\n        @Override\r\n        public void onCreate(SQLiteDatabase db){\r\n            db.execSQL(\"CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);\");\r\n            db.execSQL(\"CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);\");\r\n        }\r\n\r\n        @Override\r\n        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {\r\n            db.execSQL(\"DROP TABLE IF EXISTS volunteerTBL\");\r\n            onCreate(db);\r\n        }\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/SelectedVolunteer.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/SelectedVolunteer.java	(date 1604395127595)
+@@ -1,72 +1,311 @@
+ package com.cookandroid.volunteer;
+ 
+-import android.content.Context;
+-import android.database.Cursor;
+-import android.database.sqlite.SQLiteDatabase;
+-import android.database.sqlite.SQLiteOpenHelper;
++import android.app.ProgressDialog;
++import android.content.DialogInterface;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.net.Uri;
++import android.os.AsyncTask;
+ import android.os.Bundle;
+ import android.util.Log;
++import android.view.View;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
++import androidx.appcompat.app.AlertDialog;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++import org.w3c.dom.Text;
++
++import java.io.BufferedReader;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.io.OutputStream;
++import java.net.HttpURLConnection;
++import java.net.URL;
++import java.util.Timer;
++
+ public class SelectedVolunteer extends AppCompatActivity {
+ 
+-    TextView selV, selT, selP;
+-    SearchResult.DBHelper myHelper;
+-    SQLiteDatabase sqlDB;
++    private static String IP_ADDRESS = "192.168.159.209";
++    private static String TAG = "phptest";
++
++    //스케쥴 데이터
++
++
++    //스케쥴 데이터 가져올떄
++    String myJSON;
++    JSONArray peoples = null;
++    private static final String TAG_RESULTS = "result";
++    private static final String TAG_vDate = "vDate";
++    private static final String TAG_vPlace = "vPlace";
++    private static final String TAG_vCode = "vCode";
++    private static final String TAG_Email = "Email";
++
++    public final String schedulePreference = "com.volunteerLogin.schedulePreference";
++
++    //로그인 정보
++    public final String key02 = "pwd";
++
++    //봉사활동 스케쥴 정보
++    public final String scheduleKey01 = "Email";
++    public String schedulegetEmail="em";
++
+ 
+-    int ID = ((SearchResult)SearchResult.mContext).ID;
++    TextView seldTItle, seldTime, seldPlace, seldHour, seldNTime, seldhoumany, seldApplyd, seldBoon, seldRecPeriod, seldRegist, seldProgrmCn;
++    SearchData searchVo = ((ResultView)ResultView.context_main).data;
++
++    //셰어드 프리퍼런스 변수
++    public final String PREFERENCE = "com.volunteerLogin.samplesharepreference";
++    public final String key01 = "Email";
++    String email;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.selectedvolunteer);
+-        myHelper = new SearchResult.DBHelper(this);
++
++        seldTItle = (TextView) findViewById(R.id.seldTItle);
++        seldTime = (TextView) findViewById(R.id.seldTime);
++        seldPlace = (TextView) findViewById(R.id.seldPlace);
++        seldHour = (TextView) findViewById(R.id.seldHour);
++        seldNTime = (TextView) findViewById(R.id.seldNTime);
++        seldhoumany = (TextView) findViewById(R.id.seldhoumany);
++        seldApplyd = (TextView) findViewById(R.id.seldApplyd);
++        seldBoon = (TextView) findViewById(R.id.seldBoon);
++        seldRecPeriod = (TextView) findViewById(R.id.seldRecPeriod);
++        seldRegist = (TextView) findViewById(R.id.seldRegist);
++        seldProgrmCn= (TextView) findViewById(R.id.seldContents);
++
++        seldTItle.setText(searchVo.progrmSj);
++        seldTime.setText(searchVo.progrmBgnde + "~" + searchVo.progrmEndde);
++        seldPlace.setText(searchVo.actPlace);
++        seldHour.setText(searchVo.actBeginTm + "~" + searchVo.actEndTm);
++        seldNTime.setText(searchVo.noticeBgnde + "~" + searchVo.noticeEndde);
++        seldhoumany.setText(searchVo.rcritNmpr);
++        seldApplyd.setText(searchVo.appTotal);
++        seldBoon.setText(searchVo.srvcClCode);
++        seldRecPeriod.setText(searchVo.mnnstNm);
++        seldRegist.setText(searchVo.nanmmbyNm);
++        seldProgrmCn.setText(searchVo.progrmCn);
++    }
++    public void onBtnClicked(View view){
++        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=" + searchVo.progrmRegistNo));
++        startActivity(intent);
++
++        //빌더 선언
++        AlertDialog.Builder builder = new AlertDialog.Builder(SelectedVolunteer.this);
++        // 제목 설정
++        builder.setTitle("봉사활동을 신청하셨습니까?");
++        // 요소 설정
++        builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
++            @Override
++            public void onClick(DialogInterface dialogInterface, int i) {
++
++                String vDate = searchVo.progrmBgnde + searchVo.progrmEndde;
++                String vTitle = searchVo.progrmSj;
++                String vCode = searchVo.progrmRegistNo;
++                String Email = getEmailFromDevice(key01);
++
++
++                InsertData task = new InsertData();
++                task.execute("http://" + IP_ADDRESS + "/insertVolunteer.php", vDate, vTitle, vCode, Email);
++
++                Toast.makeText(getApplicationContext(),"봉사활동이 추가되었습니다",Toast.LENGTH_LONG);
++
++                checkoutSchedule(key01);
++            }
++        });
++        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
++            @Override
++            public void onClick(DialogInterface dialogInterface, int i) {
++                dialogInterface.cancel();
++            }
++        });
++        AlertDialog alertD = builder.create();
++        alertD.show();
++    }
++
++
++    class InsertData extends AsyncTask<String, Void, String> {
++        ProgressDialog progressDialog;
++
++        @Override
++        protected void onPreExecute() {
++            super.onPreExecute();
++
++            progressDialog = ProgressDialog.show(SelectedVolunteer.this,
++                    "Please Wait", null, true, true);
++        }
++
++
++        @Override
++        protected void onPostExecute(String result) {
++            super.onPostExecute(result);
++
++            progressDialog.dismiss();
++            /*mTextViewResult.setText(result);*/
++            Log.d(TAG, "POST response  - " + result);
++        }
++
+ 
+-        sqlDB = myHelper.getReadableDatabase();
+-        Cursor cursor;
+-        cursor = sqlDB.rawQuery("SELECT * FROM volunteerTBL;",null);
++        @Override
++        protected String doInBackground(String... params) {
+ 
+-        selV = (TextView) findViewById(R.id.seldTItle);
+-        selT = (TextView) findViewById(R.id.seldTime);
+-        selP = (TextView) findViewById(R.id.seldPlace);
++            String vDate = (String)params[1];
++            String vTitle = (String)params[2];
++            String vCode = (String)params[3];
++            String Email = (String)params[4];
+ 
+-        while(cursor.moveToNext()){
+-            if(new Integer(cursor.getString(0)) == ID){
+-                selV.setText(cursor.getString(1));
+-                selP.setText(cursor.getString(2)+ cursor.getString(3));
+-                selT.setText(cursor.getString(4)+"월 " +cursor.getString(5)+"일부터 ~ " + cursor.getString(6)+"월 " +cursor.getString(7) + "일까지");
+-                break;
+-            }
+-            else{
++            String serverURL = (String)params[0];
++            String postParameters = "vDate=" + vDate + "&vTitle=" + vTitle + "&vCode=" + vCode + "&Email=" + Email;
++
++
++            try {
++
++                URL url = new URL(serverURL);
++                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
++
++
++                httpURLConnection.setReadTimeout(5000);
++                httpURLConnection.setConnectTimeout(5000);
++                httpURLConnection.setRequestMethod("POST");
++                httpURLConnection.connect();
++
++
++                OutputStream outputStream = httpURLConnection.getOutputStream();
++                outputStream.write(postParameters.getBytes("UTF-8"));
++                outputStream.flush();
++                outputStream.close();
++
++
++                int responseStatusCode = httpURLConnection.getResponseCode();
++                Log.d(TAG, "POST response code - " + responseStatusCode);
++
++                InputStream inputStream;
++                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
++                    inputStream = httpURLConnection.getInputStream();
++                }
++                else{
++                    inputStream = httpURLConnection.getErrorStream();
++                }
++
++
++                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
++                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+ 
+-                Log.d("found","못찾음");
+-                Log.d("found", String.valueOf(ID));
+-                Log.d("found", String.valueOf(new Integer(cursor.getString(0))));
+-            }
+-        }
++                StringBuilder sb = new StringBuilder();
++                String line = null;
++
++                while((line = bufferedReader.readLine()) != null){
++                    sb.append(line);
++                }
++
++
++                bufferedReader.close();
++
++
++                return sb.toString();
++
++
++            } catch (Exception e) {
++
++                Log.d(TAG, "InsertData: Error ", e);
++
++                return new String("Error: " + e.getMessage());
++            }
+ 
+-        Log.d("found","실행됨");
++        }
+     }
+ 
++    public String getEmailFromDevice(String emailkey){
++        Log.d("이메일 가져오기","메서드 실행됨");
++        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
++        email = pref.getString(emailkey,"");
++        Log.d("이메일 가져오기",email);
++        return email;
++    }
++
++
++    public void checkoutSchedule(String emailkey){
++        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
++        schedulegetEmail = pref.getString(emailkey,"");
++        Log.d("스케쥴 체크아웃",schedulegetEmail);
++
++        getData("http://192.168.159.209/PHP_connection_schedules.php");
++    }
++
++    protected void showList() {
++        try {
++            JSONObject jsonObj = new JSONObject(myJSON);
++            peoples = jsonObj.getJSONArray(TAG_RESULTS);
++            SharedPreferences pref = getSharedPreferences(schedulePreference, MODE_PRIVATE);
++            SharedPreferences.Editor editor = pref.edit();
++            int count = 0;
++            for (int i = 0; i < peoples.length(); i++) {
++                JSONObject c = peoples.getJSONObject(i);
++                String date = c.getString(TAG_vDate);
++                /*Log.d("봉사활동정보 가져오기",date);*/
++                String code = c.getString(TAG_vCode);
++                /*Log.d("봉사활동정보 가져오기",code);*/
++                String id = c.getString(TAG_Email);
++                /*Log.d("봉사활동정보 가져오기",id);*/
++
++                if(schedulegetEmail.equals(id)) {
++                    editor.putString("date" + count, date);
++                    editor.putString("code" + count, code);
++                    editor.commit();
++                    count++;
++                }
++            }
++            Log.d("봉사활동정보","실행");
++        } catch (JSONException e) {
++            e.printStackTrace();
++        }
+ 
+-    public static class DBHelper extends SQLiteOpenHelper {
+-        public DBHelper(Context context){
+-            super(context, "volunteerDB", null, 1);
+-        }
+-        @Override
+-        public void onCreate(SQLiteDatabase db){
+-            db.execSQL("CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);");
+-            db.execSQL("CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);");
+-        }
++    }
++
++    public void getData(String url) {
++        class GetDataJSON extends AsyncTask<String, Void, String> {
++
++            @Override
++            protected String doInBackground(String... params) {
++
++                String uri = params[0];
++
++                BufferedReader bufferedReader = null;
++                try {
++                    URL url = new URL(uri);
++                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
++                    StringBuilder sb = new StringBuilder();
++
++                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
++
++                    String json;
++                    while ((json = bufferedReader.readLine()) != null) {
++                        sb.append(json + "\n");
++                    }
++
++                    return sb.toString().trim();
++
++                } catch (Exception e) {
++                    return null;
++                }
++
++            }
+ 
+-        @Override
+-        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {
+-            db.execSQL("DROP TABLE IF EXISTS volunteerTBL");
+-            onCreate(db);
++            @Override
++            protected void onPostExecute(String result) {
++                myJSON = result;
++                showList();
++            }
+         }
++        GetDataJSON g = new GetDataJSON();
++        g.execute(url);
++    }
+ 
+-    }
+ 
+ }
+Index: app/src/main/java/com/cookandroid/volunteer/StudentSignUp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\nimport android.content.Context;\r\nimport android.database.sqlite.SQLiteConstraintException;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class StudentSignUp extends AppCompatActivity {\r\n    EditText StdSignUpName, StdSignUpPW, StdSignUpEmail;\r\n    Button StdSignUpBtn;\r\n    DBHelper myHelper;\r\n    SQLiteDatabase sqlDB;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.studentsignup_layout);\r\n\r\n        StdSignUpName = (EditText)findViewById(R.id.StdSignUpName);\r\n        StdSignUpPW = (EditText)findViewById(R.id.StdSignUpPW);\r\n        StdSignUpEmail = (EditText)findViewById(R.id.StdSignUpEmail);\r\n        StdSignUpBtn = (Button)findViewById(R.id.StdSignUpBtn);\r\n        myHelper = new DBHelper(this);\r\n\r\n        StdSignUpBtn.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                sqlDB = myHelper.getWritableDatabase();\r\n                try {\r\n                    sqlDB.execSQL(\"INSERT INTO StdAccountTBL VALUES('\" + StdSignUpName.getText().toString() + \"','\" + StdSignUpPW.getText().toString() + \"','\" + StdSignUpEmail.getText().toString() + \"');\");\r\n                }catch (SQLiteConstraintException e){\r\n                    Toast.makeText(getApplicationContext(), \"해당 이름은 이미 있습니다.\",0).show();\r\n                }\r\n                sqlDB.close();\r\n                Toast.makeText(getApplicationContext(), \"입력됨\",0).show();\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n\r\n    public static class DBHelper extends SQLiteOpenHelper {\r\n        public DBHelper(Context context){\r\n            super(context, \"volunteerDB\", null, 1);\r\n        }\r\n        @Override\r\n        public void onCreate(SQLiteDatabase db){\r\n            db.execSQL(\"CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);\");\r\n            db.execSQL(\"CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);\");\r\n        }\r\n\r\n        @Override\r\n        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {\r\n            db.execSQL(\"DROP TABLE IF EXISTS StdAccountTBL\");\r\n            onCreate(db);\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/StudentSignUp.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/StudentSignUp.java	(date 1602695001452)
+@@ -1,10 +1,13 @@
+ package com.cookandroid.volunteer;
+ 
++import android.app.ProgressDialog;
+ import android.content.Context;
+ import android.database.sqlite.SQLiteConstraintException;
+ import android.database.sqlite.SQLiteDatabase;
+ import android.database.sqlite.SQLiteOpenHelper;
++import android.os.AsyncTask;
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+@@ -12,11 +15,20 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import java.io.BufferedReader;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.io.OutputStream;
++import java.net.HttpURLConnection;
++import java.net.URL;
++
+ public class StudentSignUp extends AppCompatActivity {
++
++    private static String IP_ADDRESS = "192.168.211.241";
++    private static String TAG = "phptest";
++
+     EditText StdSignUpName, StdSignUpPW, StdSignUpEmail;
+     Button StdSignUpBtn;
+-    DBHelper myHelper;
+-    SQLiteDatabase sqlDB;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -26,40 +38,114 @@
+         StdSignUpPW = (EditText)findViewById(R.id.StdSignUpPW);
+         StdSignUpEmail = (EditText)findViewById(R.id.StdSignUpEmail);
+         StdSignUpBtn = (Button)findViewById(R.id.StdSignUpBtn);
+-        myHelper = new DBHelper(this);
+ 
+         StdSignUpBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                sqlDB = myHelper.getWritableDatabase();
+-                try {
+-                    sqlDB.execSQL("INSERT INTO StdAccountTBL VALUES('" + StdSignUpName.getText().toString() + "','" + StdSignUpPW.getText().toString() + "','" + StdSignUpEmail.getText().toString() + "');");
+-                }catch (SQLiteConstraintException e){
+-                    Toast.makeText(getApplicationContext(), "해당 이름은 이미 있습니다.",0).show();
+-                }
+-                sqlDB.close();
++
++                String name = StdSignUpName.getText().toString();
++                String pw = StdSignUpPW.getText().toString();
++                String email = StdSignUpEmail.getText().toString();
++
++                InsertData task = new InsertData();
++                task.execute("http://" + IP_ADDRESS + "/insertDatas.php", name,pw,email);
++
++
+                 Toast.makeText(getApplicationContext(), "입력됨",0).show();
+             }
+         });
+     }
+ 
+ 
++    class InsertData extends AsyncTask<String, Void, String> {
++        ProgressDialog progressDialog;
+ 
+-    public static class DBHelper extends SQLiteOpenHelper {
+-        public DBHelper(Context context){
+-            super(context, "volunteerDB", null, 1);
+-        }
+         @Override
+-        public void onCreate(SQLiteDatabase db){
+-            db.execSQL("CREATE TABLE StdAccountTBL(Name CHAR(20), Passwd CHAR(20), Email CHAR(20) PRIMARY KEY);");
+-            db.execSQL("CREATE TABLE volunteerTBL(ID INTEGER PRIMARY KEY AUTOINCREMENT,vtitle CHAR(20) NOT NULL, vaddr1 CHAR(20), vaddr2 CHAR(20), startmonth INTEGER, startday INTEGER, endmonth INTEGER, endday INTEGER);");
++        protected void onPreExecute() {
++            super.onPreExecute();
++
++            progressDialog = ProgressDialog.show(StudentSignUp.this,
++                    "Please Wait", null, true, true);
+         }
++
+ 
+         @Override
+-        public void onUpgrade(SQLiteDatabase db, int oldverson, int newVerson) {
+-            db.execSQL("DROP TABLE IF EXISTS StdAccountTBL");
+-            onCreate(db);
++        protected void onPostExecute(String result) {
++            super.onPostExecute(result);
++
++            progressDialog.dismiss();
++            /*mTextViewResult.setText(result);*/
++            Log.d(TAG, "POST response  - " + result);
+         }
++
++
++        @Override
++        protected String doInBackground(String... params) {
++
++            String name = (String)params[1];
++            String pw = (String)params[2];
++            String email = (String)params[3];
++
++            String serverURL = (String)params[0];
++            String postParameters = "name=" + name + "&pw=" + pw + "&email=" + email;
++
++
++            try {
++
++                URL url = new URL(serverURL);
++                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
++
++
++                httpURLConnection.setReadTimeout(5000);
++                httpURLConnection.setConnectTimeout(5000);
++                httpURLConnection.setRequestMethod("POST");
++                httpURLConnection.connect();
++
++
++                OutputStream outputStream = httpURLConnection.getOutputStream();
++                outputStream.write(postParameters.getBytes("UTF-8"));
++                outputStream.flush();
++                outputStream.close();
++
++
++                int responseStatusCode = httpURLConnection.getResponseCode();
++                Log.d(TAG, "POST response code - " + responseStatusCode);
++
++                InputStream inputStream;
++                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
++                    inputStream = httpURLConnection.getInputStream();
++                }
++                else{
++                    inputStream = httpURLConnection.getErrorStream();
++                }
+ 
++
++                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
++                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
++
++                StringBuilder sb = new StringBuilder();
++                String line = null;
++
++                while((line = bufferedReader.readLine()) != null){
++                    sb.append(line);
++                }
++
++
++                bufferedReader.close();
++
++
++                return sb.toString();
++
++
++            } catch (Exception e) {
++
++                Log.d(TAG, "InsertData: Error ", e);
++
++                return new String("Error: " + e.getMessage());
++            }
++
++        }
+     }
++
++
+ }
+Index: app/src/main/res/layout/search_info.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".SearchInfo\"\r\n    android:orientation=\"vertical\">\r\n\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView2\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"제목\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/searchText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView3\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"봉사시작일\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/sBtn\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"시작일선택\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView4\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"봉사종료일\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/eBtn\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"종료일선택\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView8\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"지역\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/Sido\"\r\n            android:layout_width=\"31dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:entries=\"@array/지역\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/Gugun\"\r\n            android:layout_width=\"31dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:entries=\"@array/서울특별시\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <Button\r\n        android:id=\"@+id/searchBtn\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"검색\" />\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/search_info.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/res/layout/search_info.xml	(date 1603112025150)
+@@ -18,6 +18,7 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
++            android:paddingLeft="10dp"
+             android:text="제목" />
+ 
+         <EditText
+@@ -39,6 +40,7 @@
+             android:id="@+id/textView3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
++            android:paddingLeft="10dp"
+             android:layout_weight="1"
+             android:text="봉사시작일" />
+ 
+@@ -60,6 +62,7 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
++            android:paddingLeft="10dp"
+             android:text="봉사종료일" />
+ 
+         <Button
+@@ -80,6 +83,7 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
++            android:paddingLeft="10dp"
+             android:text="지역" />
+ 
+         <Spinner
+Index: app/src/main/res/layout/studentmain_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:orientation=\"vertical\" android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <Button\r\n        android:id=\"@+id/SearchVolunteerBtn\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"봉사참여\" />\r\n    <Button\r\n        android:id=\"@+id/mypageBtn\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"내정보\" />\r\n    <Button\r\n        android:id=\"@+id/openCalendarBtn\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"봉사일정확인\" />\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/studentmain_layout.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/res/layout/studentmain_layout.xml	(date 1602709885047)
+@@ -18,5 +18,10 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="봉사일정확인" />
++    <Button
++        android:id="@+id/logout"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="로그아웃" />
+ 
+ </LinearLayout>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <compositeConfiguration>\r\n          <compositeBuild compositeDefinitionSource=\"SCRIPT\" />\r\n        </compositeConfiguration>\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ .idea/gradle.xml	(date 1604486578674)
+@@ -1,15 +1,21 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <compositeConfiguration>
+-          <compositeBuild compositeDefinitionSource="SCRIPT" />
+-        </compositeConfiguration>
++        <option name="delegatedBuild" value="false" />
++        <option name="testRunner" value="PLATFORM" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
+         <option name="resolveModulePerSourceSet" value="false" />
+-        <option name="testRunner" value="PLATFORM" />
++        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_7\" project-jdk-name=\"JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ .idea/misc.xml	(date 1604486578644)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="JDK" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jarRepositories.xml	(date 1604486623145)
++++ .idea/jarRepositories.xml	(date 1604486623145)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="BintrayJCenter" />
++      <option name="name" value="BintrayJCenter" />
++      <option name="url" value="https://jcenter.bintray.com/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="Google" />
++      <option name="name" value="Google" />
++      <option name="url" value="https://dl.google.com/dl/android/maven2/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/cookandroid/volunteer/SearchData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cookandroid.volunteer;\r\n\r\npublic class SearchData {\r\n\r\n    String progrmRegistNo; //프로그램등록번호\r\n    String progrmSj; //봉사제목\r\n    String progrmBgnde; //봉사시작일\r\n    String progrmEndde; //봉사종료일\r\n    String actBeginTm; //봉사시작시간\r\n    String actEndTm; //봉사종료시간\r\n    String actPlace; //봉사장소\r\n\r\n    String noticeBgnde; //모집시작일\r\n    String noticeEndde; //모집종료일\r\n    String rcritNmpr; //모집인원\r\n    String appTotal; //신청인원\r\n    String actWkdy; //활동요일\r\n    String srvcClCode; //봉사분야\r\n    String mnnstNm; //모집기관\r\n    String nanmmbyNm; //등록기관\r\n    String telno; //전화번호\r\n    String email; //이메일\r\n    String progrmCn; //내용\r\n\r\n\r\n    public String getProgrmRegistNo() {\r\n        return progrmRegistNo;\r\n    }\r\n\r\n    public String getProgrmSj() {\r\n        return progrmSj;\r\n    }\r\n\r\n    public String getProgrmBgnde() {\r\n        return progrmBgnde;\r\n    }\r\n\r\n    public String getProgrmEndde() {\r\n        return progrmEndde;\r\n    }\r\n\r\n    public String getActBeginTm() {\r\n        return actBeginTm;\r\n    }\r\n\r\n    public String getActEndTm() {\r\n        return actEndTm;\r\n    }\r\n\r\n    public String getActPlace() {\r\n        return actPlace;\r\n    }\r\n\r\n    public String getNoticeBgnde() {\r\n        return noticeBgnde;\r\n    }\r\n\r\n    public String getNoticeEndde() {\r\n        return noticeEndde;\r\n    }\r\n\r\n    public String getRcritNmpr() {\r\n        return rcritNmpr;\r\n    }\r\n\r\n    public String geTappTotal() {\r\n        return appTotal;\r\n    }\r\n\r\n    public String getActWkdy() {\r\n        return actWkdy;\r\n    }\r\n\r\n    public String getSrvcClCode() {\r\n        return srvcClCode;\r\n    }\r\n\r\n    public String getMnnstNm() {\r\n        return mnnstNm;\r\n    }\r\n\r\n    public String getNanmmbyNm() {\r\n        return nanmmbyNm;\r\n    }\r\n\r\n    public String getTelno() {\r\n        return telno;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public String getProgrmCn() {\r\n        return progrmCn;\r\n    }\r\n\r\n    public void setProgrmRegistNo(String noticeBgnde) {\r\n        this.progrmRegistNo = progrmRegistNo;\r\n    }\r\n\r\n    public void setProgrmSj(String progrmSj) {\r\n        this.progrmSj = progrmSj;\r\n    }\r\n\r\n    public void setProgrmBgnde(String progrmBgnde) {\r\n        this.progrmBgnde = progrmBgnde;\r\n    }\r\n\r\n    public void setProgrmEndde(String progrmEndde) {\r\n        this.progrmEndde = progrmEndde;\r\n    }\r\n\r\n    public void setActBeginTm(String actBeginTm) {\r\n        this.actBeginTm = actBeginTm;\r\n    }\r\n\r\n    public void setActEndTm(String actEndTm) {\r\n        this.actEndTm = actEndTm;\r\n    }\r\n\r\n    public void setActPlace(String actPlace) {\r\n        this.actPlace = actPlace;\r\n    }\r\n\r\n    public void setNoticeBgnde(String noticeBgnde) {\r\n        this.noticeBgnde = noticeBgnde;\r\n    }\r\n\r\n    public void setNoticeEndde(String noticeEndde) {\r\n        this.noticeEndde = noticeEndde;\r\n    }\r\n\r\n    public void setRcritNmpr(String rcritNmpr) {\r\n        this.rcritNmpr = rcritNmpr;\r\n    }\r\n\r\n    public void setAppTotal(String appTotal) {\r\n        this.appTotal = appTotal;\r\n    }\r\n\r\n    public void setActWkdy(String actWkdy) {\r\n        this.actWkdy = actWkdy;\r\n    }\r\n\r\n    public void setSrvcClCode(String srvcClCode) {\r\n        this.srvcClCode = srvcClCode;\r\n    }\r\n\r\n    public void setMnnstNm(String mnnstNm) {\r\n        this.mnnstNm = mnnstNm;\r\n    }\r\n\r\n    public void setNanmmbyNm(String nanmmbyNm) {\r\n        this.nanmmbyNm = nanmmbyNm;\r\n    }\r\n\r\n    public void setTelno(String telno) {\r\n        this.telno = telno;\r\n    }\r\n\r\n    public void seTemail(String email) {\r\n        this.email = email;\r\n    }\r\n\r\n    public void setProgrmCn(String progrmCn) {\r\n        this.progrmCn = progrmCn;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/cookandroid/volunteer/SearchData.java	(revision e4e52e2ff4f4f2a3141ac960b39509456656cac6)
++++ app/src/main/java/com/cookandroid/volunteer/SearchData.java	(date 1602695001444)
+@@ -21,7 +21,15 @@
+     String telno; //전화번호
+     String email; //이메일
+     String progrmCn; //내용
++    String progrmLink; //주소
+ 
++    public String getProgrmLink() {
++        return progrmLink;
++    }
++
++    public void setProgrmLink(String progrmLink) {
++        this.progrmLink = progrmLink;
++    }
+ 
+     public String getProgrmRegistNo() {
+         return progrmRegistNo;
+@@ -95,7 +103,7 @@
+         return progrmCn;
+     }
+ 
+-    public void setProgrmRegistNo(String noticeBgnde) {
++    public void setProgrmRegistNo(String progrmRegistNo) {
+         this.progrmRegistNo = progrmRegistNo;
+     }
+ 
