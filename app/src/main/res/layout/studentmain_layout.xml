@@ -83,7 +83,7 @@
             android:background="@drawable/calendar" />
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/timeTableBtn"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:background="@drawable/schedule" />

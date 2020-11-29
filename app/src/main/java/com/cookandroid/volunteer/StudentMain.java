@@ -33,7 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class StudentMain extends AppCompatActivity {
-    Button SearchVolunteerBtn, mypageBtn, openCalendarBtn;
+    Button SearchVolunteerBtn, mypageBtn, openCalendarBtn, timeTableBtn;
     TextView targetTime;
 
     //php 스케쥴 데이터 가져올때
@@ -86,6 +86,7 @@ public class StudentMain extends AppCompatActivity {
 
         targetTime = (TextView)findViewById(R.id.yourTarget);
         SearchVolunteerBtn = (Button)findViewById(R.id.SearchVolunteerBtn);
+        timeTableBtn = (Button)findViewById((R.id.timeTableBtn));
         openCalendarBtn = (Button)findViewById(R.id.openCalendarBtn);
         mypageBtn = (Button)findViewById(R.id.mypageBtn);
         SearchVolunteerBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +96,17 @@ public class StudentMain extends AppCompatActivity {
                 Intent intent = new Intent();
                 ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
                         "com.cookandroid.volunteer.SearchInfo");
+                intent.setComponent(cmpName);
+                startActivity(intent);
+            }
+        });
+        timeTableBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
+                        "com.cookandroid.volunteer.TimeTable");
                 intent.setComponent(cmpName);
                 startActivity(intent);
             }
