@@ -79,7 +79,7 @@
             android:background="@null"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textSize="24sp" />
     </LinearLayout>
 

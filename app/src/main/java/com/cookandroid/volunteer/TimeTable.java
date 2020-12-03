@@ -73,103 +73,103 @@ public class TimeTable extends AppCompatActivity {
 
                 for (DataSnapshot weekData : snapshot.getChildren()) {
 
-                    if(weekData.getKey().equals("mon1")) { mon1_b = Boolean.parseBoolean(weekData.getValue().toString()); mon1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon2")) { mon2_b = Boolean.parseBoolean(weekData.getValue().toString()); mon2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon3")) { mon3_b = Boolean.parseBoolean(weekData.getValue().toString()); mon3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon4")) { mon4_b = Boolean.parseBoolean(weekData.getValue().toString()); mon4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon5")) { mon5_b = Boolean.parseBoolean(weekData.getValue().toString()); mon5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon6")) { mon6_b = Boolean.parseBoolean(weekData.getValue().toString()); mon6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon7")) { mon7_b = Boolean.parseBoolean(weekData.getValue().toString()); mon7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon8")) { mon8_b = Boolean.parseBoolean(weekData.getValue().toString()); mon8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon9")) { mon9_b = Boolean.parseBoolean(weekData.getValue().toString()); mon9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon10")) { mon10_b = Boolean.parseBoolean(weekData.getValue().toString()); mon10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon11")) { mon11_b = Boolean.parseBoolean(weekData.getValue().toString()); mon11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon12")) { mon12_b = Boolean.parseBoolean(weekData.getValue().toString()); mon12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("mon13")) { mon13_b = Boolean.parseBoolean(weekData.getValue().toString()); mon13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("mon1")) { mon1_b = Boolean.parseBoolean(weekData.getValue().toString()); mon1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon2")) { mon2_b = Boolean.parseBoolean(weekData.getValue().toString()); mon2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon3")) { mon3_b = Boolean.parseBoolean(weekData.getValue().toString()); mon3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon4")) { mon4_b = Boolean.parseBoolean(weekData.getValue().toString()); mon4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon5")) { mon5_b = Boolean.parseBoolean(weekData.getValue().toString()); mon5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon6")) { mon6_b = Boolean.parseBoolean(weekData.getValue().toString()); mon6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon7")) { mon7_b = Boolean.parseBoolean(weekData.getValue().toString()); mon7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon8")) { mon8_b = Boolean.parseBoolean(weekData.getValue().toString()); mon8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon9")) { mon9_b = Boolean.parseBoolean(weekData.getValue().toString()); mon9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon10")) { mon10_b = Boolean.parseBoolean(weekData.getValue().toString()); mon10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon11")) { mon11_b = Boolean.parseBoolean(weekData.getValue().toString()); mon11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon12")) { mon12_b = Boolean.parseBoolean(weekData.getValue().toString()); mon12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("mon13")) { mon13_b = Boolean.parseBoolean(weekData.getValue().toString()); mon13.setBackgroundColor(Color.LTGRAY); }
 
-                    if(weekData.getKey().equals("tue1")) { tue1_b = Boolean.parseBoolean(weekData.getValue().toString()); tue1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue2")) { tue2_b = Boolean.parseBoolean(weekData.getValue().toString()); tue2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue3")) { tue3_b = Boolean.parseBoolean(weekData.getValue().toString()); tue3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue4")) { tue4_b = Boolean.parseBoolean(weekData.getValue().toString()); tue4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue5")) { tue5_b = Boolean.parseBoolean(weekData.getValue().toString()); tue5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue6")) { tue6_b = Boolean.parseBoolean(weekData.getValue().toString()); tue6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue7")) { tue7_b = Boolean.parseBoolean(weekData.getValue().toString()); tue7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue8")) { tue8_b = Boolean.parseBoolean(weekData.getValue().toString()); tue8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue9")) { tue9_b = Boolean.parseBoolean(weekData.getValue().toString()); tue9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue10")) { tue10_b = Boolean.parseBoolean(weekData.getValue().toString()); tue10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue11")) { tue11_b = Boolean.parseBoolean(weekData.getValue().toString()); tue11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue12")) { tue12_b = Boolean.parseBoolean(weekData.getValue().toString()); tue12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("tue13")) { tue13_b = Boolean.parseBoolean(weekData.getValue().toString()); tue13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("tue1")) { tue1_b = Boolean.parseBoolean(weekData.getValue().toString()); tue1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue2")) { tue2_b = Boolean.parseBoolean(weekData.getValue().toString()); tue2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue3")) { tue3_b = Boolean.parseBoolean(weekData.getValue().toString()); tue3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue4")) { tue4_b = Boolean.parseBoolean(weekData.getValue().toString()); tue4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue5")) { tue5_b = Boolean.parseBoolean(weekData.getValue().toString()); tue5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue6")) { tue6_b = Boolean.parseBoolean(weekData.getValue().toString()); tue6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue7")) { tue7_b = Boolean.parseBoolean(weekData.getValue().toString()); tue7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue8")) { tue8_b = Boolean.parseBoolean(weekData.getValue().toString()); tue8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue9")) { tue9_b = Boolean.parseBoolean(weekData.getValue().toString()); tue9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue10")) { tue10_b = Boolean.parseBoolean(weekData.getValue().toString()); tue10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue11")) { tue11_b = Boolean.parseBoolean(weekData.getValue().toString()); tue11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue12")) { tue12_b = Boolean.parseBoolean(weekData.getValue().toString()); tue12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("tue13")) { tue13_b = Boolean.parseBoolean(weekData.getValue().toString()); tue13.setBackgroundColor(Color.LTGRAY); }
 
-                    if(weekData.getKey().equals("wed1")) { wed1_b = Boolean.parseBoolean(weekData.getValue().toString()); wed1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed2")) { wed2_b = Boolean.parseBoolean(weekData.getValue().toString()); wed2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed3")) { wed3_b = Boolean.parseBoolean(weekData.getValue().toString()); wed3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed4")) { wed4_b = Boolean.parseBoolean(weekData.getValue().toString()); wed4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed5")) { wed5_b = Boolean.parseBoolean(weekData.getValue().toString()); wed5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed6")) { wed6_b = Boolean.parseBoolean(weekData.getValue().toString()); wed6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed7")) { wed7_b = Boolean.parseBoolean(weekData.getValue().toString()); wed7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed8")) { wed8_b = Boolean.parseBoolean(weekData.getValue().toString()); wed8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed9")) { wed9_b = Boolean.parseBoolean(weekData.getValue().toString()); wed9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed10")) { wed10_b = Boolean.parseBoolean(weekData.getValue().toString()); wed10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed11")) { wed11_b = Boolean.parseBoolean(weekData.getValue().toString()); wed11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed12")) { wed12_b = Boolean.parseBoolean(weekData.getValue().toString()); wed12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("wed13")) { wed13_b = Boolean.parseBoolean(weekData.getValue().toString()); wed13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("wed1")) { wed1_b = Boolean.parseBoolean(weekData.getValue().toString()); wed1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed2")) { wed2_b = Boolean.parseBoolean(weekData.getValue().toString()); wed2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed3")) { wed3_b = Boolean.parseBoolean(weekData.getValue().toString()); wed3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed4")) { wed4_b = Boolean.parseBoolean(weekData.getValue().toString()); wed4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed5")) { wed5_b = Boolean.parseBoolean(weekData.getValue().toString()); wed5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed6")) { wed6_b = Boolean.parseBoolean(weekData.getValue().toString()); wed6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed7")) { wed7_b = Boolean.parseBoolean(weekData.getValue().toString()); wed7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed8")) { wed8_b = Boolean.parseBoolean(weekData.getValue().toString()); wed8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed9")) { wed9_b = Boolean.parseBoolean(weekData.getValue().toString()); wed9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed10")) { wed10_b = Boolean.parseBoolean(weekData.getValue().toString()); wed10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed11")) { wed11_b = Boolean.parseBoolean(weekData.getValue().toString()); wed11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed12")) { wed12_b = Boolean.parseBoolean(weekData.getValue().toString()); wed12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("wed13")) { wed13_b = Boolean.parseBoolean(weekData.getValue().toString()); wed13.setBackgroundColor(Color.LTGRAY); }
 
-                    if(weekData.getKey().equals("thu1")) { thu1_b = Boolean.parseBoolean(weekData.getValue().toString()); thu1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu2")) { thu2_b = Boolean.parseBoolean(weekData.getValue().toString()); thu2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu3")) { thu3_b = Boolean.parseBoolean(weekData.getValue().toString()); thu3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu4")) { thu4_b = Boolean.parseBoolean(weekData.getValue().toString()); thu4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu5")) { thu5_b = Boolean.parseBoolean(weekData.getValue().toString()); thu5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu6")) { thu6_b = Boolean.parseBoolean(weekData.getValue().toString()); thu6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu7")) { thu7_b = Boolean.parseBoolean(weekData.getValue().toString()); thu7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu8")) { thu8_b = Boolean.parseBoolean(weekData.getValue().toString()); thu8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu9")) { thu9_b = Boolean.parseBoolean(weekData.getValue().toString()); thu9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu10")) { thu10_b = Boolean.parseBoolean(weekData.getValue().toString()); thu10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu11")) { thu11_b = Boolean.parseBoolean(weekData.getValue().toString()); thu11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu12")) { thu12_b = Boolean.parseBoolean(weekData.getValue().toString()); thu12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("thu13")) { thu13_b = Boolean.parseBoolean(weekData.getValue().toString()); thu13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("thu1")) { thu1_b = Boolean.parseBoolean(weekData.getValue().toString()); thu1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu2")) { thu2_b = Boolean.parseBoolean(weekData.getValue().toString()); thu2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu3")) { thu3_b = Boolean.parseBoolean(weekData.getValue().toString()); thu3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu4")) { thu4_b = Boolean.parseBoolean(weekData.getValue().toString()); thu4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu5")) { thu5_b = Boolean.parseBoolean(weekData.getValue().toString()); thu5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu6")) { thu6_b = Boolean.parseBoolean(weekData.getValue().toString()); thu6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu7")) { thu7_b = Boolean.parseBoolean(weekData.getValue().toString()); thu7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu8")) { thu8_b = Boolean.parseBoolean(weekData.getValue().toString()); thu8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu9")) { thu9_b = Boolean.parseBoolean(weekData.getValue().toString()); thu9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu10")) { thu10_b = Boolean.parseBoolean(weekData.getValue().toString()); thu10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu11")) { thu11_b = Boolean.parseBoolean(weekData.getValue().toString()); thu11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu12")) { thu12_b = Boolean.parseBoolean(weekData.getValue().toString()); thu12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("thu13")) { thu13_b = Boolean.parseBoolean(weekData.getValue().toString()); thu13.setBackgroundColor(Color.LTGRAY); }
 
-                    if(weekData.getKey().equals("fri1")) { fri1_b = Boolean.parseBoolean(weekData.getValue().toString()); fri1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri2")) { fri2_b = Boolean.parseBoolean(weekData.getValue().toString()); fri2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri3")) { fri3_b = Boolean.parseBoolean(weekData.getValue().toString()); fri3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri4")) { fri4_b = Boolean.parseBoolean(weekData.getValue().toString()); fri4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri5")) { fri5_b = Boolean.parseBoolean(weekData.getValue().toString()); fri5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri6")) { fri6_b = Boolean.parseBoolean(weekData.getValue().toString()); fri6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri7")) { fri7_b = Boolean.parseBoolean(weekData.getValue().toString()); fri7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri8")) { fri8_b = Boolean.parseBoolean(weekData.getValue().toString()); fri8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri9")) { fri9_b = Boolean.parseBoolean(weekData.getValue().toString()); fri9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri10")) { fri10_b = Boolean.parseBoolean(weekData.getValue().toString()); fri10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri11")) { fri11_b = Boolean.parseBoolean(weekData.getValue().toString()); fri11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri12")) { fri12_b = Boolean.parseBoolean(weekData.getValue().toString()); fri12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("fri13")) { fri13_b = Boolean.parseBoolean(weekData.getValue().toString()); fri13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("fri1")) { fri1_b = Boolean.parseBoolean(weekData.getValue().toString()); fri1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri2")) { fri2_b = Boolean.parseBoolean(weekData.getValue().toString()); fri2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri3")) { fri3_b = Boolean.parseBoolean(weekData.getValue().toString()); fri3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri4")) { fri4_b = Boolean.parseBoolean(weekData.getValue().toString()); fri4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri5")) { fri5_b = Boolean.parseBoolean(weekData.getValue().toString()); fri5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri6")) { fri6_b = Boolean.parseBoolean(weekData.getValue().toString()); fri6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri7")) { fri7_b = Boolean.parseBoolean(weekData.getValue().toString()); fri7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri8")) { fri8_b = Boolean.parseBoolean(weekData.getValue().toString()); fri8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri9")) { fri9_b = Boolean.parseBoolean(weekData.getValue().toString()); fri9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri10")) { fri10_b = Boolean.parseBoolean(weekData.getValue().toString()); fri10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri11")) { fri11_b = Boolean.parseBoolean(weekData.getValue().toString()); fri11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri12")) { fri12_b = Boolean.parseBoolean(weekData.getValue().toString()); fri12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("fri13")) { fri13_b = Boolean.parseBoolean(weekData.getValue().toString()); fri13.setBackgroundColor(Color.LTGRAY); }
 
-                    if(weekData.getKey().equals("sat1")) { sat1_b = Boolean.parseBoolean(weekData.getValue().toString()); sat1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat2")) { sat2_b = Boolean.parseBoolean(weekData.getValue().toString()); sat2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat3")) { sat3_b = Boolean.parseBoolean(weekData.getValue().toString()); sat3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat4")) { sat4_b = Boolean.parseBoolean(weekData.getValue().toString()); sat4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat5")) { sat5_b = Boolean.parseBoolean(weekData.getValue().toString()); sat5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat6")) { sat6_b = Boolean.parseBoolean(weekData.getValue().toString()); sat6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat7")) { sat7_b = Boolean.parseBoolean(weekData.getValue().toString()); sat7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat8")) { sat8_b = Boolean.parseBoolean(weekData.getValue().toString()); sat8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat9")) { sat9_b = Boolean.parseBoolean(weekData.getValue().toString()); sat9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat10")) { sat10_b = Boolean.parseBoolean(weekData.getValue().toString()); sat10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat11")) { sat11_b = Boolean.parseBoolean(weekData.getValue().toString()); sat11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat12")) { sat12_b = Boolean.parseBoolean(weekData.getValue().toString()); sat12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sat13")) { sat13_b = Boolean.parseBoolean(weekData.getValue().toString()); sat13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("sat1")) { sat1_b = Boolean.parseBoolean(weekData.getValue().toString()); sat1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat2")) { sat2_b = Boolean.parseBoolean(weekData.getValue().toString()); sat2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat3")) { sat3_b = Boolean.parseBoolean(weekData.getValue().toString()); sat3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat4")) { sat4_b = Boolean.parseBoolean(weekData.getValue().toString()); sat4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat5")) { sat5_b = Boolean.parseBoolean(weekData.getValue().toString()); sat5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat6")) { sat6_b = Boolean.parseBoolean(weekData.getValue().toString()); sat6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat7")) { sat7_b = Boolean.parseBoolean(weekData.getValue().toString()); sat7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat8")) { sat8_b = Boolean.parseBoolean(weekData.getValue().toString()); sat8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat9")) { sat9_b = Boolean.parseBoolean(weekData.getValue().toString()); sat9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat10")) { sat10_b = Boolean.parseBoolean(weekData.getValue().toString()); sat10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat11")) { sat11_b = Boolean.parseBoolean(weekData.getValue().toString()); sat11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat12")) { sat12_b = Boolean.parseBoolean(weekData.getValue().toString()); sat12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sat13")) { sat13_b = Boolean.parseBoolean(weekData.getValue().toString()); sat13.setBackgroundColor(Color.LTGRAY); }
 
-                    if(weekData.getKey().equals("sun1")) { sun1_b = Boolean.parseBoolean(weekData.getValue().toString()); sun1.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun2")) { sun2_b = Boolean.parseBoolean(weekData.getValue().toString()); sun2.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun3")) { sun3_b = Boolean.parseBoolean(weekData.getValue().toString()); sun3.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun4")) { sun4_b = Boolean.parseBoolean(weekData.getValue().toString()); sun4.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun5")) { sun5_b = Boolean.parseBoolean(weekData.getValue().toString()); sun5.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun6")) { sun6_b = Boolean.parseBoolean(weekData.getValue().toString()); sun6.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun7")) { sun7_b = Boolean.parseBoolean(weekData.getValue().toString()); sun7.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun8")) { sun8_b = Boolean.parseBoolean(weekData.getValue().toString()); sun8.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun9")) { sun9_b = Boolean.parseBoolean(weekData.getValue().toString()); sun9.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun10")) { sun10_b = Boolean.parseBoolean(weekData.getValue().toString()); sun10.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun11")) { sun11_b = Boolean.parseBoolean(weekData.getValue().toString()); sun11.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun12")) { sun12_b = Boolean.parseBoolean(weekData.getValue().toString()); sun12.setBackgroundColor(Color.DKGRAY); }
-                    if(weekData.getKey().equals("sun13")) { sun13_b = Boolean.parseBoolean(weekData.getValue().toString()); sun13.setBackgroundColor(Color.DKGRAY); }
+                    if(weekData.getKey().equals("sun1")) { sun1_b = Boolean.parseBoolean(weekData.getValue().toString()); sun1.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun2")) { sun2_b = Boolean.parseBoolean(weekData.getValue().toString()); sun2.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun3")) { sun3_b = Boolean.parseBoolean(weekData.getValue().toString()); sun3.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun4")) { sun4_b = Boolean.parseBoolean(weekData.getValue().toString()); sun4.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun5")) { sun5_b = Boolean.parseBoolean(weekData.getValue().toString()); sun5.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun6")) { sun6_b = Boolean.parseBoolean(weekData.getValue().toString()); sun6.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun7")) { sun7_b = Boolean.parseBoolean(weekData.getValue().toString()); sun7.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun8")) { sun8_b = Boolean.parseBoolean(weekData.getValue().toString()); sun8.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun9")) { sun9_b = Boolean.parseBoolean(weekData.getValue().toString()); sun9.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun10")) { sun10_b = Boolean.parseBoolean(weekData.getValue().toString()); sun10.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun11")) { sun11_b = Boolean.parseBoolean(weekData.getValue().toString()); sun11.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun12")) { sun12_b = Boolean.parseBoolean(weekData.getValue().toString()); sun12.setBackgroundColor(Color.LTGRAY); }
+                    if(weekData.getKey().equals("sun13")) { sun13_b = Boolean.parseBoolean(weekData.getValue().toString()); sun13.setBackgroundColor(Color.LTGRAY); }
 
 
                 }
@@ -406,103 +406,103 @@ public class TimeTable extends AppCompatActivity {
             }
         });
 
-        if(mon1_b==false){ mon1.setBackgroundColor(Color.WHITE); }else { mon1.setBackgroundColor(Color.DKGRAY);}
-        if(mon2_b==false){ mon2.setBackgroundColor(Color.WHITE); }else { mon2.setBackgroundColor(Color.DKGRAY);}
-        if(mon3_b==false){ mon3.setBackgroundColor(Color.WHITE); }else { mon3.setBackgroundColor(Color.DKGRAY);}
-        if(mon4_b==false){ mon4.setBackgroundColor(Color.WHITE); }else { mon4.setBackgroundColor(Color.DKGRAY);}
-        if(mon5_b==false){ mon5.setBackgroundColor(Color.WHITE); }else { mon5.setBackgroundColor(Color.DKGRAY);}
-        if(mon6_b==false){ mon6.setBackgroundColor(Color.WHITE); }else { mon6.setBackgroundColor(Color.DKGRAY);}
-        if(mon7_b==false){ mon7.setBackgroundColor(Color.WHITE); }else { mon7.setBackgroundColor(Color.DKGRAY);}
-        if(mon8_b==false){ mon8.setBackgroundColor(Color.WHITE); }else { mon8.setBackgroundColor(Color.DKGRAY);}
-        if(mon9_b==false){ mon9.setBackgroundColor(Color.WHITE); }else { mon9.setBackgroundColor(Color.DKGRAY);}
-        if(mon10_b==false){ mon10.setBackgroundColor(Color.WHITE); }else { mon10.setBackgroundColor(Color.DKGRAY);}
-        if(mon11_b==false){ mon11.setBackgroundColor(Color.WHITE); }else { mon11.setBackgroundColor(Color.DKGRAY);}
-        if(mon12_b==false){ mon12.setBackgroundColor(Color.WHITE); }else { mon12.setBackgroundColor(Color.DKGRAY);}
-        if(mon13_b==false){ mon13.setBackgroundColor(Color.WHITE); }else { mon13.setBackgroundColor(Color.DKGRAY);}
+        if(mon1_b==false){ mon1.setBackgroundColor(Color.WHITE); }else { mon1.setBackgroundColor(Color.LTGRAY);}
+        if(mon2_b==false){ mon2.setBackgroundColor(Color.WHITE); }else { mon2.setBackgroundColor(Color.LTGRAY);}
+        if(mon3_b==false){ mon3.setBackgroundColor(Color.WHITE); }else { mon3.setBackgroundColor(Color.LTGRAY);}
+        if(mon4_b==false){ mon4.setBackgroundColor(Color.WHITE); }else { mon4.setBackgroundColor(Color.LTGRAY);}
+        if(mon5_b==false){ mon5.setBackgroundColor(Color.WHITE); }else { mon5.setBackgroundColor(Color.LTGRAY);}
+        if(mon6_b==false){ mon6.setBackgroundColor(Color.WHITE); }else { mon6.setBackgroundColor(Color.LTGRAY);}
+        if(mon7_b==false){ mon7.setBackgroundColor(Color.WHITE); }else { mon7.setBackgroundColor(Color.LTGRAY);}
+        if(mon8_b==false){ mon8.setBackgroundColor(Color.WHITE); }else { mon8.setBackgroundColor(Color.LTGRAY);}
+        if(mon9_b==false){ mon9.setBackgroundColor(Color.WHITE); }else { mon9.setBackgroundColor(Color.LTGRAY);}
+        if(mon10_b==false){ mon10.setBackgroundColor(Color.WHITE); }else { mon10.setBackgroundColor(Color.LTGRAY);}
+        if(mon11_b==false){ mon11.setBackgroundColor(Color.WHITE); }else { mon11.setBackgroundColor(Color.LTGRAY);}
+        if(mon12_b==false){ mon12.setBackgroundColor(Color.WHITE); }else { mon12.setBackgroundColor(Color.LTGRAY);}
+        if(mon13_b==false){ mon13.setBackgroundColor(Color.WHITE); }else { mon13.setBackgroundColor(Color.LTGRAY);}
 
-        if(tue1_b==false){ tue1.setBackgroundColor(Color.WHITE); }else { tue1.setBackgroundColor(Color.DKGRAY);}
-        if(tue2_b==false){ tue2.setBackgroundColor(Color.WHITE); }else { tue2.setBackgroundColor(Color.DKGRAY);}
-        if(tue3_b==false){ tue3.setBackgroundColor(Color.WHITE); }else { tue3.setBackgroundColor(Color.DKGRAY);}
-        if(tue4_b==false){ tue4.setBackgroundColor(Color.WHITE); }else { tue4.setBackgroundColor(Color.DKGRAY);}
-        if(tue5_b==false){ tue5.setBackgroundColor(Color.WHITE); }else { tue5.setBackgroundColor(Color.DKGRAY);}
-        if(tue6_b==false){ tue6.setBackgroundColor(Color.WHITE); }else { tue6.setBackgroundColor(Color.DKGRAY);}
-        if(tue7_b==false){ tue7.setBackgroundColor(Color.WHITE); }else { tue7.setBackgroundColor(Color.DKGRAY);}
-        if(tue8_b==false){ tue8.setBackgroundColor(Color.WHITE); }else { tue8.setBackgroundColor(Color.DKGRAY);}
-        if(tue9_b==false){ tue9.setBackgroundColor(Color.WHITE); }else { tue9.setBackgroundColor(Color.DKGRAY);}
-        if(tue10_b==false){ tue10.setBackgroundColor(Color.WHITE); }else { tue10.setBackgroundColor(Color.DKGRAY);}
-        if(tue11_b==false){ tue11.setBackgroundColor(Color.WHITE); }else { tue11.setBackgroundColor(Color.DKGRAY);}
-        if(tue12_b==false){ tue12.setBackgroundColor(Color.WHITE); }else { tue12.setBackgroundColor(Color.DKGRAY);}
-        if(tue13_b==false){ tue13.setBackgroundColor(Color.WHITE); }else { tue13.setBackgroundColor(Color.DKGRAY);}
+        if(tue1_b==false){ tue1.setBackgroundColor(Color.WHITE); }else { tue1.setBackgroundColor(Color.LTGRAY);}
+        if(tue2_b==false){ tue2.setBackgroundColor(Color.WHITE); }else { tue2.setBackgroundColor(Color.LTGRAY);}
+        if(tue3_b==false){ tue3.setBackgroundColor(Color.WHITE); }else { tue3.setBackgroundColor(Color.LTGRAY);}
+        if(tue4_b==false){ tue4.setBackgroundColor(Color.WHITE); }else { tue4.setBackgroundColor(Color.LTGRAY);}
+        if(tue5_b==false){ tue5.setBackgroundColor(Color.WHITE); }else { tue5.setBackgroundColor(Color.LTGRAY);}
+        if(tue6_b==false){ tue6.setBackgroundColor(Color.WHITE); }else { tue6.setBackgroundColor(Color.LTGRAY);}
+        if(tue7_b==false){ tue7.setBackgroundColor(Color.WHITE); }else { tue7.setBackgroundColor(Color.LTGRAY);}
+        if(tue8_b==false){ tue8.setBackgroundColor(Color.WHITE); }else { tue8.setBackgroundColor(Color.LTGRAY);}
+        if(tue9_b==false){ tue9.setBackgroundColor(Color.WHITE); }else { tue9.setBackgroundColor(Color.LTGRAY);}
+        if(tue10_b==false){ tue10.setBackgroundColor(Color.WHITE); }else { tue10.setBackgroundColor(Color.LTGRAY);}
+        if(tue11_b==false){ tue11.setBackgroundColor(Color.WHITE); }else { tue11.setBackgroundColor(Color.LTGRAY);}
+        if(tue12_b==false){ tue12.setBackgroundColor(Color.WHITE); }else { tue12.setBackgroundColor(Color.LTGRAY);}
+        if(tue13_b==false){ tue13.setBackgroundColor(Color.WHITE); }else { tue13.setBackgroundColor(Color.LTGRAY);}
 
-        if(wed1_b==false){ wed1.setBackgroundColor(Color.WHITE); }else { wed1.setBackgroundColor(Color.DKGRAY);}
-        if(wed2_b==false){ wed2.setBackgroundColor(Color.WHITE); }else { wed2.setBackgroundColor(Color.DKGRAY);}
-        if(wed3_b==false){ wed3.setBackgroundColor(Color.WHITE); }else { wed3.setBackgroundColor(Color.DKGRAY);}
-        if(wed4_b==false){ wed4.setBackgroundColor(Color.WHITE); }else { wed4.setBackgroundColor(Color.DKGRAY);}
-        if(wed5_b==false){ wed5.setBackgroundColor(Color.WHITE); }else { wed5.setBackgroundColor(Color.DKGRAY);}
-        if(wed6_b==false){ wed6.setBackgroundColor(Color.WHITE); }else { wed6.setBackgroundColor(Color.DKGRAY);}
-        if(wed7_b==false){ wed7.setBackgroundColor(Color.WHITE); }else { wed7.setBackgroundColor(Color.DKGRAY);}
-        if(wed8_b==false){ wed8.setBackgroundColor(Color.WHITE); }else { wed8.setBackgroundColor(Color.DKGRAY);}
-        if(wed9_b==false){ wed9.setBackgroundColor(Color.WHITE); }else { wed9.setBackgroundColor(Color.DKGRAY);}
-        if(wed10_b==false){ wed10.setBackgroundColor(Color.WHITE); }else { wed10.setBackgroundColor(Color.DKGRAY);}
-        if(wed11_b==false){ wed11.setBackgroundColor(Color.WHITE); }else { wed11.setBackgroundColor(Color.DKGRAY);}
-        if(wed12_b==false){ wed12.setBackgroundColor(Color.WHITE); }else { wed12.setBackgroundColor(Color.DKGRAY);}
-        if(wed13_b==false){ wed13.setBackgroundColor(Color.WHITE); }else { wed13.setBackgroundColor(Color.DKGRAY);}
+        if(wed1_b==false){ wed1.setBackgroundColor(Color.WHITE); }else { wed1.setBackgroundColor(Color.LTGRAY);}
+        if(wed2_b==false){ wed2.setBackgroundColor(Color.WHITE); }else { wed2.setBackgroundColor(Color.LTGRAY);}
+        if(wed3_b==false){ wed3.setBackgroundColor(Color.WHITE); }else { wed3.setBackgroundColor(Color.LTGRAY);}
+        if(wed4_b==false){ wed4.setBackgroundColor(Color.WHITE); }else { wed4.setBackgroundColor(Color.LTGRAY);}
+        if(wed5_b==false){ wed5.setBackgroundColor(Color.WHITE); }else { wed5.setBackgroundColor(Color.LTGRAY);}
+        if(wed6_b==false){ wed6.setBackgroundColor(Color.WHITE); }else { wed6.setBackgroundColor(Color.LTGRAY);}
+        if(wed7_b==false){ wed7.setBackgroundColor(Color.WHITE); }else { wed7.setBackgroundColor(Color.LTGRAY);}
+        if(wed8_b==false){ wed8.setBackgroundColor(Color.WHITE); }else { wed8.setBackgroundColor(Color.LTGRAY);}
+        if(wed9_b==false){ wed9.setBackgroundColor(Color.WHITE); }else { wed9.setBackgroundColor(Color.LTGRAY);}
+        if(wed10_b==false){ wed10.setBackgroundColor(Color.WHITE); }else { wed10.setBackgroundColor(Color.LTGRAY);}
+        if(wed11_b==false){ wed11.setBackgroundColor(Color.WHITE); }else { wed11.setBackgroundColor(Color.LTGRAY);}
+        if(wed12_b==false){ wed12.setBackgroundColor(Color.WHITE); }else { wed12.setBackgroundColor(Color.LTGRAY);}
+        if(wed13_b==false){ wed13.setBackgroundColor(Color.WHITE); }else { wed13.setBackgroundColor(Color.LTGRAY);}
 
-        if(thu1_b==false){ thu1.setBackgroundColor(Color.WHITE); }else { thu1.setBackgroundColor(Color.DKGRAY);}
-        if(thu2_b==false){ thu2.setBackgroundColor(Color.WHITE); }else { thu2.setBackgroundColor(Color.DKGRAY);}
-        if(thu3_b==false){ thu3.setBackgroundColor(Color.WHITE); }else { thu3.setBackgroundColor(Color.DKGRAY);}
-        if(thu4_b==false){ thu4.setBackgroundColor(Color.WHITE); }else { thu4.setBackgroundColor(Color.DKGRAY);}
-        if(thu5_b==false){ thu5.setBackgroundColor(Color.WHITE); }else { thu5.setBackgroundColor(Color.DKGRAY);}
-        if(thu6_b==false){ thu6.setBackgroundColor(Color.WHITE); }else { thu6.setBackgroundColor(Color.DKGRAY);}
-        if(thu7_b==false){ thu7.setBackgroundColor(Color.WHITE); }else { thu7.setBackgroundColor(Color.DKGRAY);}
-        if(thu8_b==false){ thu8.setBackgroundColor(Color.WHITE); }else { thu8.setBackgroundColor(Color.DKGRAY);}
-        if(thu9_b==false){ thu9.setBackgroundColor(Color.WHITE); }else { thu9.setBackgroundColor(Color.DKGRAY);}
-        if(thu10_b==false){ thu10.setBackgroundColor(Color.WHITE); }else { thu10.setBackgroundColor(Color.DKGRAY);}
-        if(thu11_b==false){ thu11.setBackgroundColor(Color.WHITE); }else { thu11.setBackgroundColor(Color.DKGRAY);}
-        if(thu12_b==false){ thu12.setBackgroundColor(Color.WHITE); }else { thu12.setBackgroundColor(Color.DKGRAY);}
-        if(thu13_b==false){ thu13.setBackgroundColor(Color.WHITE); }else { thu13.setBackgroundColor(Color.DKGRAY);}
+        if(thu1_b==false){ thu1.setBackgroundColor(Color.WHITE); }else { thu1.setBackgroundColor(Color.LTGRAY);}
+        if(thu2_b==false){ thu2.setBackgroundColor(Color.WHITE); }else { thu2.setBackgroundColor(Color.LTGRAY);}
+        if(thu3_b==false){ thu3.setBackgroundColor(Color.WHITE); }else { thu3.setBackgroundColor(Color.LTGRAY);}
+        if(thu4_b==false){ thu4.setBackgroundColor(Color.WHITE); }else { thu4.setBackgroundColor(Color.LTGRAY);}
+        if(thu5_b==false){ thu5.setBackgroundColor(Color.WHITE); }else { thu5.setBackgroundColor(Color.LTGRAY);}
+        if(thu6_b==false){ thu6.setBackgroundColor(Color.WHITE); }else { thu6.setBackgroundColor(Color.LTGRAY);}
+        if(thu7_b==false){ thu7.setBackgroundColor(Color.WHITE); }else { thu7.setBackgroundColor(Color.LTGRAY);}
+        if(thu8_b==false){ thu8.setBackgroundColor(Color.WHITE); }else { thu8.setBackgroundColor(Color.LTGRAY);}
+        if(thu9_b==false){ thu9.setBackgroundColor(Color.WHITE); }else { thu9.setBackgroundColor(Color.LTGRAY);}
+        if(thu10_b==false){ thu10.setBackgroundColor(Color.WHITE); }else { thu10.setBackgroundColor(Color.LTGRAY);}
+        if(thu11_b==false){ thu11.setBackgroundColor(Color.WHITE); }else { thu11.setBackgroundColor(Color.LTGRAY);}
+        if(thu12_b==false){ thu12.setBackgroundColor(Color.WHITE); }else { thu12.setBackgroundColor(Color.LTGRAY);}
+        if(thu13_b==false){ thu13.setBackgroundColor(Color.WHITE); }else { thu13.setBackgroundColor(Color.LTGRAY);}
 
-        if(fri1_b==false){ fri1.setBackgroundColor(Color.WHITE); }else { fri1.setBackgroundColor(Color.DKGRAY);}
-        if(fri2_b==false){ fri2.setBackgroundColor(Color.WHITE); }else { fri2.setBackgroundColor(Color.DKGRAY);}
-        if(fri3_b==false){ fri3.setBackgroundColor(Color.WHITE); }else { fri3.setBackgroundColor(Color.DKGRAY);}
-        if(fri4_b==false){ fri4.setBackgroundColor(Color.WHITE); }else { fri4.setBackgroundColor(Color.DKGRAY);}
-        if(fri5_b==false){ fri5.setBackgroundColor(Color.WHITE); }else { fri5.setBackgroundColor(Color.DKGRAY);}
-        if(fri6_b==false){ fri6.setBackgroundColor(Color.WHITE); }else { fri6.setBackgroundColor(Color.DKGRAY);}
-        if(fri7_b==false){ fri7.setBackgroundColor(Color.WHITE); }else { fri7.setBackgroundColor(Color.DKGRAY);}
-        if(fri8_b==false){ fri8.setBackgroundColor(Color.WHITE); }else { fri8.setBackgroundColor(Color.DKGRAY);}
-        if(fri9_b==false){ fri9.setBackgroundColor(Color.WHITE); }else { fri9.setBackgroundColor(Color.DKGRAY);}
-        if(fri10_b==false){ fri10.setBackgroundColor(Color.WHITE); }else { fri10.setBackgroundColor(Color.DKGRAY);}
-        if(fri11_b==false){ fri11.setBackgroundColor(Color.WHITE); }else { fri11.setBackgroundColor(Color.DKGRAY);}
-        if(fri12_b==false){ fri12.setBackgroundColor(Color.WHITE); }else { fri12.setBackgroundColor(Color.DKGRAY);}
-        if(fri13_b==false){ fri13.setBackgroundColor(Color.WHITE); }else { fri13.setBackgroundColor(Color.DKGRAY);}
+        if(fri1_b==false){ fri1.setBackgroundColor(Color.WHITE); }else { fri1.setBackgroundColor(Color.LTGRAY);}
+        if(fri2_b==false){ fri2.setBackgroundColor(Color.WHITE); }else { fri2.setBackgroundColor(Color.LTGRAY);}
+        if(fri3_b==false){ fri3.setBackgroundColor(Color.WHITE); }else { fri3.setBackgroundColor(Color.LTGRAY);}
+        if(fri4_b==false){ fri4.setBackgroundColor(Color.WHITE); }else { fri4.setBackgroundColor(Color.LTGRAY);}
+        if(fri5_b==false){ fri5.setBackgroundColor(Color.WHITE); }else { fri5.setBackgroundColor(Color.LTGRAY);}
+        if(fri6_b==false){ fri6.setBackgroundColor(Color.WHITE); }else { fri6.setBackgroundColor(Color.LTGRAY);}
+        if(fri7_b==false){ fri7.setBackgroundColor(Color.WHITE); }else { fri7.setBackgroundColor(Color.LTGRAY);}
+        if(fri8_b==false){ fri8.setBackgroundColor(Color.WHITE); }else { fri8.setBackgroundColor(Color.LTGRAY);}
+        if(fri9_b==false){ fri9.setBackgroundColor(Color.WHITE); }else { fri9.setBackgroundColor(Color.LTGRAY);}
+        if(fri10_b==false){ fri10.setBackgroundColor(Color.WHITE); }else { fri10.setBackgroundColor(Color.LTGRAY);}
+        if(fri11_b==false){ fri11.setBackgroundColor(Color.WHITE); }else { fri11.setBackgroundColor(Color.LTGRAY);}
+        if(fri12_b==false){ fri12.setBackgroundColor(Color.WHITE); }else { fri12.setBackgroundColor(Color.LTGRAY);}
+        if(fri13_b==false){ fri13.setBackgroundColor(Color.WHITE); }else { fri13.setBackgroundColor(Color.LTGRAY);}
 
-        if(sat1_b==false){ sat1.setBackgroundColor(Color.WHITE); }else { sat1.setBackgroundColor(Color.DKGRAY);}
-        if(sat2_b==false){ sat2.setBackgroundColor(Color.WHITE); }else { sat2.setBackgroundColor(Color.DKGRAY);}
-        if(sat3_b==false){ sat3.setBackgroundColor(Color.WHITE); }else { sat3.setBackgroundColor(Color.DKGRAY);}
-        if(sat4_b==false){ sat4.setBackgroundColor(Color.WHITE); }else { sat4.setBackgroundColor(Color.DKGRAY);}
-        if(sat5_b==false){ sat5.setBackgroundColor(Color.WHITE); }else { sat5.setBackgroundColor(Color.DKGRAY);}
-        if(sat6_b==false){ sat6.setBackgroundColor(Color.WHITE); }else { sat6.setBackgroundColor(Color.DKGRAY);}
-        if(sat7_b==false){ sat7.setBackgroundColor(Color.WHITE); }else { sat7.setBackgroundColor(Color.DKGRAY);}
-        if(sat8_b==false){ sat8.setBackgroundColor(Color.WHITE); }else { sat8.setBackgroundColor(Color.DKGRAY);}
-        if(sat9_b==false){ sat9.setBackgroundColor(Color.WHITE); }else { sat9.setBackgroundColor(Color.DKGRAY);}
-        if(sat10_b==false){ sat10.setBackgroundColor(Color.WHITE); }else { sat10.setBackgroundColor(Color.DKGRAY);}
-        if(sat11_b==false){ sat11.setBackgroundColor(Color.WHITE); }else { sat11.setBackgroundColor(Color.DKGRAY);}
-        if(sat12_b==false){ sat12.setBackgroundColor(Color.WHITE); }else { sat12.setBackgroundColor(Color.DKGRAY);}
-        if(sat13_b==false){ sat13.setBackgroundColor(Color.WHITE); }else { sat13.setBackgroundColor(Color.DKGRAY);}
+        if(sat1_b==false){ sat1.setBackgroundColor(Color.WHITE); }else { sat1.setBackgroundColor(Color.LTGRAY);}
+        if(sat2_b==false){ sat2.setBackgroundColor(Color.WHITE); }else { sat2.setBackgroundColor(Color.LTGRAY);}
+        if(sat3_b==false){ sat3.setBackgroundColor(Color.WHITE); }else { sat3.setBackgroundColor(Color.LTGRAY);}
+        if(sat4_b==false){ sat4.setBackgroundColor(Color.WHITE); }else { sat4.setBackgroundColor(Color.LTGRAY);}
+        if(sat5_b==false){ sat5.setBackgroundColor(Color.WHITE); }else { sat5.setBackgroundColor(Color.LTGRAY);}
+        if(sat6_b==false){ sat6.setBackgroundColor(Color.WHITE); }else { sat6.setBackgroundColor(Color.LTGRAY);}
+        if(sat7_b==false){ sat7.setBackgroundColor(Color.WHITE); }else { sat7.setBackgroundColor(Color.LTGRAY);}
+        if(sat8_b==false){ sat8.setBackgroundColor(Color.WHITE); }else { sat8.setBackgroundColor(Color.LTGRAY);}
+        if(sat9_b==false){ sat9.setBackgroundColor(Color.WHITE); }else { sat9.setBackgroundColor(Color.LTGRAY);}
+        if(sat10_b==false){ sat10.setBackgroundColor(Color.WHITE); }else { sat10.setBackgroundColor(Color.LTGRAY);}
+        if(sat11_b==false){ sat11.setBackgroundColor(Color.WHITE); }else { sat11.setBackgroundColor(Color.LTGRAY);}
+        if(sat12_b==false){ sat12.setBackgroundColor(Color.WHITE); }else { sat12.setBackgroundColor(Color.LTGRAY);}
+        if(sat13_b==false){ sat13.setBackgroundColor(Color.WHITE); }else { sat13.setBackgroundColor(Color.LTGRAY);}
 
-        if(sun1_b==false){ sun1.setBackgroundColor(Color.WHITE); }else { sun1.setBackgroundColor(Color.DKGRAY);}
-        if(sun2_b==false){ sun2.setBackgroundColor(Color.WHITE); }else { sun2.setBackgroundColor(Color.DKGRAY);}
-        if(sun3_b==false){ sun3.setBackgroundColor(Color.WHITE); }else { sun3.setBackgroundColor(Color.DKGRAY);}
-        if(sun4_b==false){ sun4.setBackgroundColor(Color.WHITE); }else { sun4.setBackgroundColor(Color.DKGRAY);}
-        if(sun5_b==false){ sun5.setBackgroundColor(Color.WHITE); }else { sun5.setBackgroundColor(Color.DKGRAY);}
-        if(sun6_b==false){ sun6.setBackgroundColor(Color.WHITE); }else { sun6.setBackgroundColor(Color.DKGRAY);}
-        if(sun7_b==false){ sun7.setBackgroundColor(Color.WHITE); }else { sun7.setBackgroundColor(Color.DKGRAY);}
-        if(sun8_b==false){ sun8.setBackgroundColor(Color.WHITE); }else { sun8.setBackgroundColor(Color.DKGRAY);}
-        if(sun9_b==false){ sun9.setBackgroundColor(Color.WHITE); }else { sun9.setBackgroundColor(Color.DKGRAY);}
-        if(sun10_b==false){ sun10.setBackgroundColor(Color.WHITE); }else { sun10.setBackgroundColor(Color.DKGRAY);}
-        if(sun11_b==false){ sun11.setBackgroundColor(Color.WHITE); }else { sun11.setBackgroundColor(Color.DKGRAY);}
-        if(sun12_b==false){ sun12.setBackgroundColor(Color.WHITE); }else { sun12.setBackgroundColor(Color.DKGRAY);}
-        if(sun13_b==false){ sun13.setBackgroundColor(Color.WHITE); }else { sun13.setBackgroundColor(Color.DKGRAY);}
+        if(sun1_b==false){ sun1.setBackgroundColor(Color.WHITE); }else { sun1.setBackgroundColor(Color.LTGRAY);}
+        if(sun2_b==false){ sun2.setBackgroundColor(Color.WHITE); }else { sun2.setBackgroundColor(Color.LTGRAY);}
+        if(sun3_b==false){ sun3.setBackgroundColor(Color.WHITE); }else { sun3.setBackgroundColor(Color.LTGRAY);}
+        if(sun4_b==false){ sun4.setBackgroundColor(Color.WHITE); }else { sun4.setBackgroundColor(Color.LTGRAY);}
+        if(sun5_b==false){ sun5.setBackgroundColor(Color.WHITE); }else { sun5.setBackgroundColor(Color.LTGRAY);}
+        if(sun6_b==false){ sun6.setBackgroundColor(Color.WHITE); }else { sun6.setBackgroundColor(Color.LTGRAY);}
+        if(sun7_b==false){ sun7.setBackgroundColor(Color.WHITE); }else { sun7.setBackgroundColor(Color.LTGRAY);}
+        if(sun8_b==false){ sun8.setBackgroundColor(Color.WHITE); }else { sun8.setBackgroundColor(Color.LTGRAY);}
+        if(sun9_b==false){ sun9.setBackgroundColor(Color.WHITE); }else { sun9.setBackgroundColor(Color.LTGRAY);}
+        if(sun10_b==false){ sun10.setBackgroundColor(Color.WHITE); }else { sun10.setBackgroundColor(Color.LTGRAY);}
+        if(sun11_b==false){ sun11.setBackgroundColor(Color.WHITE); }else { sun11.setBackgroundColor(Color.LTGRAY);}
+        if(sun12_b==false){ sun12.setBackgroundColor(Color.WHITE); }else { sun12.setBackgroundColor(Color.LTGRAY);}
+        if(sun13_b==false){ sun13.setBackgroundColor(Color.WHITE); }else { sun13.setBackgroundColor(Color.LTGRAY);}
 
 
         mon1.setOnClickListener(new View.OnClickListener(){
@@ -511,7 +511,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon1_b==false){
                     mon1_b=true;
-                    mon1.setBackgroundColor(Color.DKGRAY);
+                    mon1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon1_b=false;
                     mon1.setBackgroundColor(Color.WHITE);
@@ -526,7 +526,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon2_b==false){
                     mon2_b=true;
-                    mon2.setBackgroundColor(Color.DKGRAY);
+                    mon2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon2_b=false;
                     mon2.setBackgroundColor(Color.WHITE);
@@ -540,7 +540,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon3_b==false){
                     mon3_b=true;
-                    mon3.setBackgroundColor(Color.DKGRAY);
+                    mon3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon3_b=false;
                     mon3.setBackgroundColor(Color.WHITE);
@@ -554,7 +554,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon4_b==false){
                     mon4_b=true;
-                    mon4.setBackgroundColor(Color.DKGRAY);
+                    mon4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon4_b=false;
                     mon4.setBackgroundColor(Color.WHITE);
@@ -568,7 +568,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon5_b==false){
                     mon5_b=true;
-                    mon5.setBackgroundColor(Color.DKGRAY);
+                    mon5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon5_b=false;
                     mon5.setBackgroundColor(Color.WHITE);
@@ -582,7 +582,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon6_b==false){
                     mon6_b=true;
-                    mon6.setBackgroundColor(Color.DKGRAY);
+                    mon6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon6_b=false;
                     mon6.setBackgroundColor(Color.WHITE);
@@ -596,7 +596,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon7_b==false){
                     mon7_b=true;
-                    mon7.setBackgroundColor(Color.DKGRAY);
+                    mon7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon7_b=false;
                     mon7.setBackgroundColor(Color.WHITE);
@@ -610,7 +610,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon8_b==false){
                     mon8_b=true;
-                    mon8.setBackgroundColor(Color.DKGRAY);
+                    mon8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon8_b=false;
                     mon8.setBackgroundColor(Color.WHITE);
@@ -624,7 +624,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon9_b==false){
                     mon9_b=true;
-                    mon9.setBackgroundColor(Color.DKGRAY);
+                    mon9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon9_b=false;
                     mon9.setBackgroundColor(Color.WHITE);
@@ -638,7 +638,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon10_b==false){
                     mon10_b=true;
-                    mon10.setBackgroundColor(Color.DKGRAY);
+                    mon10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon10_b=false;
                     mon10.setBackgroundColor(Color.WHITE);
@@ -652,7 +652,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon11_b==false){
                     mon11_b=true;
-                    mon11.setBackgroundColor(Color.DKGRAY);
+                    mon11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon11_b=false;
                     mon11.setBackgroundColor(Color.WHITE);
@@ -666,7 +666,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon12_b==false){
                     mon12_b=true;
-                    mon12.setBackgroundColor(Color.DKGRAY);
+                    mon12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon12_b=false;
                     mon12.setBackgroundColor(Color.WHITE);
@@ -680,7 +680,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(mon13_b==false){
                     mon13_b=true;
-                    mon13.setBackgroundColor(Color.DKGRAY);
+                    mon13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     mon13_b=false;
                     mon13.setBackgroundColor(Color.WHITE);
@@ -695,7 +695,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue1_b==false){
                     tue1_b=true;
-                    tue1.setBackgroundColor(Color.DKGRAY);
+                    tue1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue1_b=false;
                     tue1.setBackgroundColor(Color.WHITE);
@@ -709,7 +709,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue2_b==false){
                     tue2_b=true;
-                    tue2.setBackgroundColor(Color.DKGRAY);
+                    tue2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue2_b=false;
                     tue2.setBackgroundColor(Color.WHITE);
@@ -723,7 +723,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue3_b==false){
                     tue3_b=true;
-                    tue3.setBackgroundColor(Color.DKGRAY);
+                    tue3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue3_b=false;
                     tue3.setBackgroundColor(Color.WHITE);
@@ -737,7 +737,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue4_b==false){
                     tue4_b=true;
-                    tue4.setBackgroundColor(Color.DKGRAY);
+                    tue4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue4_b=false;
                     tue4.setBackgroundColor(Color.WHITE);
@@ -751,7 +751,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue5_b==false){
                     tue5_b=true;
-                    tue5.setBackgroundColor(Color.DKGRAY);
+                    tue5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue5_b=false;
                     tue5.setBackgroundColor(Color.WHITE);
@@ -765,7 +765,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue6_b==false){
                     tue6_b=true;
-                    tue6.setBackgroundColor(Color.DKGRAY);
+                    tue6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue6_b=false;
                     tue6.setBackgroundColor(Color.WHITE);
@@ -779,7 +779,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue7_b==false){
                     tue7_b=true;
-                    tue7.setBackgroundColor(Color.DKGRAY);
+                    tue7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue7_b=false;
                     tue7.setBackgroundColor(Color.WHITE);
@@ -793,7 +793,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue8_b==false){
                     tue8_b=true;
-                    tue8.setBackgroundColor(Color.DKGRAY);
+                    tue8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue8_b=false;
                     tue8.setBackgroundColor(Color.WHITE);
@@ -807,7 +807,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue9_b==false){
                     tue9_b=true;
-                    tue9.setBackgroundColor(Color.DKGRAY);
+                    tue9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue9_b=false;
                     tue9.setBackgroundColor(Color.WHITE);
@@ -821,7 +821,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue10_b==false){
                     tue10_b=true;
-                    tue10.setBackgroundColor(Color.DKGRAY);
+                    tue10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue10_b=false;
                     tue10.setBackgroundColor(Color.WHITE);
@@ -835,7 +835,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue11_b==false){
                     tue11_b=true;
-                    tue11.setBackgroundColor(Color.DKGRAY);
+                    tue11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue11_b=false;
                     tue11.setBackgroundColor(Color.WHITE);
@@ -849,7 +849,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue12_b==false){
                     tue12_b=true;
-                    tue12.setBackgroundColor(Color.DKGRAY);
+                    tue12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue12_b=false;
                     tue12.setBackgroundColor(Color.WHITE);
@@ -863,7 +863,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(tue13_b==false){
                     tue13_b=true;
-                    tue13.setBackgroundColor(Color.DKGRAY);
+                    tue13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     tue13_b=false;
                     tue13.setBackgroundColor(Color.WHITE);
@@ -878,7 +878,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed1_b==false){
                     wed1_b=true;
-                    wed1.setBackgroundColor(Color.DKGRAY);
+                    wed1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed1_b=false;
                     wed1.setBackgroundColor(Color.WHITE);
@@ -892,7 +892,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed2_b==false){
                     wed2_b=true;
-                    wed2.setBackgroundColor(Color.DKGRAY);
+                    wed2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed2_b=false;
                     wed2.setBackgroundColor(Color.WHITE);
@@ -906,7 +906,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed3_b==false){
                     wed3_b=true;
-                    wed3.setBackgroundColor(Color.DKGRAY);
+                    wed3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed3_b=false;
                     wed3.setBackgroundColor(Color.WHITE);
@@ -920,7 +920,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed4_b==false){
                     wed4_b=true;
-                    wed4.setBackgroundColor(Color.DKGRAY);
+                    wed4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed4_b=false;
                     wed4.setBackgroundColor(Color.WHITE);
@@ -934,7 +934,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed5_b==false){
                     wed5_b=true;
-                    wed5.setBackgroundColor(Color.DKGRAY);
+                    wed5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed5_b=false;
                     wed5.setBackgroundColor(Color.WHITE);
@@ -948,7 +948,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed6_b==false){
                     wed6_b=true;
-                    wed6.setBackgroundColor(Color.DKGRAY);
+                    wed6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed6_b=false;
                     wed6.setBackgroundColor(Color.WHITE);
@@ -962,7 +962,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed7_b==false){
                     wed7_b=true;
-                    wed7.setBackgroundColor(Color.DKGRAY);
+                    wed7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed7_b=false;
                     wed7.setBackgroundColor(Color.WHITE);
@@ -976,7 +976,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed8_b==false){
                     wed8_b=true;
-                    wed8.setBackgroundColor(Color.DKGRAY);
+                    wed8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed8_b=false;
                     wed8.setBackgroundColor(Color.WHITE);
@@ -990,7 +990,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed9_b==false){
                     wed9_b=true;
-                    wed9.setBackgroundColor(Color.DKGRAY);
+                    wed9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed9_b=false;
                     wed9.setBackgroundColor(Color.WHITE);
@@ -1004,7 +1004,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed10_b==false){
                     wed10_b=true;
-                    wed10.setBackgroundColor(Color.DKGRAY);
+                    wed10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed10_b=false;
                     wed10.setBackgroundColor(Color.WHITE);
@@ -1018,7 +1018,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed11_b==false){
                     wed11_b=true;
-                    wed11.setBackgroundColor(Color.DKGRAY);
+                    wed11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed11_b=false;
                     wed11.setBackgroundColor(Color.WHITE);
@@ -1032,7 +1032,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed12_b==false){
                     wed12_b=true;
-                    wed12.setBackgroundColor(Color.DKGRAY);
+                    wed12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed12_b=false;
                     wed12.setBackgroundColor(Color.WHITE);
@@ -1046,7 +1046,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(wed13_b==false){
                     wed13_b=true;
-                    wed13.setBackgroundColor(Color.DKGRAY);
+                    wed13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     wed13_b=false;
                     wed13.setBackgroundColor(Color.WHITE);
@@ -1061,7 +1061,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu1_b==false){
                     thu1_b=true;
-                    thu1.setBackgroundColor(Color.DKGRAY);
+                    thu1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu1_b=false;
                     thu1.setBackgroundColor(Color.WHITE);
@@ -1075,7 +1075,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu2_b==false){
                     thu2_b=true;
-                    thu2.setBackgroundColor(Color.DKGRAY);
+                    thu2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu2_b=false;
                     thu2.setBackgroundColor(Color.WHITE);
@@ -1089,7 +1089,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu3_b==false){
                     thu3_b=true;
-                    thu3.setBackgroundColor(Color.DKGRAY);
+                    thu3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu3_b=false;
                     thu3.setBackgroundColor(Color.WHITE);
@@ -1103,7 +1103,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu4_b==false){
                     thu4_b=true;
-                    thu4.setBackgroundColor(Color.DKGRAY);
+                    thu4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu4_b=false;
                     thu4.setBackgroundColor(Color.WHITE);
@@ -1117,7 +1117,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu5_b==false){
                     thu5_b=true;
-                    thu5.setBackgroundColor(Color.DKGRAY);
+                    thu5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu5_b=false;
                     thu5.setBackgroundColor(Color.WHITE);
@@ -1131,7 +1131,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu6_b==false){
                     thu6_b=true;
-                    thu6.setBackgroundColor(Color.DKGRAY);
+                    thu6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu6_b=false;
                     thu6.setBackgroundColor(Color.WHITE);
@@ -1145,7 +1145,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu7_b==false){
                     thu7_b=true;
-                    thu7.setBackgroundColor(Color.DKGRAY);
+                    thu7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu7_b=false;
                     thu7.setBackgroundColor(Color.WHITE);
@@ -1159,7 +1159,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu8_b==false){
                     thu8_b=true;
-                    thu8.setBackgroundColor(Color.DKGRAY);
+                    thu8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu8_b=false;
                     thu8.setBackgroundColor(Color.WHITE);
@@ -1173,7 +1173,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu9_b==false){
                     thu9_b=true;
-                    thu9.setBackgroundColor(Color.DKGRAY);
+                    thu9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu9_b=false;
                     thu9.setBackgroundColor(Color.WHITE);
@@ -1187,7 +1187,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu10_b==false){
                     thu10_b=true;
-                    thu10.setBackgroundColor(Color.DKGRAY);
+                    thu10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu10_b=false;
                     thu10.setBackgroundColor(Color.WHITE);
@@ -1201,7 +1201,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu11_b==false){
                     thu11_b=true;
-                    thu11.setBackgroundColor(Color.DKGRAY);
+                    thu11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu11_b=false;
                     thu11.setBackgroundColor(Color.WHITE);
@@ -1215,7 +1215,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu12_b==false){
                     thu12_b=true;
-                    thu12.setBackgroundColor(Color.DKGRAY);
+                    thu12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu12_b=false;
                     thu12.setBackgroundColor(Color.WHITE);
@@ -1229,7 +1229,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(thu13_b==false){
                     thu13_b=true;
-                    thu13.setBackgroundColor(Color.DKGRAY);
+                    thu13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     thu13_b=false;
                     thu13.setBackgroundColor(Color.WHITE);
@@ -1244,7 +1244,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri1_b==false){
                     fri1_b=true;
-                    fri1.setBackgroundColor(Color.DKGRAY);
+                    fri1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri1_b=false;
                     fri1.setBackgroundColor(Color.WHITE);
@@ -1258,7 +1258,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri2_b==false){
                     fri2_b=true;
-                    fri2.setBackgroundColor(Color.DKGRAY);
+                    fri2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri2_b=false;
                     fri2.setBackgroundColor(Color.WHITE);
@@ -1272,7 +1272,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri3_b==false){
                     fri3_b=true;
-                    fri3.setBackgroundColor(Color.DKGRAY);
+                    fri3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri3_b=false;
                     fri3.setBackgroundColor(Color.WHITE);
@@ -1286,7 +1286,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri4_b==false){
                     fri4_b=true;
-                    fri4.setBackgroundColor(Color.DKGRAY);
+                    fri4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri4_b=false;
                     fri4.setBackgroundColor(Color.WHITE);
@@ -1300,7 +1300,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri5_b==false){
                     fri5_b=true;
-                    fri5.setBackgroundColor(Color.DKGRAY);
+                    fri5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri5_b=false;
                     fri5.setBackgroundColor(Color.WHITE);
@@ -1314,7 +1314,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri6_b==false){
                     fri6_b=true;
-                    fri6.setBackgroundColor(Color.DKGRAY);
+                    fri6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri6_b=false;
                     fri6.setBackgroundColor(Color.WHITE);
@@ -1328,7 +1328,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri7_b==false){
                     fri7_b=true;
-                    fri7.setBackgroundColor(Color.DKGRAY);
+                    fri7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri7_b=false;
                     fri7.setBackgroundColor(Color.WHITE);
@@ -1342,7 +1342,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri8_b==false){
                     fri8_b=true;
-                    fri8.setBackgroundColor(Color.DKGRAY);
+                    fri8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri8_b=false;
                     fri8.setBackgroundColor(Color.WHITE);
@@ -1356,7 +1356,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri9_b==false){
                     fri9_b=true;
-                    fri9.setBackgroundColor(Color.DKGRAY);
+                    fri9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri9_b=false;
                     fri9.setBackgroundColor(Color.WHITE);
@@ -1370,7 +1370,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri10_b==false){
                     fri10_b=true;
-                    fri10.setBackgroundColor(Color.DKGRAY);
+                    fri10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri10_b=false;
                     fri10.setBackgroundColor(Color.WHITE);
@@ -1384,7 +1384,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri11_b==false){
                     fri11_b=true;
-                    fri11.setBackgroundColor(Color.DKGRAY);
+                    fri11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri11_b=false;
                     fri11.setBackgroundColor(Color.WHITE);
@@ -1398,7 +1398,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri12_b==false){
                     fri12_b=true;
-                    fri12.setBackgroundColor(Color.DKGRAY);
+                    fri12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri12_b=false;
                     fri12.setBackgroundColor(Color.WHITE);
@@ -1412,7 +1412,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(fri13_b==false){
                     fri13_b=true;
-                    fri13.setBackgroundColor(Color.DKGRAY);
+                    fri13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     fri13_b=false;
                     fri13.setBackgroundColor(Color.WHITE);
@@ -1427,7 +1427,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat1_b==false){
                     sat1_b=true;
-                    sat1.setBackgroundColor(Color.DKGRAY);
+                    sat1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat1_b=false;
                     sat1.setBackgroundColor(Color.WHITE);
@@ -1441,7 +1441,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat2_b==false){
                     sat2_b=true;
-                    sat2.setBackgroundColor(Color.DKGRAY);
+                    sat2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat2_b=false;
                     sat2.setBackgroundColor(Color.WHITE);
@@ -1455,7 +1455,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat3_b==false){
                     sat3_b=true;
-                    sat3.setBackgroundColor(Color.DKGRAY);
+                    sat3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat3_b=false;
                     sat3.setBackgroundColor(Color.WHITE);
@@ -1469,7 +1469,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat4_b==false){
                     sat4_b=true;
-                    sat4.setBackgroundColor(Color.DKGRAY);
+                    sat4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat4_b=false;
                     sat4.setBackgroundColor(Color.WHITE);
@@ -1483,7 +1483,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat5_b==false){
                     sat5_b=true;
-                    sat5.setBackgroundColor(Color.DKGRAY);
+                    sat5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat5_b=false;
                     sat5.setBackgroundColor(Color.WHITE);
@@ -1497,7 +1497,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat6_b==false){
                     sat6_b=true;
-                    sat6.setBackgroundColor(Color.DKGRAY);
+                    sat6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat6_b=false;
                     sat6.setBackgroundColor(Color.WHITE);
@@ -1511,7 +1511,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat7_b==false){
                     sat7_b=true;
-                    sat7.setBackgroundColor(Color.DKGRAY);
+                    sat7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat7_b=false;
                     sat7.setBackgroundColor(Color.WHITE);
@@ -1525,7 +1525,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat8_b==false){
                     sat8_b=true;
-                    sat8.setBackgroundColor(Color.DKGRAY);
+                    sat8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat8_b=false;
                     sat8.setBackgroundColor(Color.WHITE);
@@ -1539,7 +1539,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat9_b==false){
                     sat9_b=true;
-                    sat9.setBackgroundColor(Color.DKGRAY);
+                    sat9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat9_b=false;
                     sat9.setBackgroundColor(Color.WHITE);
@@ -1553,7 +1553,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat10_b==false){
                     sat10_b=true;
-                    sat10.setBackgroundColor(Color.DKGRAY);
+                    sat10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat10_b=false;
                     sat10.setBackgroundColor(Color.WHITE);
@@ -1567,7 +1567,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat11_b==false){
                     sat11_b=true;
-                    sat11.setBackgroundColor(Color.DKGRAY);
+                    sat11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat11_b=false;
                     sat11.setBackgroundColor(Color.WHITE);
@@ -1581,7 +1581,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat12_b==false){
                     sat12_b=true;
-                    sat12.setBackgroundColor(Color.DKGRAY);
+                    sat12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat12_b=false;
                     sat12.setBackgroundColor(Color.WHITE);
@@ -1595,7 +1595,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sat13_b==false){
                     sat13_b=true;
-                    sat13.setBackgroundColor(Color.DKGRAY);
+                    sat13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sat13_b=false;
                     sat13.setBackgroundColor(Color.WHITE);
@@ -1610,7 +1610,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun1_b==false){
                     sun1_b=true;
-                    sun1.setBackgroundColor(Color.DKGRAY);
+                    sun1.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun1_b=false;
                     sun1.setBackgroundColor(Color.WHITE);
@@ -1624,7 +1624,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun2_b==false){
                     sun2_b=true;
-                    sun2.setBackgroundColor(Color.DKGRAY);
+                    sun2.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun2_b=false;
                     sun2.setBackgroundColor(Color.WHITE);
@@ -1638,7 +1638,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun3_b==false){
                     sun3_b=true;
-                    sun3.setBackgroundColor(Color.DKGRAY);
+                    sun3.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun3_b=false;
                     sun3.setBackgroundColor(Color.WHITE);
@@ -1652,7 +1652,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun4_b==false){
                     sun4_b=true;
-                    sun4.setBackgroundColor(Color.DKGRAY);
+                    sun4.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun4_b=false;
                     sun4.setBackgroundColor(Color.WHITE);
@@ -1666,7 +1666,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun5_b==false){
                     sun5_b=true;
-                    sun5.setBackgroundColor(Color.DKGRAY);
+                    sun5.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun5_b=false;
                     sun5.setBackgroundColor(Color.WHITE);
@@ -1680,7 +1680,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun6_b==false){
                     sun6_b=true;
-                    sun6.setBackgroundColor(Color.DKGRAY);
+                    sun6.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun6_b=false;
                     sun6.setBackgroundColor(Color.WHITE);
@@ -1694,7 +1694,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun7_b==false){
                     sun7_b=true;
-                    sun7.setBackgroundColor(Color.DKGRAY);
+                    sun7.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun7_b=false;
                     sun7.setBackgroundColor(Color.WHITE);
@@ -1708,7 +1708,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun8_b==false){
                     sun8_b=true;
-                    sun8.setBackgroundColor(Color.DKGRAY);
+                    sun8.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun8_b=false;
                     sun8.setBackgroundColor(Color.WHITE);
@@ -1722,7 +1722,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun9_b==false){
                     sun9_b=true;
-                    sun9.setBackgroundColor(Color.DKGRAY);
+                    sun9.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun9_b=false;
                     sun9.setBackgroundColor(Color.WHITE);
@@ -1736,7 +1736,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun10_b==false){
                     sun10_b=true;
-                    sun10.setBackgroundColor(Color.DKGRAY);
+                    sun10.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun10_b=false;
                     sun10.setBackgroundColor(Color.WHITE);
@@ -1750,7 +1750,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun11_b==false){
                     sun11_b=true;
-                    sun11.setBackgroundColor(Color.DKGRAY);
+                    sun11.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun11_b=false;
                     sun11.setBackgroundColor(Color.WHITE);
@@ -1764,7 +1764,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun12_b==false){
                     sun12_b=true;
-                    sun12.setBackgroundColor(Color.DKGRAY);
+                    sun12.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun12_b=false;
                     sun12.setBackgroundColor(Color.WHITE);
@@ -1778,7 +1778,7 @@ public class TimeTable extends AppCompatActivity {
             public void onClick(View view) {
                 if(sun13_b==false){
                     sun13_b=true;
-                    sun13.setBackgroundColor(Color.DKGRAY);
+                    sun13.setBackgroundColor(Color.LTGRAY);
                 }else {
                     sun13_b=false;
                     sun13.setBackgroundColor(Color.WHITE);

@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +39,7 @@ import java.net.URL;
 public class StudentMain extends AppCompatActivity {
     Button SearchVolunteerBtn, mypageBtn, openCalendarBtn, timeTableBtn;
     TextView targetTime;
+    ViewPager vp;
 
     //php 스케쥴 데이터 가져올때
     String myJSON;
@@ -83,6 +88,10 @@ public class StudentMain extends AppCompatActivity {
         startService(serviceintent);
         /*Intent serviceintent1 = new Intent(StudentMain.this, MyServicegetSchedule.class);*/
         /*startService(serviceintent1);*/
+
+        vp = (ViewPager)findViewById(R.id.viewPager);
+        vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
+        vp.setCurrentItem(0);
 
         targetTime = (TextView)findViewById(R.id.yourTarget);
         SearchVolunteerBtn = (Button)findViewById(R.id.SearchVolunteerBtn);
@@ -196,6 +205,44 @@ public class StudentMain extends AppCompatActivity {
 
             }
         });
+    }
+
+    View.OnClickListener movePageListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            int tag = (int) v.getTag();
+            vp.setCurrentItem(tag);
+        }
+    };
+
+    private class pagerAdapter extends FragmentStatePagerAdapter
+    {
+        public pagerAdapter(FragmentManager fm)
+        {
+            super(fm);
+        }
+        @Override
+        public Fragment getItem(int position)
+        {
+            switch(position)
+            {
+                case 0:
+                    return new FirstFragment();
+                case 1:
+                    return new SecondFragment();
+                case 2:
+                    return new ThirdFragment();
+                default:
+                    return null;
+            }
+        }
+        @Override
+        public int getCount()
+        {
+            return 3;
+        }
     }
 
             // 모든 데이터 삭제
