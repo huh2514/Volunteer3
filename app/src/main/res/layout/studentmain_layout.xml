@@ -112,18 +112,54 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/mainVolounteerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="40dp"
         android:background="@drawable/box"
         android:gravity="fill_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+        <TextView
+            android:id="@+id/title1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.viewpager.widget.ViewPager>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="추천봉사정보를 불러오는 중..."
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/place1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/time1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/day1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:textSize="16sp" />
     </LinearLayout>
     <Button
         android:id="@+id/logout"

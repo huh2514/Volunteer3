@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -147,6 +148,11 @@ public class StudentMain extends AppCompatActivity {
     SearchData[] getAll = new SearchData[100];
     SearchData[] scheduleFiltered = new SearchData[100];
 
+    String title1, place1, sTime1, eTime1, sDay1, eDay1, code1;
+    TextView title,place,time,day;
+    LinearLayout first_layout;
+    SearchData data = new SearchData();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +202,11 @@ public class StudentMain extends AppCompatActivity {
         /*startService(serviceintent1);*/
 
 
+        first_layout = (LinearLayout)findViewById(R.id.mainVolounteerLayout);
+        title = (TextView)findViewById(R.id.title1);
+        place = (TextView)findViewById(R.id.place1);
+        time = (TextView)findViewById(R.id.time1);
+        day = (TextView)findViewById(R.id.day1);
         targetTime = (TextView)findViewById(R.id.yourTarget);
         SearchVolunteerBtn = (Button)findViewById(R.id.SearchVolunteerBtn);
         timeTableBtn = (Button)findViewById((R.id.timeTableBtn));
@@ -243,6 +254,25 @@ public class StudentMain extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        first_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
+                myAsyncTasks.execute();
+                strc = code1;
+                data.setProgrmRegistNo(strc);
+
+                Toast.makeText(context_main, data.progrmRegistNo, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                ComponentName cmpName = new ComponentName("com.cookandroid.volunteer",
+                        "com.cookandroid.volunteer.mainSelectedVolunteer");
+                intent.setComponent(cmpName);
+                startActivity(intent);
+            }
+        });
+
 
         //SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         //email = pref.getString(emailkey, "");
@@ -320,9 +350,24 @@ public class StudentMain extends AppCompatActivity {
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable()  {
             public void run() {
-                vp = (ViewPager)findViewById(R.id.viewPager);
-                vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
-                vp.setCurrentItem(0);
+                if(list.get(0).progrmSj==null) title.setText("적절한 봉사활동이 없습니다.");
+                else {
+                    title1 = list.get(0).progrmSj;
+                    Log.d("확인", title1);
+                    place1 = list.get(0).actPlace;
+                    sTime1 = list.get(0).actBeginTm;
+                    eTime1 = list.get(0).actEndTm;
+                    sDay1 = list.get(0).progrmBgnde;
+                    eDay1 = list.get(0).progrmEndde;
+                    code1 = list.get(0).progrmRegistNo;
+
+
+                    title.setText(title1);
+                    place.setText(place1);
+                    time.setText(sTime1 + "시 ~ " + eTime1 + "시");
+                    day.setText(sDay1 + " ~ " + eDay1 + "");
+                }
+
                 // 시간 지난 후 실행할 코딩
             }
         }, 5000);
@@ -386,15 +431,7 @@ public class StudentMain extends AppCompatActivity {
         });
     }
 
-    View.OnClickListener movePageListener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View v)
-        {
-            int tag = (int) v.getTag();
-            vp.setCurrentItem(tag);
-        }
-    };
+
 
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
@@ -582,33 +619,6 @@ public class StudentMain extends AppCompatActivity {
 
 
 
-    private class pagerAdapter extends FragmentStatePagerAdapter
-    {
-        public pagerAdapter(FragmentManager fm)
-        {
-            super(fm);
-        }
-        @Override
-        public Fragment getItem(int position)
-        {
-            switch(position)
-            {
-                case 0:
-                    return new FirstFragment();
-                case 1:
-                    return new SecondFragment();
-                case 2:
-                    return new ThirdFragment();
-                default:
-                    return null;
-            }
-        }
-        @Override
-        public int getCount()
-        {
-            return 3;
-        }
-    }
 
             // 모든 데이터 삭제
     public void setPreferenceClear(){
@@ -1260,6 +1270,182 @@ public class StudentMain extends AppCompatActivity {
                 e.printStackTrace();
             }
             return null;
+        }
+
+    }
+    public class MyAsyncTasks extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            requestUrl1 = "http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrPartcptnItem?serviceKey=" + dataKey2 + "&progrmRegistNo=" + strc;
+            try {
+                boolean c_progrmSj = false;
+                boolean c_actPlace =false;
+                boolean c_progrmBgnde = false;
+                boolean c_progrmEndde = false;
+                boolean c_progrmRegistNo = false;
+                boolean c_actBeginTm = false;
+                boolean c_actEndTm =false;
+                boolean c_noticeBgnde = false;
+                boolean c_noticeEndde = false;
+                boolean c_rcritNmpr = false;
+                boolean c_appTotal = false;
+                boolean c_actWkdy =false;
+                boolean c_srvcClCode = false;
+                boolean c_mnnstNm = false;
+                boolean c_nanmmbyNm = false;
+                boolean c_telno = false;
+                boolean c_email =false;
+                boolean c_progrmCn = false;
+                boolean c_progrmLink = false;
+
+                URL url = new URL(requestUrl1);
+                InputStream is = url.openStream();
+                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                XmlPullParser parser = factory.newPullParser();
+                parser.setInput(new InputStreamReader(is, "UTF-8"));
+
+                String tag;
+                int eventType = parser.getEventType();
+
+                while(eventType != XmlPullParser.END_DOCUMENT){
+                    switch (eventType) {
+                        case XmlPullParser.START_DOCUMENT:
+                            list = new ArrayList<searchItem>();
+                            break;
+                        case XmlPullParser.END_TAG:
+                            if (parser.getName().equals("item") && bus != null) {
+                                list.add(bus);
+                            }
+                            break;
+                        case XmlPullParser.START_TAG:
+                            if (parser.getName().equals("item")) {
+                                bus = new searchItem();
+                            }
+                            if (parser.getName().equals("progrmSj")) {
+                                c_progrmSj = true;
+                            }
+                            if (parser.getName().equals("actPlace")) {
+                                c_actPlace = true;
+                            }
+                            if (parser.getName().equals("progrmBgnde")) {
+                                c_progrmBgnde = true;
+                            }
+                            if (parser.getName().equals("progrmEndde")) {
+                                c_progrmEndde = true;
+                            }
+                            if (parser.getName().equals("progrmRegistNo")) {
+                                c_progrmRegistNo = true;
+                            }
+                            if (parser.getName().equals("actBeginTm")) {
+                                c_actBeginTm = true;
+                            }
+                            if (parser.getName().equals("actEndTm")) {
+                                c_actEndTm = true;
+                            }
+                            if (parser.getName().equals("noticeBgnde")) {
+                                c_noticeBgnde = true;
+                            }
+                            if (parser.getName().equals("noticeEndde")) {
+                                c_noticeEndde = true;
+                            }
+                            if (parser.getName().equals("rcritNmpr")) {
+                                c_rcritNmpr = true;
+                            }
+                            if (parser.getName().equals("appTotal")) {
+                                c_appTotal = true;
+                            }
+                            if (parser.getName().equals("actWkdy")) {
+                                c_actWkdy = true;
+                            }
+                            if (parser.getName().equals("srvcClCode")) {
+                                c_srvcClCode = true;
+                            }
+                            if (parser.getName().equals("mnnstNm")) c_mnnstNm = true;
+                            if (parser.getName().equals("nanmmbyNm")) c_nanmmbyNm = true;
+                            if (parser.getName().equals("telno")) c_telno = true;
+                            if (parser.getName().equals("email")) c_email = true;
+                            if (parser.getName().equals("progrmCn")) {
+                                c_progrmCn = true;
+                            }
+                            if (parser.getName().equals("progrmLink")) {c_progrmLink = true;
+                            }
+                            break;
+                        case XmlPullParser.TEXT:
+                            if(c_progrmSj){
+                                data.setProgrmSj(parser.getText());
+                                c_progrmSj = false;
+                            }if(c_actPlace) {
+                            data.setActPlace(parser.getText());
+                            c_actPlace = false;
+                        }if (c_progrmBgnde) {
+                            data.setProgrmBgnde(parser.getText());
+                            c_progrmBgnde = false;
+                        }if(c_progrmEndde) {
+                            data.setProgrmEndde(parser.getText());
+                            c_progrmEndde = false;
+                        }if(c_progrmRegistNo) {
+                            data.setProgrmRegistNo(parser.getText());
+                            c_progrmRegistNo = false;
+                        }if(c_actBeginTm) {
+                            data.setActBeginTm(parser.getText());
+                            c_actBeginTm = false;
+                        }if (c_actEndTm) {
+                            data.setActEndTm(parser.getText());
+                            c_actEndTm = false;
+                        }if(c_noticeBgnde) {
+                            data.setNoticeBgnde(parser.getText());
+                            c_noticeBgnde = false;
+                        }if(c_noticeEndde) {
+                            data.setNoticeEndde(parser.getText());
+                            c_noticeEndde = false;
+                        }if(c_rcritNmpr) {
+                            data.setRcritNmpr(parser.getText());
+                            c_rcritNmpr = false;
+                        }if (c_appTotal) {
+                            data.setAppTotal(parser.getText());
+                            c_appTotal = false;
+                        }if(c_actWkdy) {
+                            data.setActWkdy(parser.getText());
+                            c_actWkdy = false;
+                        }if(c_srvcClCode) {
+                            data.setSrvcClCode(parser.getText());
+                            c_srvcClCode = false;
+                        }if(c_mnnstNm) {
+                            data.setMnnstNm(parser.getText());
+                            c_mnnstNm = false;
+                        }if (c_nanmmbyNm) {
+                            data.setNanmmbyNm(parser.getText());
+                            c_nanmmbyNm = false;
+                        }if(c_telno) {
+                            data.setTelno(parser.getText());
+                            c_telno = false;
+                        }if(c_email) {
+                            data.seTemail(parser.getText());
+                            c_email = false;
+                        }if(c_progrmCn) {
+                            data.setProgrmCn(parser.getText());
+                            c_progrmCn = false;
+                        }if(c_progrmLink) {
+                            data.setProgrmLink(parser.getText());
+                            c_progrmLink = false;
+                        }
+                            break;
+                    }
+                    eventType = parser.next();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            //어답터 연결
         }
 
     }
